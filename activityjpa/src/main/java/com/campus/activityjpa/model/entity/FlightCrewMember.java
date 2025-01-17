@@ -29,6 +29,12 @@ public class FlightCrewMember {
     @JoinColumn(name = "idFlight")
     private Flight flight; 
 
+    public FlightCrewMember() {
+    }
+    //revisar metodo
+    
+    
+
     public Long getId() {
         return id;
     }

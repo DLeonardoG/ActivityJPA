@@ -42,6 +42,17 @@ public class Ticket {
     @JoinColumn(name = "idPayMethod")
     private PayMethod payMethod;
 
+    public Ticket() {
+    }
+
+    public Ticket(LocalDate dateBuy, LocalDate dateFlight, String seat) {
+        this.dateBuy = dateBuy;
+        this.dateFlight = dateFlight;
+        this.seat = seat;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

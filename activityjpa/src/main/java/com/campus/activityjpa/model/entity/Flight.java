@@ -33,6 +33,18 @@ public class Flight {
     @JoinColumn(name = "idDestination")
     private Airport destination;
 
+    public Flight() {
+    }
+
+    public Flight(LocalDate date, LocalDate dateArrived) {
+        this.date = date;
+        this.dateArrived = dateArrived;
+    }
+
+    
+    
+    
+    
     public Long getId() {
         return id;
     }
@@ -71,6 +83,11 @@ public class Flight {
 
     public void setDestination(Airport destination) {
         this.destination = destination;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" + "id=" + id + ", date=" + date + ", dateArrived=" + dateArrived + ", origin=" + origin + ", destination=" + destination + '}';
     }
     
     

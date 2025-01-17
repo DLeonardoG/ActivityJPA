@@ -22,6 +22,16 @@ public class Plane {
     private String model;
     private Integer numSeat;
 
+    public Plane() {
+    }
+
+    public Plane(String model, Integer numSeat) {
+        this.model = model;
+        this.numSeat = numSeat;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

@@ -26,6 +26,15 @@ public class Airport {
     @ManyToOne
     @JoinColumn(name = "idPlace")
     private Place place;
+
+    public Airport() {
+    }
+
+    public Airport(String name) {
+        this.name = name;
+    }
+    
+    
     
     public Long getId() {
         return id;
@@ -49,6 +58,11 @@ public class Airport {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+
+    @Override
+    public String toString() {
+        return "Airport{" + "id=" + id + ", name=" + name + ", place=" + place + '}';
     }
 
     

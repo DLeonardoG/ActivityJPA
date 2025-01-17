@@ -21,6 +21,15 @@ public class Place {
 
     private String place;
 
+    public Place() {
+    }
+
+    public Place(String place) {
+        this.place = place;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }
