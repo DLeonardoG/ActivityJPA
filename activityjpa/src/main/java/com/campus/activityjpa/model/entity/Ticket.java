@@ -23,7 +23,7 @@ public class Ticket {
     
     private Date dateBuy;
     
-    private double precio;
+    private double price;
     
     private String classSeat;
     
@@ -51,7 +51,7 @@ public class Ticket {
         this.idTicket = idTicket;
         this.codeTicket = codeTicket;
         this.dateBuy = dateBuy;
-        this.precio = precio;
+        this.price = precio;
         this.classSeat = classSeat;
         this.estate = estate;
         this.dateFlight = dateFlight;
@@ -87,11 +87,11 @@ public class Ticket {
     }
 
     public double getPrecio() {
-        return precio;
+        return price;
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.price = precio;
     }
 
     public String getClassSeat() {
@@ -144,7 +144,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "idTicket=" + idTicket + ", codeTicket=" + codeTicket + ", dateBuy=" + dateBuy + ", precio=" + precio + ", classSeat=" + classSeat + ", estate=" + estate + ", passanger=" + passanger + ", flight=" + flight + ", dateFlight=" + dateFlight + ", seat=" + seat + '}';
+        return "Ticket{" + "idTicket=" + idTicket + ", codeTicket=" + codeTicket + ", dateBuy=" + dateBuy + ", precio=" + price + ", classSeat=" + classSeat + ", estate=" + estate + ", passanger=" + passanger + ", flight=" + flight + ", dateFlight=" + dateFlight + ", seat=" + seat + '}';
     }
     
     

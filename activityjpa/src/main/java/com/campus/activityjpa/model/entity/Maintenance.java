@@ -14,6 +14,8 @@ public class Maintenance {
     private Long idMaintenance;
     private String date;
     private double cost;
+  
+    private TypeMaintenance tyoeMaintenance;
     
     
     
