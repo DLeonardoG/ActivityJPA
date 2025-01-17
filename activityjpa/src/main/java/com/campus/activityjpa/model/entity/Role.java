@@ -13,6 +13,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "roles")
 public class Role {
     
     @Id
@@ -20,8 +21,10 @@ public class Role {
     private Long id;
     private String role;
     
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "roles", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<CrewMember> members = new ArrayList<>();
+
+
     
-    
+
 }
