@@ -8,6 +8,7 @@ public class ActivityjpaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ActivityjpaApplication.class, args);
+                System.out.println("hola mundo");
 	}
 
 }
