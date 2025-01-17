@@ -8,23 +8,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  *
- * @author camper
+ * @author kevin
  */
 @Entity
-public class Passenger {
+public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    public Passenger() {
+    @ManyToOne
+    @JoinColumn(name = "idPlace")
+    private Place place;
+
+    public Airport() {
     }
 
-    public Passenger(String name) {
+    public Airport(String name) {
         this.name = name;
     }
     
@@ -46,10 +52,18 @@ public class Passenger {
         this.name = name;
     }
 
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
     @Override
     public String toString() {
-        return "Passenger{" + "id=" + id + ", name=" + name + '}';
+        return "Airport{" + "id=" + id + ", name=" + name + ", place=" + place + '}';
     }
-    
+
     
 }

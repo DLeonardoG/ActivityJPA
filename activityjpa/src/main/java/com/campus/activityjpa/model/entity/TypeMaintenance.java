@@ -11,23 +11,24 @@ import jakarta.persistence.Id;
 
 /**
  *
- * @author camper
+ * @author kevin
  */
 @Entity
-public class Passenger {
+public class TypeMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+    private Double cost;
 
-    public Passenger() {
+    public TypeMaintenance() {
     }
 
-    public Passenger(String name) {
+    public TypeMaintenance(String name, Double cost) {
         this.name = name;
+        this.cost = cost;
     }
-    
     
     
     public Long getId() {
@@ -46,9 +47,17 @@ public class Passenger {
         this.name = name;
     }
 
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
     @Override
     public String toString() {
-        return "Passenger{" + "id=" + id + ", name=" + name + '}';
+        return "TypeMaintenance{" + "id=" + id + ", name=" + name + ", cost=" + cost + '}';
     }
     
     

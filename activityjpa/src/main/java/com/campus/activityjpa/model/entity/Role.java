@@ -4,32 +4,30 @@
  */
 package com.campus.activityjpa.model.entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 /**
  *
- * @author camper
+ * @author kevin
  */
-@Entity
-public class Passenger {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String role;
 
-    public Passenger() {
+    public Role() {
     }
 
-    public Passenger(String name) {
-        this.name = name;
+    public Role(String role) {
+        this.role = role;
     }
     
     
-    
+
     public Long getId() {
         return id;
     }
@@ -38,17 +36,12 @@ public class Passenger {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Passenger{" + "id=" + id + ", name=" + name + '}';
+    public void setRole(String role) {
+        this.role = role;
     }
     
     
