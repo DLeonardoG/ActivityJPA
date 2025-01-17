@@ -8,8 +8,6 @@ package com.campus.activityjpa.model.entity;
  *
  * @author camper
  */
-public class Flight {
+public class Passenger {
     
-    
-    private Long id;
 }

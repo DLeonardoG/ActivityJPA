@@ -8,6 +8,6 @@ package com.campus.activityjpa.model.entity;
  *
  * @author camper
  */
-public class Airport {
+public class ClassSeat {
     
 }
