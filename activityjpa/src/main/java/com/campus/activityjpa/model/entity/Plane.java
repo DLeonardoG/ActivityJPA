@@ -11,25 +11,17 @@ import jakarta.persistence.Id;
 
 /**
  *
- * @author camper
+ * @author kevin
  */
 @Entity
-public class Passenger {
+public class Plane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String model;
+    private Integer numSeat;
 
-    public Passenger() {
-    }
-
-    public Passenger(String name) {
-        this.name = name;
-    }
-    
-    
-    
     public Long getId() {
         return id;
     }
@@ -38,17 +30,25 @@ public class Passenger {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getModel() {
+        return model;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Integer getNumSeat() {
+        return numSeat;
+    }
+
+    public void setNumSeat(Integer numSeat) {
+        this.numSeat = numSeat;
     }
 
     @Override
     public String toString() {
-        return "Passenger{" + "id=" + id + ", name=" + name + '}';
+        return "Plane{" + "id=" + id + ", model=" + model + ", numSeat=" + numSeat + '}';
     }
     
     

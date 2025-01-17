@@ -8,27 +8,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  *
- * @author camper
+ * @author kevin
  */
 @Entity
-public class ClassSeat {
+public class FlightCrewMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer price;
-    private String seatClass;
+    @ManyToOne
+    @JoinColumn(name = "idCrewMember")
+    private CrewMember crewMember;
 
-    public ClassSeat() {
-    }
-
-    public ClassSeat(Integer price, String seatClass) {
-        this.price = price;
-        this.seatClass = seatClass;
-    }
+    @ManyToOne
+    @JoinColumn(name = "idFlight")
+    private Flight flight; 
 
     public Long getId() {
         return id;
@@ -38,25 +37,25 @@ public class ClassSeat {
         this.id = id;
     }
 
-    public Integer getPrice() {
-        return price;
+    public CrewMember getCrewMember() {
+        return crewMember;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setCrewMember(CrewMember crewMember) {
+        this.crewMember = crewMember;
     }
 
-    public String getSeatClass() {
-        return seatClass;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setSeatClass(String seatClass) {
-        this.seatClass = seatClass;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
     @Override
     public String toString() {
-        return "ClassSeat{" + "id=" + id + ", price=" + price + ", seatClass=" + seatClass + '}';
+        return "FlightCrewMember{" + "id=" + id + ", crewMember=" + crewMember + ", flight=" + flight + '}';
     }
     
     
