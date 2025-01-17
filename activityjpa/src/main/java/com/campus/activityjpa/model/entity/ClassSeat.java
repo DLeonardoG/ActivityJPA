@@ -1,18 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.activityjpa.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-/**
- *
- * @author camper
- */
 @Entity
 public class ClassSeat {
     @Id
@@ -21,13 +11,13 @@ public class ClassSeat {
 
     private Integer price;
     private String seatClass;
-
-    public ClassSeat() {
-    }
-
+    
     public ClassSeat(Integer price, String seatClass) {
         this.price = price;
         this.seatClass = seatClass;
+    }
+
+    public ClassSeat() {
     }
 
     public Long getId() {
@@ -52,11 +42,6 @@ public class ClassSeat {
 
     public void setSeatClass(String seatClass) {
         this.seatClass = seatClass;
-    }
-
-    @Override
-    public String toString() {
-        return "ClassSeat{" + "id=" + id + ", price=" + price + ", seatClass=" + seatClass + '}';
     }
     
     
