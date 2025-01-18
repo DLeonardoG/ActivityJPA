@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.activityjpa.model.entity;
 
 import jakarta.persistence.Entity;
@@ -14,10 +11,6 @@ import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author kevin
- */
 @Entity
 public class CrewMember {
 
@@ -26,6 +19,7 @@ public class CrewMember {
     private Long id;
 
     private String name;
+    private String ID;
     @ManyToOne
     @JoinColumn(name = "roleId", nullable = false)
     private Role role;
@@ -36,8 +30,9 @@ public class CrewMember {
     public CrewMember() {
     }
 
-    public CrewMember(String name) {
+    public CrewMember(String ID, String name) {
         this.name = name;
+        this.ID = ID;
     }
 
     public Long getId() {
@@ -55,7 +50,7 @@ public class CrewMember {
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public List<Flight> getFlights() {
         return flights;
     }
