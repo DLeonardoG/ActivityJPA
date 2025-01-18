@@ -4,13 +4,13 @@
  */
 package com.campus.activityjpa.repository;
 
-import com.campus.activityjpa.model.entity.PayMethod;
+import com.campus.activityjpa.model.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author kevin
  */
-public interface PayMethodRepository extends JpaRepository<PayMethod, Long>{
+public interface RoleRepository extends JpaRepository<Role, Long>{
     
 }

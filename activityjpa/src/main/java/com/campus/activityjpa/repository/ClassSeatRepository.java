@@ -1,10 +1,16 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package com.campus.activityjpa.repository;
 
 import com.campus.activityjpa.model.entity.ClassSeat;
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface class ClassSeatRepository extends JpaRepository<ClassSeat, Long>{
+/**
+ *
+ * @author kevin
+ */
+public interface ClassSeatRepository extends JpaRepository<ClassSeat, Long>{
     
 }
