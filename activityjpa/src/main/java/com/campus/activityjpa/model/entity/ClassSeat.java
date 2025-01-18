@@ -4,10 +4,14 @@
  */
 package com.campus.activityjpa.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,6 +25,9 @@ public class ClassSeat {
 
     private Integer price;
     private String seatClass;
+    
+    @OneToMany(mappedBy = "classSeat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 
     public ClassSeat() {
     }
@@ -53,10 +60,28 @@ public class ClassSeat {
     public void setSeatClass(String seatClass) {
         this.seatClass = seatClass;
     }
+    
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+        ticket.setClassSeat(this);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setClassSeat(null);
+    }
 
     @Override
     public String toString() {
-        return "ClassSeat{" + "id=" + id + ", price=" + price + ", seatClass=" + seatClass + '}';
+        return "ClassSeat{" +
+                "id=" + id +
+                ", price=" + price +
+                ", seatClass='" + seatClass + '\'' +
+                '}';
     }
     
     

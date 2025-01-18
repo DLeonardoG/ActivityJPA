@@ -1,18 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.activityjpa.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author kevin
- */
+
 @Entity
 public class TypeMaintenance {
     @Id
@@ -21,6 +18,9 @@ public class TypeMaintenance {
 
     private String name;
     private Double cost;
+    
+    @ManyToMany(mappedBy = "typeMaintenance")
+    private List<Maintenance> maintenance = new ArrayList<>();
 
     public TypeMaintenance() {
     }
@@ -54,11 +54,9 @@ public class TypeMaintenance {
     public void setCost(Double cost) {
         this.cost = cost;
     }
-
-    @Override
-    public String toString() {
-        return "TypeMaintenance{" + "id=" + id + ", name=" + name + ", cost=" + cost + '}';
-    }
     
+    public List<Maintenance> getMaintenance() {
+        return maintenance;
+    }
     
 }

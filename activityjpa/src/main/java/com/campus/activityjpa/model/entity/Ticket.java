@@ -27,21 +27,24 @@ public class Ticket {
     private String seat;
 
     @ManyToOne
-    @JoinColumn(name = "idFlight")
+    @JoinColumn(name = "idFlight", nullable = false)
     private Flight flight;
 
     @ManyToOne
-    @JoinColumn(name = "idClassSeat")
+    @JoinColumn(name = "idClassSeat", nullable = false)
     private ClassSeat classSeat;
 
     @ManyToOne
-    @JoinColumn(name = "idPassenger")
+    @JoinColumn(name = "idPassenger", nullable = false)
     private Passenger passenger;
 
     @ManyToOne
-    @JoinColumn(name = "idPayMethod")
+    @JoinColumn(name = "idPayMethod", nullable = false)
     private PayMethod payMethod;
-
+    
+    
+    
+    
     public Ticket() {
     }
 

@@ -4,13 +4,19 @@
  */
 package com.campus.activityjpa.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,7 +30,12 @@ public class Flight {
 
     private LocalDate date;
     private LocalDate dateArrived;
+    
+    @OneToMany(mappedBy = "Flight", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 
+    
+    
     @ManyToOne
     @JoinColumn(name = "idOrigin")
     private Airport origin;
@@ -32,7 +43,21 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "idDestination")
     private Airport destination;
+    
+    @ManyToOne
+    @JoinColumn(name = "idPlane")
+    private Plane plane;
 
+    @ManyToMany
+    @JoinTable(
+        name = "flightsCrewMembers", // Nombre de la tabla intermedia
+        joinColumns = @JoinColumn(name = "idFlight"), // Columna que une con Flight
+        inverseJoinColumns = @JoinColumn(name = "idCrewMember") // Columna que une con CrewMember
+    )
+    private List<CrewMember> crewMembers = new ArrayList<>();
+    
+    
+    
     public Flight() {
     }
 
@@ -40,10 +65,6 @@ public class Flight {
         this.date = date;
         this.dateArrived = dateArrived;
     }
-
-    
-    
-    
     
     public Long getId() {
         return id;
@@ -84,10 +105,41 @@ public class Flight {
     public void setDestination(Airport destination) {
         this.destination = destination;
     }
+    
+    public List<CrewMember> getCrewMembers() {
+        return crewMembers;
+    }
 
-    @Override
-    public String toString() {
-        return "Flight{" + "id=" + id + ", date=" + date + ", dateArrived=" + dateArrived + ", origin=" + origin + ", destination=" + destination + '}';
+    public void addCrewMember(CrewMember crewMember) {
+        this.crewMembers.add(crewMember);
+        crewMember.getFlights().add(this); // Asegurar consistencia en ambos lados
+    }
+    
+    public void removeCrewMember(CrewMember crewMember) {
+        this.crewMembers.remove(crewMember);
+        crewMember.getFlights().remove(this); // Asegurar consistencia en ambos lados
+    }
+    
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+    
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void addTickets(Ticket ticket) {
+        this.tickets .add(ticket);
+        ticket.setFlight(this);
+    }
+    
+    public void removeTickets(Ticket ticket) {
+        this.tickets .remove(ticket);
+        ticket.setFlight(this);
     }
     
     

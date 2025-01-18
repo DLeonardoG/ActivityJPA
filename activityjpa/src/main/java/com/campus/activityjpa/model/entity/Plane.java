@@ -4,10 +4,14 @@
  */
 package com.campus.activityjpa.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,6 +25,12 @@ public class Plane {
 
     private String model;
     private Integer numSeat;
+    
+    @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Flight> flights = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Maintenance> maintenances = new ArrayList<>();
 
     public Plane() {
     }
@@ -55,10 +65,28 @@ public class Plane {
     public void setNumSeat(Integer numSeat) {
         this.numSeat = numSeat;
     }
+    
+    public List<Flight> getFlight() {
+        return flights;
+    }
 
-    @Override
-    public String toString() {
-        return "Plane{" + "id=" + id + ", model=" + model + ", numSeat=" + numSeat + '}';
+    public void addFlight(Flight flight) {
+        this.flights.add(flight);
+        flight.setPlane(this);
+    }
+    
+    public void removeFlight(Flight flight) {
+        this.flights.remove(flight);
+        flight.setPlane(this);
+    }
+    
+    public List<Maintenance> getMaintenances() {
+        return maintenances;
+    }
+
+    public void addMaintenances(Maintenance maintenance) {
+        this.maintenances.add(maintenance);
+        maintenance.setAirplane(this);
     }
     
     

@@ -9,8 +9,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,10 +29,15 @@ public class Maintenance {
     private LocalDate date;
     private Double costFinal;
 
-    @ManyToOne
-    @JoinColumn(name = "idType")
-    private TypeMaintenance type;
+    @ManyToMany
+    @JoinTable(
+        name = "maintenceTypeMaintenance", // Nombre de la tabla intermedia
+        joinColumns = @JoinColumn(name = "idMaintenance"), // Columna que une con Flight
+        inverseJoinColumns = @JoinColumn(name = "idTypeMaintenance") // Columna que une con CrewMember
+    )
+    private List<TypeMaintenance> typeMaintenance = new ArrayList<>();
 
+    
     @ManyToOne
     @JoinColumn(name = "idAirplane")
     private Plane airplane; 
@@ -40,8 +49,6 @@ public class Maintenance {
         this.date = date;
         this.costFinal = costFinal;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -67,14 +74,6 @@ public class Maintenance {
         this.costFinal = costFinal;
     }
 
-    public TypeMaintenance getType() {
-        return type;
-    }
-
-    public void setType(TypeMaintenance type) {
-        this.type = type;
-    }
-
     public Plane getAirplane() {
         return airplane;
     }
@@ -82,11 +81,19 @@ public class Maintenance {
     public void setAirplane(Plane airplane) {
         this.airplane = airplane;
     }
+    
+    public List<TypeMaintenance> getTypeMaintenance() {
+        return typeMaintenance;
+    }
 
-    @Override
-    public String toString() {
-        return "Maintenance{" + "id=" + id + ", date=" + date + ", costFinal=" + costFinal + ", type=" + type + ", airplane=" + airplane + '}';
+    public void addTypeMaintenance(TypeMaintenance typeMaintenance) {
+        this.typeMaintenance.add(typeMaintenance);
+        typeMaintenance.getMaintenance().add(this);
     }
     
+    public void removeTypeMaintenance(TypeMaintenance typeMaintenance) {
+        this.typeMaintenance.remove(typeMaintenance);
+        typeMaintenance.getMaintenance().remove(this);
+    }
     
 }

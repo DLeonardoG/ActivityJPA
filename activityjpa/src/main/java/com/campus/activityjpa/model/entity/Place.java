@@ -4,10 +4,14 @@
  */
 package com.campus.activityjpa.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,6 +24,8 @@ public class Place {
     private Long id;
 
     private String place;
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Airport> airports = new ArrayList<>();
 
     public Place() {
     }
@@ -45,11 +51,16 @@ public class Place {
     public void setPlace(String place) {
         this.place = place;
     }
-
-    @Override
-    public String toString() {
-        return "Place{" + "id=" + id + ", place=" + place + '}';
+    
+    public List<Airport> getAirports() {
+        return airports;
     }
+
+    public void addAirports(Airport airport) {
+        this.airports.add(airport);
+        airport.setPlace(this);
+    }
+    
     
     
     

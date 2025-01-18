@@ -3,6 +3,8 @@ package com.campus.activityjpa.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class PayMethod {
@@ -12,6 +14,9 @@ public class PayMethod {
     private Long id;
 
     private String payMethod;
+    
+    @OneToMany(mappedBy = "payMethod", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 
     public PayMethod() {
     }
@@ -34,6 +39,16 @@ public class PayMethod {
 
     public void setPayMethod(String payMethod) {
         this.payMethod = payMethod;
+    }
+    
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+        ticket.setPayMethod(this);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setPayMethod(null);
     }
 
     @Override

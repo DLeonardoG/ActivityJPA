@@ -7,6 +7,9 @@ package com.campus.activityjpa.model.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,6 +21,9 @@ public class Role {
     private Long id;
 
     private String role;
+    
+    @OneToMany(mappedBy = "role")
+    private List<CrewMember> crewMembers = new ArrayList<>();
 
     public Role() {
     }
@@ -42,6 +48,20 @@ public class Role {
 
     public void setRole(String role) {
         this.role = role;
+    }
+    
+    public List<CrewMember> getCrewMembers() {
+        return crewMembers;
+    }
+
+    public void addCrewMembers(CrewMember crewMember) {
+        this.crewMembers.add(crewMember);
+        crewMember.setRole(this);
+    }
+    
+    public void removeCrewMembers(CrewMember crewMember) {
+        this.crewMembers.remove(crewMember);
+        crewMember.setRole(null);
     }
     
     

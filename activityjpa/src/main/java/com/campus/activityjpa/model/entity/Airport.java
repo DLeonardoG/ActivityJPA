@@ -4,12 +4,16 @@
  */
 package com.campus.activityjpa.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,6 +26,9 @@ public class Airport {
     private Long id;
 
     private String name;
+    
+    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Flight> flights = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "idPlace")
@@ -58,6 +65,30 @@ public class Airport {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+    
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void addFlightsDestination(Flight flight) {
+        this.flights.add(flight);
+        flight.setDestination(this);
+    }
+    
+    public void addFlightsArrive(Flight flight) {
+        this.flights.add(flight);
+        flight.setOrigin(this);
+    }
+    
+    public void removeFlightsDestination(Flight flight) {
+        this.flights.remove(flight);
+        flight.setDestination(this);
+    }
+    
+    public void removeFlightsArrive(Flight flight) {
+        this.flights.remove(flight);
+        flight.setOrigin(this);
     }
 
     @Override
