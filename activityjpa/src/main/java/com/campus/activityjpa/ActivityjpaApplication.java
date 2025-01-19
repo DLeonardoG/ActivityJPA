@@ -1,9 +1,11 @@
 package com.campus.activityjpa;
 
 import com.campus.activityjpa.controller.MaintenanceService;
+import com.campus.activityjpa.controller.PlaneService;
 import com.campus.activityjpa.controller.RoleService;
 import com.campus.activityjpa.controller.TypeMaintenanceService;
 import com.campus.activityjpa.model.entity.Maintenance;
+import com.campus.activityjpa.model.entity.Plane;
 import com.campus.activityjpa.model.entity.Role;
 import com.campus.activityjpa.model.entity.TypeMaintenance;
 import java.time.LocalDate;
@@ -36,7 +38,7 @@ public class ActivityjpaApplication {
 //        roleService.saveRoleWithCrewMembers("pilot", members);
 //        roleService.getAll().forEach(System.out::println);
 
-//          --- Types y mainteneces ---
+//          --- Types y mainteneces relationShip ---
         TypeMaintenanceService typeMaintenanceService = context.getBean(TypeMaintenanceService.class);
         MaintenanceService maintenanceService = context.getBean(MaintenanceService.class);
         
@@ -59,6 +61,20 @@ public class ActivityjpaApplication {
         
         maintenanceService.addTypeMaintenance(maintenance1, typesMaintenenceMaintenence1);
         maintenanceService.addTypeMaintenance(maintenance2, typesMaintenenceMaintenence2);
+        
+//        --- OneToOne Manintenance with plane ---
+        PlaneService planeService = context.getBean(PlaneService.class);
+        
+        Plane plane1 = new Plane("2023", 50);
+        Maintenance maintenance3 = new Maintenance(currentDate, 700.0, plane1);
+        
+        plane1.setMaintenance(maintenance3);
+        planeService.savePlane(plane1);
+        
+        List<TypeMaintenance> typesMaintenenceMaintenence3 = new ArrayList<>();
+        typesMaintenenceMaintenence3.add(typeMaintenance1);
+        maintenanceService.addTypeMaintenance(maintenance3, typesMaintenenceMaintenence3);
+  
         
     }
 

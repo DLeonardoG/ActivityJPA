@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class Plane {
     @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Flight> flights = new ArrayList<>();
     
-    @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Maintenance> maintenances = new ArrayList<>();
+    @OneToOne(mappedBy = "plane", cascade = CascadeType.ALL)
+    private Maintenance maintenance;
 
     public Plane() {
     }
@@ -65,27 +66,19 @@ public class Plane {
 
     public void addFlight(Flight flight) {
         this.flights.add(flight);
-        flight.setPlane(this);  // Correcto: Enlaza el vuelo con el avión.
+        flight.setPlane(this);  
     }
 
     public void removeFlight(Flight flight) {
         this.flights.remove(flight);
-        flight.setPlane(null);  // Elimina la relación.
+        flight.setPlane(null); 
     }
 
-    // Métodos de manejo de la relación con Maintenance
-    public List<Maintenance> getMaintenances() {
-        return maintenances;
+    public Maintenance getMaintenance() {
+        return maintenance;
     }
 
-    public void addMaintenance(Maintenance maintenance) {
-        this.maintenances.add(maintenance);
-        maintenance.setPlane(this);  // Correcto: Enlaza el mantenimiento con el avión.
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
-
-    public void removeMaintenance(Maintenance maintenance) {
-        this.maintenances.remove(maintenance);
-        maintenance.setPlane(null);  // Elimina la relación.
-    }
-    
 }

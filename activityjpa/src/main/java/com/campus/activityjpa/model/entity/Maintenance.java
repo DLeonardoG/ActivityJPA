@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Maintenance {
     private List<TypeMaintenance> typesMaintenances = new ArrayList<>();
 
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idplane")
     private Plane plane;
 
@@ -45,6 +46,12 @@ public class Maintenance {
         this.date = date;
         this.costFinal = costFinal;
         
+    }
+    
+    public Maintenance(LocalDate date, Double costFinal, Plane plane) {
+        this.date = date;
+        this.costFinal = costFinal;
+        this.plane = plane;
     }
 
     public Long getId() {
