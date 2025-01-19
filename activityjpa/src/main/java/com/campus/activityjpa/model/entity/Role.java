@@ -60,6 +60,11 @@ public class Role {
         this.crewMembers.remove(crewMember);
         crewMember.setRole(null);
     }
+
+    @Override
+    public String toString() {
+        return "Role{" + "id=" + id + ", role=" + role + ", crewMembers=" + crewMembers + '}';
+    }
     
     
 }

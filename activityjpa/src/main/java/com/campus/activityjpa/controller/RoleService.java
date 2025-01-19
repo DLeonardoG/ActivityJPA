@@ -10,6 +10,7 @@ import com.campus.activityjpa.model.repository.RoleRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,15 @@ public class RoleService {
     public Role saveRole(String name) {
         Role role = new Role(name);
         return roleRepository.save(role);
+    }
+    public List<Role> getAll() {
+        return roleRepository.findAll();
+    }
+    public Optional<Role> getRoleById(Long id) {
+        return roleRepository.findById(id);
+    }
+    public void deleteRole(Long id) {
+        roleRepository.deleteById(id);
     }
     
     @Transactional

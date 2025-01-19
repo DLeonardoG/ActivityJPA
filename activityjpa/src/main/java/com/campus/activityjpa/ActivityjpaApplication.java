@@ -14,21 +14,23 @@ public class ActivityjpaApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ActivityjpaApplication.class, args);
 
-           
-        Map<String, String> members = new HashMap<>();
-        members.put("1", "camilo");
-        members.put("2", "clros");
-        members.put("1", "mafer");
-
-        System.out.println(members);
-        
-        
-        
-         RoleService roleService = context.getBean(RoleService.class);
-         roleService.saveRoleWithCrewMembers("piloto", members);
-        
-//            Role newRole = roleService.saveRole("qqqqqqqqqq");
+//            --- Creation of a new role ---
+//            RoleService roleService = context.getBean(RoleService.class);
+//            Role newRole = roleService.saveRole(hostess"");
 //            System.out.println("h0  "+newRole);
+           
+//        --- creation of a new crew member from role ---
+//        Map<String, String> members = new HashMap<>();
+//        members.put("1", "camilo");
+//        members.put("2", "clros");
+//        members.put("1", "mafer");
+        
+//        members.forEach((key, value) -> System.out.println("id: " + key + ", name: " + value));
+//        roleService.saveRoleWithCrewMembers("pilot", members);
+//        roleService.listOfRoles().forEach(System.out::println);
+        
+
+
     }
 
 }
