@@ -19,7 +19,7 @@ public class Passenger {
     private String name;
     private String IDPassenger;
     
-    @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets = new ArrayList<>();
 
     public Passenger() {
@@ -44,12 +44,12 @@ public class Passenger {
 
     public void addTicket(Ticket ticket) {
         this.tickets.add(ticket);
-        ticket.setPassenger(this); // Relaciona el ticket con este pasajero
+        ticket.setPassenger(this); 
     }
 
     public void removeTicket(Ticket ticket) {
         this.tickets.remove(ticket);
-        ticket.setPassenger(null); // Elimina la relación con este pasajero
+        ticket.setPassenger(null);
     }
 
     public String getIDPassenger() {
@@ -60,12 +60,8 @@ public class Passenger {
         this.IDPassenger = IDPassenger;
     }
 
-    public List<Ticket> getTickets() {
+    public List<Ticket> getTicket() {
         return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
     }
     
     

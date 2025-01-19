@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +29,7 @@ public class Airport {
     @OneToMany(mappedBy = "destination")
     private List<Flight> destinationFlights = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "idPlace")
+    @OneToOne(mappedBy = "airport", cascade = CascadeType.ALL)
     private Place place;
 
     public Airport() {

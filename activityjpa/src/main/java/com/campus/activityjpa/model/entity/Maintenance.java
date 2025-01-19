@@ -106,7 +106,11 @@ public class Maintenance {
     if (this.typesMaintenances.contains(typesMaintenances)) {
         this.typesMaintenances.remove(typesMaintenances);
         typesMaintenances.getMaintenance().remove(this);
-    }
+        }
 }
-    
+
+    @Override
+    public String toString() {
+        return "Maintenance{" + "id=" + id + ", date=" + date + ", costFinal=" + costFinal + ", typesMaintenances=" + typesMaintenances + ", plane=" + plane + '}';
+    }
 }

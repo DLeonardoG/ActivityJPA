@@ -19,7 +19,7 @@ public class ClassSeat {
     private Integer price;
     private String seatClass;
     
-    @OneToMany(mappedBy = "classSeat", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "classSeat", orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
 
     public ClassSeat() {

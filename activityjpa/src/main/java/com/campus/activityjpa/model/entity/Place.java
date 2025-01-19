@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +19,18 @@ public class Place {
     private Long id;
 
     private String place;
-    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Airport> airports = new ArrayList<>();
+    
+    @OneToOne
+    @JoinColumn(name = "id_airport")
+    private Airport airport;
 
     public Place() {
     }
 
+    public Place(String place, Airport airport) {
+        this.place = place;
+        this.airport = airport;
+    }
     public Place(String place) {
         this.place = place;
     }
@@ -44,15 +52,16 @@ public class Place {
     public void setPlace(String place) {
         this.place = place;
     }
-    
-    public List<Airport> getAirports() {
-        return airports;
+
+    public Airport getAirport() {
+        return airport;
     }
 
-    public void addAirports(Airport airport) {
-        this.airports.add(airport);
-        airport.setPlace(this);
+    public void setAirport(Airport airport) {
+        this.airport = airport;
     }
+    
+    
     
     
     

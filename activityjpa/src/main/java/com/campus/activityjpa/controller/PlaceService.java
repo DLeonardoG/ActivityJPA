@@ -15,7 +15,7 @@ public class PlaceService {
     public PlaceService (PlaceRepository placeRepository){
         this.placeRepository = placeRepository;
     }
-    
+     
     public Place savePlace( Place place){
         return placeRepository.save(place);
     }

@@ -2,7 +2,10 @@
 package com.campus.activityjpa.controller;
 
 import com.campus.activityjpa.model.entity.Passenger;
+import com.campus.activityjpa.model.entity.Passenger;
+import com.campus.activityjpa.model.entity.Ticket;
 import com.campus.activityjpa.model.repository.PassengerRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -29,5 +32,13 @@ public class PassengerService {
     
     public void removePassenger (Long id){
         passengerRepository.deleteById(id);
+    }
+    
+    @Transactional
+    public Passenger addTickets(Passenger passenger, List<Ticket> tickets){
+        for (Ticket ticket : tickets) {
+            passenger.addTicket(ticket);
+        }
+        return passengerRepository.save(passenger);
     }
 }

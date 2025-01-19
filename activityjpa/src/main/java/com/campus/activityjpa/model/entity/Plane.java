@@ -81,4 +81,15 @@ public class Plane {
     public void setMaintenance(Maintenance maintenance) {
         this.maintenance = maintenance;
     }
+
+    @Override
+    public String toString() {
+        return "Plane{" + "id=" + id + 
+                ", model=" + model +
+                ", numSeat=" + numSeat + 
+                ", flights=" + flights + 
+                ", maintenance=" + maintenance + '}';
+    }
+    
+    
 }
