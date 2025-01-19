@@ -19,7 +19,7 @@ public class TypeMaintenance {
     private String name;
     private Double cost;
     
-    @ManyToMany(mappedBy = "typeMaintenance")
+    @ManyToMany(mappedBy = "typesMaintenances")
     private List<Maintenance> maintenance = new ArrayList<>();
 
     public TypeMaintenance() {

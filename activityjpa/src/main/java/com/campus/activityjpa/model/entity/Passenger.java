@@ -17,6 +17,7 @@ public class Passenger {
     private Long id;
 
     private String name;
+    private String IDPassenger;
     
     @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
@@ -24,8 +25,9 @@ public class Passenger {
     public Passenger() {
     }
 
-    public Passenger(String name) {
+    public Passenger(String IDPassenger, String name) {
         this.name = name;
+        this.IDPassenger = IDPassenger;
     }
     
     public Long getId() {
@@ -49,6 +51,24 @@ public class Passenger {
         this.tickets.remove(ticket);
         ticket.setPassenger(null); // Elimina la relación con este pasajero
     }
+
+    public String getIDPassenger() {
+        return IDPassenger;
+    }
+
+    public void setIDPassenger(String IDPassenger) {
+        this.IDPassenger = IDPassenger;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+    
+    
 
     @Override
     public String toString() {
