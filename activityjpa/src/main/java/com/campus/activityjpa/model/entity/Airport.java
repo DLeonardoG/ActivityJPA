@@ -20,12 +20,10 @@ public class Airport {
     private Long id;
 
     private String name;
-    
-    // Relación con vuelos de origen
+
     @OneToMany(mappedBy = "origin")
     private List<Flight> originFlights = new ArrayList<>();
 
-    // Relación con vuelos de destino
     @OneToMany(mappedBy = "destination")
     private List<Flight> destinationFlights = new ArrayList<>();
 

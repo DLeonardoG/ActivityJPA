@@ -3,6 +3,7 @@ package com.campus.activityjpa.model.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +25,7 @@ public class Flight {
     private LocalDate date;
     private LocalDate dateArrived;
     
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Ticket> tickets = new ArrayList<>();
     
     @ManyToOne
