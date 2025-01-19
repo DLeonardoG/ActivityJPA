@@ -24,9 +24,9 @@ public class Maintenance {
 
     @ManyToMany
     @JoinTable(
-        name = "maintenceTypeMaintenance", // Nombre de la tabla intermedia
-        joinColumns = @JoinColumn(name = "idMaintenance"), // Columna que une con Flight
-        inverseJoinColumns = @JoinColumn(name = "idTypeMaintenance") // Columna que une con CrewMember
+        name = "maintenceTypeMaintenance", 
+        joinColumns = @JoinColumn(name = "idMaintenance"),
+        inverseJoinColumns = @JoinColumn(name = "idTypeMaintenance") 
     )
     private List<TypeMaintenance> typeMaintenance = new ArrayList<>();
 

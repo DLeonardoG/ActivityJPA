@@ -16,14 +16,17 @@ public class ActivityjpaApplication {
 
            
         Map<String, String> members = new HashMap<>();
-        members.put("123123", "camilo");
-        members.put("123", "clros");
-        members.put("12", "mafer");
+        members.put("1", "camilo");
+        members.put("2", "clros");
+        members.put("1", "mafer");
 
         System.out.println(members);
-//        
-//         RoleService roleService = context.getBean(RoleService.class);
-//            
+        
+        
+        
+         RoleService roleService = context.getBean(RoleService.class);
+         roleService.saveRoleWithCrewMembers("piloto", members);
+        
 //            Role newRole = roleService.saveRole("qqqqqqqqqq");
 //            System.out.println("h0  "+newRole);
     }

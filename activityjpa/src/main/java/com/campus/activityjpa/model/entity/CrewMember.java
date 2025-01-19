@@ -19,7 +19,7 @@ public class CrewMember {
     private Long id;
 
     private String name;
-    private String ID;
+    private String IDMember;
     @ManyToOne
     @JoinColumn(name = "roleId", nullable = false)
     private Role role;
@@ -30,9 +30,9 @@ public class CrewMember {
     public CrewMember() {
     }
 
-    public CrewMember(String ID, String name) {
+    public CrewMember(String IDMember, String name) {
         this.name = name;
-        this.ID = ID;
+        this.IDMember = IDMember;
     }
 
     public Long getId() {
