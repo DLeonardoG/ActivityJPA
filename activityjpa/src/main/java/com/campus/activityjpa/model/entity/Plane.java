@@ -66,28 +66,33 @@ public class Plane {
         this.numSeat = numSeat;
     }
     
-    public List<Flight> getFlight() {
+    public List<Flight> getFlights() {
         return flights;
     }
 
     public void addFlight(Flight flight) {
         this.flights.add(flight);
-        flight.setPlane(this);
+        flight.setPlane(this);  // Correcto: Enlaza el vuelo con el avión.
     }
-    
+
     public void removeFlight(Flight flight) {
         this.flights.remove(flight);
-        flight.setPlane(this);
+        flight.setPlane(null);  // Elimina la relación.
     }
-    
+
+    // Métodos de manejo de la relación con Maintenance
     public List<Maintenance> getMaintenances() {
         return maintenances;
     }
 
-    public void addMaintenances(Maintenance maintenance) {
+    public void addMaintenance(Maintenance maintenance) {
         this.maintenances.add(maintenance);
-        maintenance.setAirplane(this);
+        maintenance.setPlane(this);  // Correcto: Enlaza el mantenimiento con el avión.
     }
-    
+
+    public void removeMaintenance(Maintenance maintenance) {
+        this.maintenances.remove(maintenance);
+        maintenance.setPlane(null);  // Elimina la relación.
+    }
     
 }

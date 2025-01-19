@@ -31,10 +31,8 @@ public class Flight {
     private LocalDate date;
     private LocalDate dateArrived;
     
-    @OneToMany(mappedBy = "Flight", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
-
-    
     
     @ManyToOne
     @JoinColumn(name = "idOrigin")

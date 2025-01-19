@@ -27,8 +27,13 @@ public class Airport {
 
     private String name;
     
-    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Flight> flights = new ArrayList<>();
+    // Relación con vuelos de origen
+    @OneToMany(mappedBy = "origin")
+    private List<Flight> originFlights = new ArrayList<>();
+
+    // Relación con vuelos de destino
+    @OneToMany(mappedBy = "destination")
+    private List<Flight> destinationFlights = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "idPlace")
@@ -67,34 +72,27 @@ public class Airport {
         this.place = place;
     }
     
-    public List<Flight> getFlights() {
-        return flights;
+    public List<Flight> getOriginFlights() {
+        return originFlights;
     }
 
-    public void addFlightsDestination(Flight flight) {
-        this.flights.add(flight);
-        flight.setDestination(this);
+    public void removeFlightsOrigin(Flight originFlights) {
+        this.originFlights.remove(originFlights);
+        originFlights.setOrigin(null);
     }
     
-    public void addFlightsArrive(Flight flight) {
-        this.flights.add(flight);
-        flight.setOrigin(this);
-    }
-    
-    public void removeFlightsDestination(Flight flight) {
-        this.flights.remove(flight);
-        flight.setDestination(this);
-    }
-    
-    public void removeFlightsArrive(Flight flight) {
-        this.flights.remove(flight);
-        flight.setOrigin(this);
+    public void addFlightsOrigin(Flight originFlights) {
+        this.originFlights.add(originFlights);
+        originFlights.setDestination(this);
     }
 
-    @Override
-    public String toString() {
-        return "Airport{" + "id=" + id + ", name=" + name + ", place=" + place + '}';
+    public List<Flight> getDestinationFlights() {
+        return destinationFlights;
     }
 
+    public void setDestinationFlights(Flight destinationFlights) {
+        this.destinationFlights.add(destinationFlights);
+        destinationFlights.setDestination(this);
+    }
     
 }

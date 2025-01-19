@@ -39,8 +39,8 @@ public class Maintenance {
 
     
     @ManyToOne
-    @JoinColumn(name = "idAirplane")
-    private Plane airplane; 
+    @JoinColumn(name = "idplane")
+    private Plane plane;
 
     public Maintenance() {
     }
@@ -74,12 +74,12 @@ public class Maintenance {
         this.costFinal = costFinal;
     }
 
-    public Plane getAirplane() {
-        return airplane;
+    public Plane getPlane() {
+        return plane;
     }
 
-    public void setAirplane(Plane airplane) {
-        this.airplane = airplane;
+    public void setPlane(Plane plane) {
+        this.plane = plane;
     }
     
     public List<TypeMaintenance> getTypeMaintenance() {
@@ -87,13 +87,17 @@ public class Maintenance {
     }
 
     public void addTypeMaintenance(TypeMaintenance typeMaintenance) {
+    if (!this.typeMaintenance.contains(typeMaintenance)) {
         this.typeMaintenance.add(typeMaintenance);
         typeMaintenance.getMaintenance().add(this);
     }
+}
     
     public void removeTypeMaintenance(TypeMaintenance typeMaintenance) {
+    if (this.typeMaintenance.contains(typeMaintenance)) {
         this.typeMaintenance.remove(typeMaintenance);
         typeMaintenance.getMaintenance().remove(this);
     }
+}
     
 }
