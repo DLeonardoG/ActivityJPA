@@ -31,14 +31,4 @@ public class TicketService {
         ticketRepository.deleteById(id);
     }
     
-//    @Test
-//    public Ticket getTicketByFlight(Long id){
-//        Ticket ticket = ticketRepository.getTicketByFlight(id);
-//        return ticket;
-//    }
-//    
-//    
-//    System.out.println(ticketService.getTicketByFlight(flight3.getId()));
-//        
-    
 }

@@ -72,7 +72,7 @@ public class ActivityjpaApplication {
 
         Maintenance maintenance1 = new Maintenance(currentDate, 100.0);
         Maintenance maintenance2 = new Maintenance(currentDate, 200.0);
-
+  
         Airport airport1 = new Airport("vivaMexico");
         Airport airport2 = new Airport("AlaMadrid");
 
