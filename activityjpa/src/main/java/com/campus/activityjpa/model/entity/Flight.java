@@ -1,4 +1,3 @@
-
 package com.campus.activityjpa.model.entity;
 
 import jakarta.persistence.CascadeType;
@@ -12,22 +11,23 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Flight {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate date;
-    private LocalDate dateArrived;
-    
+    private LocalDateTime date;
+    private LocalDateTime dateArrived;
+
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Ticket> tickets = new ArrayList<>();
-    
+
     @ManyToOne
     @JoinColumn(name = "idOrigin")
     private Airport origin;
@@ -35,29 +35,27 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "idDestination")
     private Airport destination;
-    
+
     @ManyToOne
     @JoinColumn(name = "idPlane")
     private Plane plane;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
-        name = "flightsCrewMembers", // Nombre de la tabla intermedia
-        joinColumns = @JoinColumn(name = "idFlight"), // Columna que une con Flight
-        inverseJoinColumns = @JoinColumn(name = "idCrewMember") // Columna que une con CrewMember
+            name = "flightsCrewMembers", 
+            joinColumns = @JoinColumn(name = "idFlight"), 
+            inverseJoinColumns = @JoinColumn(name = "idCrewMember") 
     )
     private List<CrewMember> crewMembers = new ArrayList<>();
-    
-    
-    
+
     public Flight() {
     }
 
-    public Flight(LocalDate date, LocalDate dateArrived) {
+    public Flight(LocalDateTime date, LocalDateTime dateArrived) {
         this.date = date;
         this.dateArrived = dateArrived;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -66,19 +64,19 @@ public class Flight {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public LocalDate getDateArrived() {
+    public LocalDateTime getDateArrived() {
         return dateArrived;
     }
 
-    public void setDateArrived(LocalDate dateArrived) {
+    public void setDateArrived(LocalDateTime dateArrived) {
         this.dateArrived = dateArrived;
     }
 
@@ -97,21 +95,11 @@ public class Flight {
     public void setDestination(Airport destination) {
         this.destination = destination;
     }
-    
+
     public List<CrewMember> getCrewMembers() {
         return crewMembers;
     }
 
-    public void addCrewMember(CrewMember crewMember) {
-        this.crewMembers.add(crewMember);
-        crewMember.getFlights().add(this); // Asegurar consistencia en ambos lados
-    }
-    
-    public void removeCrewMember(CrewMember crewMember) {
-        this.crewMembers.remove(crewMember);
-        crewMember.getFlights().remove(this); // Asegurar consistencia en ambos lados
-    }
-    
     public Plane getPlane() {
         return plane;
     }
@@ -119,21 +107,31 @@ public class Flight {
     public void setPlane(Plane plane) {
         this.plane = plane;
     }
-    
+
     public List<Ticket> getTickets() {
         return tickets;
     }
 
     public void addTickets(Ticket ticket) {
-        this.tickets .add(ticket);
+        this.tickets.add(ticket);
         ticket.setFlight(this);
     }
-    
+
     public void removeTickets(Ticket ticket) {
-        this.tickets .remove(ticket);
+        this.tickets.remove(ticket);
         ticket.setFlight(this);
     }
-    
-    
-    
+
+    public void addCrewMember(CrewMember crewMember) {
+        if (!this.crewMembers.contains(crewMember)) {
+        this.crewMembers.add(crewMember);
+        crewMember.getFlights().add(this);
+    }
+    }
+
+    public void removeCrewMember(CrewMember crewMember) {
+        this.crewMembers.remove(crewMember);
+        crewMember.getFlights().remove(this);
+    }
+
 }

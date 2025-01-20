@@ -25,7 +25,7 @@ public class CrewMember {
     private Role role;
 
     @ManyToMany(mappedBy = "crewMembers")
-    private List<Flight> flights = new ArrayList<>();
+    private List<Flight> flight = new ArrayList<>();
 
     public CrewMember() {
     }
@@ -52,7 +52,7 @@ public class CrewMember {
     }
     
     public List<Flight> getFlights() {
-        return flights;
+        return flight;
     }
     
     public Role getRole() {
@@ -63,9 +63,17 @@ public class CrewMember {
         this.role = role;
     }
 
+    public String getIDMember() {
+        return IDMember;
+    }
+
+    public void setIDMember(String IDMember) {
+        this.IDMember = IDMember;
+    }
+    
     @Override
     public String toString() {
-        return "CrewMember{" + "id=" + id + ", name=" + name + ", role=" + role + ", flights=" + flights + '}';
+        return "CrewMember{" + "id=" + id + ", name=" + name + ", role=" + role + ", flights=" + flight + '}';
     }
     
 }

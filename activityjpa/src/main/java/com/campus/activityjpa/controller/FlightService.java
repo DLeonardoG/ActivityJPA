@@ -2,7 +2,13 @@
 package com.campus.activityjpa.controller;
 
 import com.campus.activityjpa.model.entity.Flight;
+import com.campus.activityjpa.model.entity.Flight;
+import com.campus.activityjpa.model.entity.CrewMember;
+import com.campus.activityjpa.model.entity.Flight;
+import com.campus.activityjpa.model.entity.CrewMember;
 import com.campus.activityjpa.model.repository.FlightRepository;
+import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -30,4 +36,23 @@ public class FlightService {
     public void removeFlight (Long id){
         flightRepository.deleteById(id);
     }
+    
+    public Flight addCrewMemberwithFlight(Flight flight, List<CrewMember> crewMembers){
+        for (CrewMember crewMember : crewMembers) {
+            flight.addCrewMember(crewMember);
+        }
+        return flightRepository.save(flight);
+    }
+    
+    @Transactional
+    public Flight addCrewMember(Flight flight, List<CrewMember> crewMembers){
+        for (CrewMember crewMember : crewMembers) {
+            flight.addCrewMember(crewMember);  
+        }
+        return flightRepository.save(flight);
+    }
+    
+//     public List<Flight> getFlightsByDepartureDateTimeRange(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+//        return flightRepository.findByDepartureDateTimeBetween(startDateTime, endDateTime);
+//    }
 }

@@ -2,7 +2,9 @@ package com.campus.activityjpa;
 
 import com.campus.activityjpa.controller.*;
 import com.campus.activityjpa.model.entity.*;
+import com.campus.activityjpa.model.repository.PlaneRepository;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,24 +30,50 @@ public class ActivityjpaApplication {
         PlaceService placeService = context.getBean(PlaceService.class);
         AirportService airportService = context.getBean(AirportService.class);
         RoleService roleService = context.getBean(RoleService.class);
-        CrewMemberService CrewMemberService = context.getBean(CrewMemberService.class);
+        CrewMemberService crewMemberService = context.getBean(CrewMemberService.class);
 
-//            --- Creation of a new role ---
-            Role newRole = roleService.saveRole("hostess");
-            System.out.println("h0  "+newRole);
-           
-//        --- creation of a new crew member from role ---
+//            --- creation of a new role ---
+        roleService.saveRole("hostess");
+        
+//          --- creation of a new crew member from role ---
         Map<String, String> members = new HashMap<>();
         members.put("1", "camilo");
         members.put("2", "clros");
         members.put("1", "mafer");
         
-//        members.forEach((key, value) -> System.out.println("id: " + key + ", name: " + value));
         roleService.saveRoleWithCrewMembers("pilot", members);
-//        roleService.getAll().forEach(System.out::println);
-
-//          --- Types y mainteneces relationShip ---
         
+        Role role2 = new Role("Someone");
+        roleService.save(role2);
+
+        CrewMember crewMember1 = new CrewMember("233", "Bertha");
+        CrewMember crewMember2 = new CrewMember("2334", "Bertho");
+        crewMember1.setRole(role2);
+        crewMember2.setRole(role2);
+        crewMemberService.saveCrewMember(crewMember1);
+        crewMemberService.saveCrewMember(crewMember2);
+        
+        
+        LocalDateTime dateDeparture = LocalDateTime.of(2025, 3, 15, 14, 30);
+        LocalDateTime dateArrived = LocalDateTime.of(2025, 3, 19, 14, 30);
+        Flight flight3 = new Flight(dateDeparture, dateArrived);
+        
+        
+        
+        List <CrewMember> crewList = new ArrayList<>();
+        crewList.add(crewMember2);
+        
+        
+        flightService.addCrewMember(flight3, crewList);
+        flightService.saveFlight(flight3);
+
+        
+//        LocalDateTime startDateTime = LocalDateTime.of(2025, 1, 14, 8, 0);
+//        LocalDateTime endDateTime = LocalDateTime.of(2025, 1, 20, 20, 0);
+
+//        List<Flight> flights = flightService.getFlightsByDepartureDateTimeRange(startDateTime, endDateTime);
+
+//        flights.forEach(System.out::println);
         
         TypeMaintenance typeMaintenance1 = new TypeMaintenance("Alas", 100.0);
         TypeMaintenance typeMaintenance2 = new TypeMaintenance("llantas", 200.0);
@@ -59,17 +87,18 @@ public class ActivityjpaApplication {
         Airport airport1 = new Airport("vivaMexico");
         Airport airport2 = new Airport("AlaMadrid");
         
-        
         Place place1 = new Place("tijuacana", airport1);
         Place place2 = new Place("madrid", airport2);
         
         Plane plane1 = new Plane("2023", 50);
         Maintenance maintenance3 = new Maintenance(currentDate, 700.0, plane1);
         
+      
+        
         ClassSeat classSeat1 = new ClassSeat(500, "VIP");
         ClassSeat classSeat2 = new ClassSeat(100, "1");
         
-        Flight flight1 = new Flight(currentDate, currentDate);
+        Flight flight1 = new Flight(dateDeparture, dateArrived);
         
         PayMethod payMethod1 = new PayMethod("Nqui");
         
@@ -87,7 +116,9 @@ public class ActivityjpaApplication {
         airportService.saveAirport(airport1);
         airportService.saveAirport(airport2);
         
-        
+        flight3.setOrigin(airport2);
+        flight3.setDestination(airport1);
+        flightService.saveFlight(flight3);
         
         
         
@@ -110,6 +141,11 @@ public class ActivityjpaApplication {
         
         plane1.setMaintenance(maintenance3);
         planeService.savePlane(plane1);
+        
+        
+        flight3.setPlane(plane1);
+        
+        flightService.saveFlight(flight3);
         
         List<TypeMaintenance> typesMaintenenceMaintenence3 = new ArrayList<>();
         typesMaintenenceMaintenence3.add(typeMaintenance1);
