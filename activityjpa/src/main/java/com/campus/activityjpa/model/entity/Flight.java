@@ -134,4 +134,12 @@ public class Flight {
         crewMember.getFlights().remove(this);
     }
 
+    @Override
+    public String toString() {
+        return "Flight{" + "id=" + id + 
+                ", date=" + date + ", "
+                + "dateArrived=" + 
+                dateArrived + '}';
+    }
+
 }
