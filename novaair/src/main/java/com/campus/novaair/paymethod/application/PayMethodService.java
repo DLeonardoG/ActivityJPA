@@ -4,6 +4,7 @@
  */
 package com.campus.novaair.paymethod.application;
 
+import com.campus.novaair.paymethod.domain.PayMethod;
 import java.util.List;
 
 /**

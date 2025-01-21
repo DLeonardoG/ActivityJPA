@@ -4,8 +4,6 @@
  */
 package com.campus.novaair.typemaintenance.infrastructure;
 
-import com.campus.novaair.airport.application.*;
-
 /**
  *
  * @author kevin

@@ -4,18 +4,23 @@
  */
 package com.campus.novaair.paymethod.infrastructure;
 
-import com.campus.novaair.airport.application.*;
+import com.campus.novaair.paymethod.application.PayMethodServiceImpl;
+import com.campus.novaair.paymethod.domain.PayMethod;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author kevin
- */
+
+
+
 @RestController
 @RequestMapping("/api/paymethod")
 public class PayMethodController {
-        private final PayMethodServiceImpl payMethodServiceImpl;
+    private final PayMethodServiceImpl payMethodServiceImpl;
     
     @Autowired
     public PayMethodController(PayMethodServiceImpl payMethodServiceImpl){
@@ -25,6 +30,6 @@ public class PayMethodController {
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<PayMethod> getAllPayMethod(){
-        return payMethodServiceImpl.getAllPayMethod();
+        return payMethodServiceImpl.getAlPayMethodl();
     }
 }

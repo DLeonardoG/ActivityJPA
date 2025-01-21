@@ -4,21 +4,19 @@
  */
 package com.campus.novaair.paymethod.application;
 
-import com.campus.novaair.airport.application.*;
+import com.campus.novaair.paymethod.domain.PayMethod;
+import com.campus.novaair.paymethod.domain.PayMethodRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author kevin
- */
+
 @Service
-public class PayMethodService {
+public class PayMethodServiceImpl {
 
     private final PayMethodRepository payMethodRepository;
 
-    public PayMethodService(PayMethodRepository payMethodRepository) {
+    public PayMethodServiceImpl(PayMethodRepository payMethodRepository) {
         this.payMethodRepository = payMethodRepository;
     }
 
@@ -26,15 +24,15 @@ public class PayMethodService {
         return payMethodRepository.save(payMehod);
     }
 
-    public List<PayMethod> getAll() {
+    public List<PayMethod> getAlPayMethodl() {
         return payMethodRepository.findAll();
     }
 
-    public Optional<PayMethod> findPayMethod(Long id) {
-        return payMethodRepository.findById(id);
-    }
-
-    public void removePayMethod(Long id) {
-        payMethodRepository.deleteById(id);
-    }
+//    public Optional<PayMethod> findPayMethod(Long id) {
+//        return payMethodRepository.findById(id);
+//    }
+//
+//    public void removePayMethod(Long id) {
+//        payMethodRepository.deleteById(id);
+//    }
 }

@@ -4,8 +4,6 @@
  */
 package com.campus.novaair.place.domain;
 
-import com.campus.novaair.airport.application.*;
-
 /**
  *
  * @author kevin

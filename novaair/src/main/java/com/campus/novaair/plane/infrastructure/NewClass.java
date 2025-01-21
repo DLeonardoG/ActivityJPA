@@ -4,8 +4,6 @@
  */
 package com.campus.novaair.plane.infrastructure;
 
-import com.campus.novaair.airport.application.*;
-
 /**
  *
  * @author kevin

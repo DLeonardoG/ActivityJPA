@@ -18,7 +18,7 @@ public class Role {
     private Long id;
     
     private String role;
-    
+//    
 //    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 //    private List<CrewMember> crewMembers = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
-//    
+    
 //    public List<CrewMember> getCrewMembers() {
 //        return crewMembers;
 //    }
@@ -61,9 +61,10 @@ public class Role {
 //        crewMember.setRole(null);
 //    }
 
-//    @Override
-//    public String toString() {
-//        return "Role{" + "id=" + id + ", role=" + role + ", crewMembers=" + crewMembers + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Role{" + "id=" + id + ", role=" + role + ", crewMembers=" + crewMembers + '}';
+    }
+    
     
 }

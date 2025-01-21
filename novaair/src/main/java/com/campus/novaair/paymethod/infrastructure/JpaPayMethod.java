@@ -4,12 +4,13 @@
  */
 package com.campus.novaair.paymethod.infrastructure;
 
+import com.campus.novaair.paymethod.domain.PayMethod;
+import com.campus.novaair.paymethod.domain.PayMethodRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author kevin
- */
-public interface JpaPayMethod extends JpaRepository<PayMethod, Long>{
+
+@Repository
+public interface JpaPayMethod extends JpaRepository<PayMethod, Long>, PayMethodRepository{
     
 }
