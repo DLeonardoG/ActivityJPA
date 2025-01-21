@@ -12,7 +12,7 @@
 	<artifactId>novaair</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>novaair</name>
-	<description>aeroline for Spring Boot</description>
+	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
