@@ -21,6 +21,8 @@ import com.campus.novaair.plane.domain.Plane;
 import com.campus.novaair.role.application.RoleServiceImpl;
 import com.campus.novaair.ticket.application.TicketServiceImpl;
 import com.campus.novaair.ticket.domain.Ticket;
+import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.management.relation.Role;
@@ -73,7 +75,7 @@ public class NovaairApplication {
         
         
 //        PlaceServiceImpl placeServiceImpl = context.getBean(PlaceServiceImpl.class);
-//        Place place = new Place("Bogota");
+//        Place place = new Place("Medellin");
 //        placeServiceImpl.savePlace(place);
 
 //        PlaneServiceImpl planeServiceImpl = context.getBean(PlaneServiceImpl.class);
@@ -83,7 +85,11 @@ public class NovaairApplication {
 //          TicketServiceImpl ticketServiceImpl = context.getBean(TicketServiceImpl.class);
 //          Ticket ticket = new Ticket(LocalDate.MAX, LocalDate.EPOCH, "12");
 //          ticketServiceImpl.saveTicket(ticket);
+          
 
+          TypeMaintenanceServiceImpl typeMaintenanceServiceImpl = context.getBean(TypeMaintenanceServiceImpl.class);
+          TypeMaintenance  typeMaintenance = new TypeMaintenance("cambio elises", 800.000);
+          typeMaintenanceServiceImpl.saveTypeMaintenance(typeMaintenance);
     }
     
 }
