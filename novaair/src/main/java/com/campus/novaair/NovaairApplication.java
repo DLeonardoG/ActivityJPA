@@ -34,11 +34,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class NovaairApplication {
-    
+
     public static void main(String[] args) {
-        
+
         ConfigurableApplicationContext context = SpringApplication.run(NovaairApplication.class, args);
-        
+
 //        RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
 //        Role role = new Role("pasajero");
 
@@ -48,43 +48,42 @@ public class NovaairApplication {
 //
         AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
         Airport airport = new Airport("eyeye");
-        airportServiceImpl.saveAirport(airport);
-        
+        airportServiceImpl.save(airport);
+        Airport airport1 = new Airport("eyeye");
+        airportServiceImpl.save(airport1);
+
         EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
-        EndPoint  endPoint1 = new EndPoint("/airport", "airport");
-         endPointServiceImpl.saveEndPoint(endPoint1);
-        
-        EndPoint  endPoint2 = new EndPoint("/classseat", "classseat");
-         endPointServiceImpl.saveEndPoint(endPoint2);
-        EndPoint  endPoint3 = new EndPoint("/flight", "flight");
-         endPointServiceImpl.saveEndPoint(endPoint3);
-        
+        EndPoint endPoint1 = new EndPoint("/airport", "airport");
+        endPointServiceImpl.saveEndPoint(endPoint1);
+
+        EndPoint endPoint2 = new EndPoint("/classseat", "classseat");
+        endPointServiceImpl.saveEndPoint(endPoint2);
+        EndPoint endPoint3 = new EndPoint("/flight", "flight");
+        endPointServiceImpl.saveEndPoint(endPoint3);
+
         ClassSeatServiceImpl classSeatServiceImpl = context.getBean(ClassSeatServiceImpl.class);
         ClassSeat classSeat = new ClassSeat(1000, "primera class");
         classSeatServiceImpl.saveClassSeat(classSeat);
-        
-        
+
         CrewMemberServiceImpl crewMemberServiceImpl = context.getBean(CrewMemberServiceImpl.class);
         CrewMember crewMember = new CrewMember("1097782030", "sassant");
         crewMemberServiceImpl.saveCrewMember(crewMember);
-        
+
         FlightServiceImpl flightServiceImpl = context.getBean(FlightServiceImpl.class);
         LocalDateTime departure = LocalDateTime.of(2025, 1, 22, 10, 30); // Fecha de salida
         LocalDateTime arrival = LocalDateTime.of(2025, 1, 22, 14, 45);   // Fecha de llegada
         Flight flight = new Flight(departure, arrival);
         flightServiceImpl.saveFlight(flight);
-        
+
         MaintenanceServicesImpl maintenanceServicesImpl = context.getBean(MaintenanceServicesImpl.class);
         LocalDate maintenanceDate = LocalDate.of(2025, 1, 22);
         Maintenance maintenance = new Maintenance(maintenanceDate, 100.50);
         maintenanceServicesImpl.saveMaintenance(maintenance);
 
-
-        PassengerServiceImpl passengerServiceImpl= context.getBean(PassengerServiceImpl.class);
+        PassengerServiceImpl passengerServiceImpl = context.getBean(PassengerServiceImpl.class);
         Passenger passenger = new Passenger("12345", "fredi khalo");
         passengerServiceImpl.saveRole(passenger);
-        
-        
+
         PlaceServiceImpl placeServiceImpl = context.getBean(PlaceServiceImpl.class);
         Place place = new Place("Medellin");
         placeServiceImpl.savePlace(place);
@@ -96,11 +95,9 @@ public class NovaairApplication {
 //          TicketServiceImpl ticketServiceImpl = context.getBean(TicketServiceImpl.class);
 //          Ticket ticket = new Ticket(LocalDate.MAX, LocalDate.EPOCH, "12");
 //          ticketServiceImpl.saveTicket(ticket);
-          
-
-          TypeMaintenanceServiceImpl typeMaintenanceServiceImpl = context.getBean(TypeMaintenanceServiceImpl.class);
-          TypeMaintenance  typeMaintenance = new TypeMaintenance("cambio elises", 800.000);
-          typeMaintenanceServiceImpl.saveTypeMaintenance(typeMaintenance);
+        TypeMaintenanceServiceImpl typeMaintenanceServiceImpl = context.getBean(TypeMaintenanceServiceImpl.class);
+        TypeMaintenance typeMaintenance = new TypeMaintenance("cambio elises", 800.000);
+        typeMaintenanceServiceImpl.saveTypeMaintenance(typeMaintenance);
     }
-    
+
 }
