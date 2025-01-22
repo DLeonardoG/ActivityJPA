@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.campus.novaair.ticket.infrastructure;
+package com.campus.novaair.typemaintenance.infrastructure;
 
-import com.campus.novaair.ticket.application.TicketServiceImpl;
-import com.campus.novaair.ticket.domain.Ticket;
+import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,18 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kevin
  */
 @RestController
-@RequestMapping("/api/ticket")
-public class TicketController {
-        private final TicketServiceImpl ticketServiceImpl;
+@RequestMapping("/api/typemaintenance")
+public class TypeMaintenanceController {
+    private final TypeMaintenanceServiceImpl typeMaintenanceServiceImpl;
     
     @Autowired
-    public TicketController(TicketServiceImpl ticketServiceImpl){
-        this.ticketServiceImpl = ticketServiceImpl;
+    public TypeMaintenanceController(TypeMaintenanceServiceImpl typeMaintenanceServiceImpl){
+        this.typeMaintenanceServiceImpl = typeMaintenanceServiceImpl;
     }
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Ticket> getAlltypeMaintenanceServiceImpl(){
-        return ticketServiceImpl.getAllTicket();
+    public List<TypeMaintenance> getAlltypeMaintenanceServiceImpl(){
+        return typeMaintenanceServiceImpl.getAllTypeMaintenance();
     }
 }
