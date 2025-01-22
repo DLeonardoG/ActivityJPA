@@ -4,6 +4,7 @@
  */
 package com.campus.novaair.typemaintenance.domain;
 
+import com.campus.novaair.maintenances.domain.Maintenance;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +26,8 @@ public class TypeMaintenance {
     private String name;
     private Double cost;
     
-//    @ManyToMany(mappedBy = "typesMaintenances")
-//    private List<Maintenance> maintenance = new ArrayList<>();
+    @ManyToMany(mappedBy = "typesMaintenances")
+    private List<Maintenance> maintenance = new ArrayList<>();
 
     public TypeMaintenance() {
     }
@@ -61,8 +62,8 @@ public class TypeMaintenance {
         this.cost = cost;
     }
     
-//    public List<Maintenance> getMaintenance() {
-//        return maintenance;
-//    }
+    public List<Maintenance> getMaintenance() {
+        return maintenance;
+    }
     
 }

@@ -4,6 +4,10 @@
  */
 package com.campus.novaair.ticket.domain;
 
+import com.campus.novaair.classseat.domain.ClassSeat;
+import com.campus.novaair.flight.application.Flight;
+import com.campus.novaair.passangers.domain.Passenger;
+import com.campus.novaair.paymethod.domain.PayMethod;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,35 +30,22 @@ public class Ticket {
     private LocalDateTime dateFlight;
     private String seat;
 
-//   @ManyToOne
-//    @JoinColumn(name = "idFlight", nullable = false)
-//    private Flight flight;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idClassSeat", nullable = false)
-//    private ClassSeat classSeat;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idPassenger", nullable = false)
-//    private Passenger passenger;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idPayMethod", nullable = false)
-//    private PayMethod payMethod;    @ManyToOne
-//    @JoinColumn(name = "idFlight", nullable = false)
-//    private Flight flight;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idClassSeat", nullable = false)
-//    private ClassSeat classSeat;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idPassenger", nullable = false)
-//    private Passenger passenger;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idPayMethod", nullable = false)
-//    private PayMethod payMethod;
+   @ManyToOne
+    @JoinColumn(name = "idFlight", nullable = false)
+    private Flight flight;
+
+    @ManyToOne
+    @JoinColumn(name = "idClassSeat", nullable = false)
+    private ClassSeat classSeat;
+
+    @ManyToOne
+    @JoinColumn(name = "idPassenger", nullable = false)
+    private Passenger passenger;
+
+    @ManyToOne
+    @JoinColumn(name = "idPayMethod", nullable = false)
+    private PayMethod payMethod;    
+    
     
     
     
@@ -102,37 +93,37 @@ public class Ticket {
         this.seat = seat;
     }
 
-//    public Flight getFlight() {
-//        return flight;
-//    }
-//
-//    public void setFlight(Flight flight) {
-//        this.flight = flight;
-//    }
-//
-//    public ClassSeat getClassSeat() {
-//        return classSeat;
-//    }
-//
-//    public void setClassSeat(ClassSeat classSeat) {
-//        this.classSeat = classSeat;
-//    }
-//
-//    public Passenger getPassenger() {
-//        return passenger;
-//    }
-//
-//    public void setPassenger(Passenger passenger) {
-//        this.passenger = passenger;
-//    }
-//
-//    public PayMethod getPayMethod() {
-//        return payMethod;
-//    }
-//
-//    public void setPayMethod(PayMethod payMethod) {
-//        this.payMethod = payMethod;
-//    }
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+    public ClassSeat getClassSeat() {
+        return classSeat;
+    }
+
+    public void setClassSeat(ClassSeat classSeat) {
+        this.classSeat = classSeat;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    public PayMethod getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(PayMethod payMethod) {
+        this.payMethod = payMethod;
+    }
     
     
 }

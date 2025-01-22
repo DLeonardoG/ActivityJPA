@@ -1,5 +1,9 @@
 package com.campus.novaair.flight.application;
 
+import com.campus.novaair.airport.domain.Airport;
+import com.campus.novaair.crewmember.domain.CrewMember;
+import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.ticket.domain.Ticket;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,28 +29,28 @@ public class Flight {
     private LocalDateTime date;
     private LocalDateTime dateArrived;
 
-//    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-//    private List<Ticket> tickets = new ArrayList<>();
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idOrigin")
-//    private Airport origin;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idDestination")
-//    private Airport destination;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "idPlane")
-//    private Plane plane;
-//
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    @JoinTable(
-//            name = "flightsCrewMembers", 
-//            joinColumns = @JoinColumn(name = "idFlight"), 
-//            inverseJoinColumns = @JoinColumn(name = "idCrewMember") 
-//    )
-//    private List<CrewMember> crewMembers = new ArrayList<>();
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "idOrigin")
+    private Airport origin;
+
+    @ManyToOne
+    @JoinColumn(name = "idDestination")
+    private Airport destination;
+
+    @ManyToOne
+    @JoinColumn(name = "idPlane")
+    private Plane plane;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "flightsCrewMembers", 
+            joinColumns = @JoinColumn(name = "idFlight"), 
+            inverseJoinColumns = @JoinColumn(name = "idCrewMember") 
+    )
+    private List<CrewMember> crewMembers = new ArrayList<>();
 
     public Flight() {
     }
@@ -80,60 +84,60 @@ public class Flight {
         this.dateArrived = dateArrived;
     }
 
-//    public Airport getOrigin() {
-//        return origin;
-//    }
-//
-//    public void setOrigin(Airport origin) {
-//        this.origin = origin;
-//    }
-//
-//    public Airport getDestination() {
-//        return destination;
-//    }
-//
-//    public void setDestination(Airport destination) {
-//        this.destination = destination;
-//    }
-//
-//    public List<CrewMember> getCrewMembers() {
-//        return crewMembers;
-//    }
-//
-//    public Plane getPlane() {
-//        return plane;
-//    }
-//
-//    public void setPlane(Plane plane) {
-//        this.plane = plane;
-//    }
-//
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void addTickets(Ticket ticket) {
-//        this.tickets.add(ticket);
-//        ticket.setFlight(this);
-//    }
-//
-//    public void removeTickets(Ticket ticket) {
-//        this.tickets.remove(ticket);
-//        ticket.setFlight(this);
-//    }
-//
-//    public void addCrewMember(CrewMember crewMember) {
-//        if (!this.crewMembers.contains(crewMember)) {
-//        this.crewMembers.add(crewMember);
-//        crewMember.getFlights().add(this);
-//    }
-//    }
-//
-//    public void removeCrewMember(CrewMember crewMember) {
-//        this.crewMembers.remove(crewMember);
-//        crewMember.getFlights().remove(this);
-//    }
-//
+    public Airport getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Airport origin) {
+        this.origin = origin;
+    }
+
+    public Airport getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Airport destination) {
+        this.destination = destination;
+    }
+
+    public List<CrewMember> getCrewMembers() {
+        return crewMembers;
+    }
+
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void addTickets(Ticket ticket) {
+        this.tickets.add(ticket);
+        ticket.setFlight(this);
+    }
+
+    public void removeTickets(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setFlight(this);
+    }
+
+    public void addCrewMember(CrewMember crewMember) {
+        if (!this.crewMembers.contains(crewMember)) {
+        this.crewMembers.add(crewMember);
+        crewMember.getFlights().add(this);
+    }
+    }
+
+    public void removeCrewMember(CrewMember crewMember) {
+        this.crewMembers.remove(crewMember);
+        crewMember.getFlights().remove(this);
+    }
+
 //    @Override
 //    public String toString() {
 //        return "Flight{" + "id=" + id + 

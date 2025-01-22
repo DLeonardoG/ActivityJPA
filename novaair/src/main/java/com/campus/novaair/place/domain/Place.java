@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.novaair.place.domain;
 
 import com.campus.novaair.airport.domain.Airport;
@@ -12,10 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-/**
- *
- * @author kevin
- */
+
 @Entity
 public class Place {
     @Id
@@ -24,21 +18,21 @@ public class Place {
 
     private String place;
     
-//    @OneToOne
-//    @JoinColumn(name = "id_airport")
-//    private Airport airport;
+    @OneToOne
+    @JoinColumn(name = "id_airport")
+    private Airport airport;
 
     public Place() {
     }
 
-//    public Place(String place) {
-//        this.place = place;
-//        this.airport = airport;
-//    }
+    public Place(String place, Airport airport) {
+        this.place = place;
+        this.airport = airport;
+    }
+    
     public Place(String place) {
         this.place = place;
     }
-    
     
     
     public Long getId() {
@@ -57,17 +51,11 @@ public class Place {
         this.place = place;
     }
 
-//    public Airport getAirport() {
-//        return airport;
-//    }
-//
-//    public void setAirport(Airport airport) {
-//        this.airport = airport;
-//    }
-    
-    
-    
-    
-    
-    
+    public Airport getAirport() {
+        return airport;
+    }
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
+    }
 }

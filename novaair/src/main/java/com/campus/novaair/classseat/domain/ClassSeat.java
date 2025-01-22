@@ -1,6 +1,7 @@
 
 package com.campus.novaair.classseat.domain;
 
+import com.campus.novaair.ticket.domain.Ticket;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,8 +20,8 @@ public class ClassSeat {
     private Integer price;
     private String seatClass;
     
-//    @OneToMany(mappedBy = "classSeat", orphanRemoval = true)
-//    private List<Ticket> tickets = new ArrayList<>();
+    @OneToMany(mappedBy = "classSeat", orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 
     public ClassSeat() {
     }
@@ -54,19 +55,19 @@ public class ClassSeat {
         this.seatClass = seatClass;
     }
     
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void addTicket(Ticket ticket) {
-//        this.tickets.add(ticket);
-//        ticket.setClassSeat(this);
-//    }
-//
-//    public void removeTicket(Ticket ticket) {
-//        this.tickets.remove(ticket);
-//        ticket.setClassSeat(null);
-//    }
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+        ticket.setClassSeat(this);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setClassSeat(null);
+    }
 
 //    @Override
 //    public String toString() {

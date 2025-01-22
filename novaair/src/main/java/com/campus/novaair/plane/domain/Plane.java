@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.campus.novaair.plane.domain;
 
 import com.campus.novaair.flight.application.Flight;
@@ -17,10 +13,7 @@ import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author kevin
- */
+
 @Entity
 public class Plane {
     @Id
@@ -30,11 +23,11 @@ public class Plane {
     private String model;
     private Integer numSeat;
     
-//    @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-//    private List<Flight> flights = new ArrayList<>();
-//    
-//    @OneToOne(mappedBy = "plane", cascade = CascadeType.ALL)
-//    private Maintenance maintenance;
+    @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Flight> flights = new ArrayList<>();
+    
+    @OneToOne(mappedBy = "plane", cascade = CascadeType.ALL)
+    private Maintenance maintenance;
 
     public Plane() {
     }
@@ -70,28 +63,28 @@ public class Plane {
         this.numSeat = numSeat;
     }
     
-//    public List<Flight> getFlights() {
-//        return flights;
-//    }
-//
-//    public void addFlight(Flight flight) {
-//        this.flights.add(flight);
-//        flight.setPlane(this);  
-//    }
-//
-//    public void removeFlight(Flight flight) {
-//        this.flights.remove(flight);
-//        flight.setPlane(null); 
-//    }
-//
-//    public Maintenance getMaintenance() {
-//        return maintenance;
-//    }
-//
-//    public void setMaintenance(Maintenance maintenance) {
-//        this.maintenance = maintenance;
-//    }
-//
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void addFlight(Flight flight) {
+        this.flights.add(flight);
+        flight.setPlane(this);  
+    }
+
+    public void removeFlight(Flight flight) {
+        this.flights.remove(flight);
+        flight.setPlane(null); 
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
+    }
+
 //    @Override
 //    public String toString() {
 //        return "Plane{" + "id=" + id + 

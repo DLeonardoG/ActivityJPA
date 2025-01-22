@@ -4,6 +4,7 @@
  */
 package com.campus.novaair.paymethod.domain;
 
+import com.campus.novaair.ticket.domain.Ticket;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,10 +14,7 @@ import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author kevin
- */
+
 @Entity
 public class PayMethod {
 
@@ -26,8 +24,8 @@ public class PayMethod {
 
     private String payMethod;
 
-//    @OneToMany(mappedBy = "payMethod", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Ticket> tickets = new ArrayList<>();
+    @OneToMany(mappedBy = "payMethod", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 
     public PayMethod() {
     }
@@ -52,15 +50,15 @@ public class PayMethod {
         this.payMethod = payMethod;
     }
 
-//    public void addTicket(Ticket ticket) {
-//        this.tickets.add(ticket);
-//        ticket.setPayMethod(this);
-//    }
-//
-//    public void removeTicket(Ticket ticket) {
-//        this.tickets.remove(ticket);
-//        ticket.setPayMethod(null);
-//    }
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+        ticket.setPayMethod(this);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setPayMethod(null);
+    }
 
     @Override
     public String toString() {

@@ -1,6 +1,8 @@
 
 package com.campus.novaair.airport.domain;
 
+import com.campus.novaair.flight.application.Flight;
+import com.campus.novaair.place.domain.Place;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,14 +23,15 @@ public class Airport {
 
     private String name;
 
-//    @OneToMany(mappedBy = "origin")
-//    private List<Flight> originFlights = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "destination")
-//    private List<Flight> destinationFlights = new ArrayList<>();
-//
-//    @OneToOne(mappedBy = "airport", cascade = CascadeType.ALL)
-//    private Place place;
+    @OneToMany(mappedBy = "origin")
+    private List<Flight> originFlights = new ArrayList<>();
+
+    @OneToMany(mappedBy = "destination")
+    private List<Flight> destinationFlights = new ArrayList<>();
+    
+
+    @OneToOne(mappedBy = "airport", cascade = CascadeType.ALL)
+    private Place place;
 
     public Airport() {
     }
@@ -55,35 +58,35 @@ public class Airport {
         this.name = name;
     }
 
-//    public Place getPlace() {
-//        return place;
-//    }
-//
-//    public void setPlace(Place place) {
-//        this.place = place;
-//    }
-//    
-//    public List<Flight> getOriginFlights() {
-//        return originFlights;
-//    }
-//
-//    public void removeFlightsOrigin(Flight originFlights) {
-//        this.originFlights.remove(originFlights);
-//        originFlights.setOrigin(null);
-//    }
-//    
-//    public void addFlightsOrigin(Flight originFlights) {
-//        this.originFlights.add(originFlights);
-//        originFlights.setDestination(this);
-//    }
-//
-//    public List<Flight> getDestinationFlights() {
-//        return destinationFlights;
-//    }
-//
-//    public void setDestinationFlights(Flight destinationFlights) {
-//        this.destinationFlights.add(destinationFlights);
-//        destinationFlights.setDestination(this);
-//    }
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+    
+    public List<Flight> getOriginFlights() {
+        return originFlights;
+    }
+
+    public void removeFlightsOrigin(Flight originFlights) {
+        this.originFlights.remove(originFlights);
+        originFlights.setOrigin(null);
+    }
+    
+    public void addFlightsOrigin(Flight originFlights) {
+        this.originFlights.add(originFlights);
+        originFlights.setDestination(this);
+    }
+
+    public List<Flight> getDestinationFlights() {
+        return destinationFlights;
+    }
+
+    public void setDestinationFlights(Flight destinationFlights) {
+        this.destinationFlights.add(destinationFlights);
+        destinationFlights.setDestination(this);
+    }
     
 }

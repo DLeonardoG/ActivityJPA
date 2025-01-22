@@ -1,6 +1,8 @@
 
 package com.campus.novaair.maintenances.domain;
 
+import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,18 +28,18 @@ public class Maintenance {
     private LocalDate date;
     private Double costFinal;
 
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    @JoinTable(
-//        name = "maintenceTypeMaintenance", 
-//        joinColumns = @JoinColumn(name = "idMaintenance"),
-//        inverseJoinColumns = @JoinColumn(name = "idTypeMaintenance") 
-//    )
-//    private List<TypeMaintenance> typesMaintenances = new ArrayList<>();
-//
-//    
-//    @OneToOne
-//    @JoinColumn(name = "idplane")
-//    private Plane plane;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(
+        name = "maintenceTypeMaintenance", 
+        joinColumns = @JoinColumn(name = "idMaintenance"),
+        inverseJoinColumns = @JoinColumn(name = "idTypeMaintenance") 
+    )
+    private List<TypeMaintenance> typesMaintenances = new ArrayList<>();
+
+    
+    @OneToOne
+    @JoinColumn(name = "idplane")
+    private Plane plane;
 
     public Maintenance() {
     }
@@ -48,11 +50,11 @@ public class Maintenance {
         
     }
     
-//    public Maintenance(LocalDate date, Double costFinal, Plane plane) {
-//        this.date = date;
-//        this.costFinal = costFinal;
-//        this.plane = plane;
-//    }
+    public Maintenance(LocalDate date, Double costFinal, Plane plane) {
+        this.date = date;
+        this.costFinal = costFinal;
+        this.plane = plane;
+    }
 
     public Long getId() {
         return id;
@@ -83,31 +85,31 @@ public class Maintenance {
         this.costFinal = costFinal;
     }
 
-//    public Plane getPlane() {
-//        return plane;
-//    }
-//
-//    public void setPlane(Plane plane) {
-//        this.plane = plane;
-//    }
-//    
-//    public List<TypeMaintenance> getTypeMaintenance() {
-//        return typesMaintenances;
-//    }
-//
-//    public void addTypeMaintenance(TypeMaintenance typesMaintenances) {
-//    if (!this.typesMaintenances.contains(typesMaintenances)) {
-//        this.typesMaintenances.add(typesMaintenances);
-//        typesMaintenances.getMaintenance().add(this);
-//    }
-//}
-//    
-//    public void removeTypeMaintenance(TypeMaintenance typesMaintenances) {
-//    if (this.typesMaintenances.contains(typesMaintenances)) {
-//        this.typesMaintenances.remove(typesMaintenances);
-//        typesMaintenances.getMaintenance().remove(this);
-//        }
-//}
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+    
+    public List<TypeMaintenance> getTypeMaintenance() {
+        return typesMaintenances;
+    }
+
+    public void addTypeMaintenance(TypeMaintenance typesMaintenances) {
+    if (!this.typesMaintenances.contains(typesMaintenances)) {
+        this.typesMaintenances.add(typesMaintenances);
+        typesMaintenances.getMaintenance().add(this);
+    }
+}
+    
+    public void removeTypeMaintenance(TypeMaintenance typesMaintenances) {
+    if (this.typesMaintenances.contains(typesMaintenances)) {
+        this.typesMaintenances.remove(typesMaintenances);
+        typesMaintenances.getMaintenance().remove(this);
+        }
+}
 //
 //    @Override
 //    public String toString() {

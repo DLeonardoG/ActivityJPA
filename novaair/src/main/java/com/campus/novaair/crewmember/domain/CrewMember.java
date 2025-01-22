@@ -1,6 +1,8 @@
 
 package com.campus.novaair.crewmember.domain;
 
+import com.campus.novaair.flight.application.Flight;
+import com.campus.novaair.role.domain.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,12 +22,12 @@ public class CrewMember {
 
     private String name;
     private String IDMember;
-//    @ManyToOne
-//    @JoinColumn(name = "roleId", nullable = false)
-//    private Role role;
-//
-//    @ManyToMany(mappedBy = "crewMembers")
-//    private List<Flight> flight = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "roleId")
+    private Role role;
+
+    @ManyToMany(mappedBy = "crewMembers")
+    private List<Flight> flight = new ArrayList<>();
 
     public CrewMember() {
     }
@@ -51,17 +53,17 @@ public class CrewMember {
         this.name = name;
     }
     
-//    public List<Flight> getFlights() {
-//        return flight;
-//    }
-//    
-//    public Role getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(Role role) {
-//        this.role = role;
-//    }
+    public List<Flight> getFlights() {
+        return flight;
+    }
+    
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public String getIDMember() {
         return IDMember;
