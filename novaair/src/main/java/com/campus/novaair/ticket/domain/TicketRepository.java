@@ -4,7 +4,9 @@
  */
 package com.campus.novaair.ticket.domain;
 
+
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -13,4 +15,6 @@ import java.util.List;
 public interface TicketRepository {
     List<Ticket> findAll();
     Ticket save(Ticket ticket);
+     Optional<Ticket> findById(Long id);
+    void deleteById(Long id);
 }

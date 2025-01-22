@@ -4,6 +4,7 @@
  */
 package com.campus.novaair.place.application;
 
+
 import com.campus.novaair.place.domain.Place;
 import com.campus.novaair.place.domain.PlaceRepository;
 import java.util.List;
@@ -15,33 +16,36 @@ import org.springframework.stereotype.Service;
  * @author kevin
  */
 @Service
-public class PlaceServiceImpl {
+public class PlaceServiceImpl implements PlaceRepository{
     
     private final PlaceRepository placeRepository;
     
     public PlaceServiceImpl (PlaceRepository placeRepository){
         this.placeRepository = placeRepository;
     }
-     
-    public Place savePlace( Place place){
+    
+    @Override
+    public List<Place> findAll() {
+        return placeRepository.findAll();
+    }
+
+    @Override
+    public Place save(Place place) {
         return placeRepository.save(place);
+
     }
-    
-    public List<Place> getAll(){
-        return placeRepository.findAll();
+
+    @Override
+    public Optional findById(Long id) {
+        return placeRepository.findById(id);
     }
-    
-//    public Optional<Place> findPlace (Long id){
-//        return placeRepository.findAll(id);
-//    }
-    
-//    public void removePlace (Long id){
-//        placeRepository.deleteById(id);
-//    }
-    
-    public List<Place> getAllPlace(){
-        return placeRepository.findAll();
+
+    @Override
+    public void deleteById(Long id) {
+        placeRepository.deleteById(id);
     }
+     
+    
     
 
 }

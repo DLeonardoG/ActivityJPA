@@ -5,6 +5,7 @@
 package com.campus.novaair.ticket.application;
 
 import com.campus.novaair.ticket.domain.Ticket;
+import com.campus.novaair.ticket.domain.Ticket;
 import com.campus.novaair.ticket.domain.TicketRepository;
 import java.util.List;
 import java.util.Optional;
@@ -15,27 +16,33 @@ import org.springframework.stereotype.Service;
  * @author kevin
  */
 @Service
-public class TicketServiceImpl {
+public class TicketServiceImpl implements TicketRepository{
     private final TicketRepository ticketRepository;
     
     public TicketServiceImpl (TicketRepository ticketRepository){
         this.ticketRepository = ticketRepository;
     }
     
-    public Ticket saveTicket( Ticket ticket){
-        return ticketRepository.save(ticket);
-    }
-    
-    public List<Ticket> getAllTicket(){
+    @Override
+    public List<Ticket> findAll() {
         return ticketRepository.findAll();
     }
+
+    @Override
+    public Ticket save(Ticket ticket) {
+        return ticketRepository.save(ticket);
+
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return ticketRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        ticketRepository.deleteById(id);
+    }
     
-//    public Optional<Ticket> findTicketbyId (Long id){
-//        return ticketRepository.findById(id);
-//    }
-    
-//    public void removeTicket (Long id){
-//        ticketRepository.deleteById(id);
-//    }
     
 }

@@ -5,6 +5,7 @@
 package com.campus.novaair.plane.application;
 
 import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.plane.domain.Plane;
 import com.campus.novaair.plane.domain.PlaneRepository;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author kevin
  */
 @Service
-public class PlaneServiceImpl {
+public class PlaneServiceImpl implements PlaneRepository{
 
      private final PlaneRepository planeRepository;
      
@@ -23,19 +24,26 @@ public class PlaneServiceImpl {
         this.planeRepository = planeRepository;
     }
     
-    public Plane savePlane( Plane plane){
-        return planeRepository.save(plane);
-    }
-    
-    public List<Plane> getAllPlanes(){
+    @Override
+    public List<Plane> findAll() {
         return planeRepository.findAll();
     }
+
+    @Override
+    public Plane save(Plane plane) {
+        return planeRepository.save(plane);
+
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return planeRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        planeRepository.deleteById(id);
+    }
     
-//     public Optional<Plane> findPlane (Long id){
-//        return planeRepository.findById(id);
-//    }
-//    
-//    public void removePlane (Long id){
-//        planeRepository.deleteById(id);
-//    }
+    
 }

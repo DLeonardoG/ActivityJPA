@@ -41,11 +41,11 @@ public class NovaairApplication {
 
         RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
         Role role = new Role("pasajero");
-        roleServiceImpl.saveRole(role);
+        roleServiceImpl.save(role);
 
         PayMethodServiceImpl payMtehodServiceImpl = context.getBean(PayMethodServiceImpl.class);
         PayMethod payMethod = new PayMethod("efectivo");
-        payMtehodServiceImpl.savePayMethod(payMethod);
+        payMtehodServiceImpl.save(payMethod);
         
         AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
         Airport airport = new Airport("eyeye");
@@ -66,34 +66,34 @@ public class NovaairApplication {
 
         ClassSeatServiceImpl classSeatServiceImpl = context.getBean(ClassSeatServiceImpl.class);
         ClassSeat classSeat = new ClassSeat(1000, "primera class");
-        classSeatServiceImpl.saveClassSeat(classSeat);
+        classSeatServiceImpl.save(classSeat);
 
         CrewMemberServiceImpl crewMemberServiceImpl = context.getBean(CrewMemberServiceImpl.class);
         CrewMember crewMember = new CrewMember("1097782030", "sassant");
-        crewMemberServiceImpl.saveCrewMember(crewMember);
+        crewMemberServiceImpl.save(crewMember);
 
         FlightServiceImpl flightServiceImpl = context.getBean(FlightServiceImpl.class);
         LocalDateTime departure = LocalDateTime.of(2025, 1, 22, 10, 30); // Fecha de salida
         LocalDateTime arrival = LocalDateTime.of(2025, 1, 22, 14, 45);   // Fecha de llegada
         Flight flight = new Flight(departure, arrival);
-        flightServiceImpl.saveFlight(flight);
+        flightServiceImpl.save(flight);
 
         MaintenanceServicesImpl maintenanceServicesImpl = context.getBean(MaintenanceServicesImpl.class);
         LocalDate maintenanceDate = LocalDate.of(2025, 1, 22);
         Maintenance maintenance = new Maintenance(maintenanceDate, 100.50);
-        maintenanceServicesImpl.saveMaintenance(maintenance);
+        maintenanceServicesImpl.save(maintenance);
 
         PassengerServiceImpl passengerServiceImpl = context.getBean(PassengerServiceImpl.class);
         Passenger passenger = new Passenger("12345", "fredi khalo");
-        passengerServiceImpl.saveRole(passenger);
+        passengerServiceImpl.save(passenger);
 
         PlaceServiceImpl placeServiceImpl = context.getBean(PlaceServiceImpl.class);
         Place place = new Place("Medellin");
-        placeServiceImpl.savePlace(place);
+        placeServiceImpl.save(place);
 
         PlaneServiceImpl planeServiceImpl = context.getBean(PlaneServiceImpl.class);
         Plane plane = new Plane("B243543K", 80);
-        planeServiceImpl.savePlane(plane);
+        planeServiceImpl.save(plane);
         
 //        LocalDateTime currentDate = new LocalDateTime();
 //
@@ -102,7 +102,7 @@ public class NovaairApplication {
 //          ticketServiceImpl.saveTicket(ticket);
         TypeMaintenanceServiceImpl typeMaintenanceServiceImpl = context.getBean(TypeMaintenanceServiceImpl.class);
         TypeMaintenance typeMaintenance = new TypeMaintenance("cambio elises", 800.000);
-        typeMaintenanceServiceImpl.saveTypeMaintenance(typeMaintenance);
+        typeMaintenanceServiceImpl.save(typeMaintenance);
     }
 
 }

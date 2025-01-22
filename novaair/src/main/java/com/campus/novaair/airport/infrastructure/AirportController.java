@@ -30,7 +30,7 @@ public class AirportController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Airport> getAllRoles(){
+    public List<Airport> getAllAirport(){
         return airportServiceImpl.findAll();
     }
     

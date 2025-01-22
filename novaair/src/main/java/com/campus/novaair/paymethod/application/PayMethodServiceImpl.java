@@ -4,6 +4,7 @@
  */
 package com.campus.novaair.paymethod.application;
 
+
 import com.campus.novaair.paymethod.domain.PayMethod;
 import com.campus.novaair.paymethod.domain.PayMethodRepository;
 import java.util.List;
@@ -12,27 +13,34 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class PayMethodServiceImpl {
+public class PayMethodServiceImpl implements PayMethodRepository{
 
     private final PayMethodRepository payMethodRepository;
 
     public PayMethodServiceImpl(PayMethodRepository payMethodRepository) {
         this.payMethodRepository = payMethodRepository;
     }
-
-    public PayMethod savePayMethod(PayMethod payMehod) {
-        return payMethodRepository.save(payMehod);
-    }
-
-    public List<PayMethod> getAlPayMethodl() {
+    
+    @Override
+    public List<PayMethod> findAll() {
         return payMethodRepository.findAll();
     }
 
-//    public Optional<PayMethod> findPayMethod(Long id) {
-//        return payMethodRepository.findById(id);
-//    }
-//
-//    public void removePayMethod(Long id) {
-//        payMethodRepository.deleteById(id);
-//    }
+    @Override
+    public PayMethod save(PayMethod airport) {
+        return payMethodRepository.save(airport);
+
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return payMethodRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        payMethodRepository.deleteById(id);
+    }
+
+    
 }

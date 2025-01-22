@@ -3,12 +3,13 @@ package com.campus.novaair.flight.application;
 import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.flight.domain.FlightRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class FlightServiceImpl {
+public class FlightServiceImpl implements FlightRepository {
     
     private final FlightRepository flightRepository;
     
@@ -17,13 +18,27 @@ public class FlightServiceImpl {
         this.flightRepository = flightRepository;
     }
     
-    public List<Flight> getAllFlight() {
-       return flightRepository.findAll();
+    @Override
+    public List<Flight> findAll() {
+        return flightRepository.findAll();
+    }
+
+    @Override
+    public Flight save(Flight airport) {
+        return flightRepository.save(airport);
+
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return flightRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        flightRepository.deleteById(id);
     }
     
-    public Flight saveFlight(Flight flight) {
-         return flightRepository.save(flight);
-    }
     
     
 }

@@ -4,7 +4,9 @@
  */
 package com.campus.novaair.plane.domain;
 
+
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -13,4 +15,6 @@ import java.util.List;
 public interface PlaneRepository {
     List<Plane> findAll();
     Plane save(Plane plane);
+     Optional<Plane> findById(Long id);
+    void deleteById(Long id);
 }

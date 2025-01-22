@@ -4,6 +4,7 @@
  */
 package com.campus.novaair.typemaintenance.application;
 
+
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenanceRepository;
 import java.util.List;
@@ -15,26 +16,32 @@ import org.springframework.stereotype.Service;
  * @author kevin
  */
 @Service
-public class TypeMaintenanceServiceImpl {
+public class TypeMaintenanceServiceImpl implements TypeMaintenanceRepository{
     private final TypeMaintenanceRepository typeMaintenanceRepository;
     
     public TypeMaintenanceServiceImpl (TypeMaintenanceRepository typeMaintenanceRepository){
         this.typeMaintenanceRepository = typeMaintenanceRepository;
     }
     
-    public TypeMaintenance saveTypeMaintenance( TypeMaintenance typeMaintenance){
-        return typeMaintenanceRepository.save(typeMaintenance);
-    }
-    
-    public List<TypeMaintenance> getAllTypeMaintenance(){
+    @Override
+    public List<TypeMaintenance> findAll() {
         return typeMaintenanceRepository.findAll();
     }
+
+    @Override
+    public TypeMaintenance save(TypeMaintenance typeMaintenance) {
+        return typeMaintenanceRepository.save(typeMaintenance);
+
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return typeMaintenanceRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        typeMaintenanceRepository.deleteById(id);
+    }
     
-//    public Optional<TypeMaintenance> findTypeMaintenance (Long id){
-//        return typeMaintenanceRepository.findById(id);
-//    }
-//    
-//    public void removeTypeMaintenance (Long id){
-//        typeMaintenanceRepository.deleteById(id);
-//    }
 }
