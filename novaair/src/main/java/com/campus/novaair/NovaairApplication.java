@@ -6,6 +6,8 @@ import com.campus.novaair.classseat.application.ClassSeatServiceImpl;
 import com.campus.novaair.classseat.domain.ClassSeat;
 import com.campus.novaair.crewmember.application.CrewMemberServiceImpl;
 import com.campus.novaair.crewmember.domain.CrewMember;
+import com.campus.novaair.endpoint.application.EndPointServiceImpl;
+import com.campus.novaair.endpoint.domain.EndPoint;
 import com.campus.novaair.fligh.domain.FlightServiceImpl;
 import com.campus.novaair.flight.application.Flight;
 import com.campus.novaair.maintenances.application.MaintenanceServicesImpl;
@@ -38,47 +40,56 @@ public class NovaairApplication {
 //        RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
 //        Role role = new Role("pasajero");
 
-//        PayMethodServiceImpl payMtehodServiceImpl = context.getBean(PayMethodServiceImpl.class);
-//        PayMethod payMethod = new PayMethod("efectivo");
-//        payMtehodServiceImpl.savePayMethod(payMethod);
+        PayMethodServiceImpl payMtehodServiceImpl = context.getBean(PayMethodServiceImpl.class);
+        PayMethod payMethod = new PayMethod("efectivo");
+        payMtehodServiceImpl.savePayMethod(payMethod);
 //
-//        AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
-//        Airport airport = new Airport("eyeye");
-//        airportServiceImpl.saveAirport(airport);
-//        
-//        ClassSeatServiceImpl classSeatServiceImpl = context.getBean(ClassSeatServiceImpl.class);
-//        ClassSeat classSeat = new ClassSeat(1000, "primera class");
-//        classSeatServiceImpl.saveClassSeat(classSeat);
-//        
-//        
-//        CrewMemberServiceImpl crewMemberServiceImpl = context.getBean(CrewMemberServiceImpl.class);
-//        CrewMember crewMember = new CrewMember("1097782030", "sassant");
-//        crewMemberServiceImpl.saveCrewMember(crewMember);
-//        
-//        FlightServiceImpl flightServiceImpl = context.getBean(FlightServiceImpl.class);
-//        LocalDateTime departure = LocalDateTime.of(2025, 1, 22, 10, 30); // Fecha de salida
-//        LocalDateTime arrival = LocalDateTime.of(2025, 1, 22, 14, 45);   // Fecha de llegada
-//        Flight flight = new Flight(departure, arrival);
-//        flightServiceImpl.saveFlight(flight);
-//        
-//        MaintenanceServicesImpl maintenanceServicesImpl = context.getBean(MaintenanceServicesImpl.class);
-//        LocalDate maintenanceDate = LocalDate.of(2025, 1, 22);
-//        Maintenance maintenance = new Maintenance(maintenanceDate, 100.50);
-//        maintenanceServicesImpl.saveMaintenance(maintenance);
-//
-//
-//        PassengerServiceImpl passengerServiceImpl= context.getBean(PassengerServiceImpl.class);
-//        Passenger passenger = new Passenger("12345", "fredi khalo");
-//        passengerServiceImpl.saveRole(passenger);
+        AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
+        Airport airport = new Airport("eyeye");
+        airportServiceImpl.saveAirport(airport);
+        
+        EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
+        EndPoint  endPoint1 = new EndPoint("/airport", "airport");
+         endPointServiceImpl.saveEndPoint(endPoint1);
+        
+        EndPoint  endPoint2 = new EndPoint("/classseat", "classseat");
+         endPointServiceImpl.saveEndPoint(endPoint2);
+        EndPoint  endPoint3 = new EndPoint("/flight", "flight");
+         endPointServiceImpl.saveEndPoint(endPoint3);
+        
+        ClassSeatServiceImpl classSeatServiceImpl = context.getBean(ClassSeatServiceImpl.class);
+        ClassSeat classSeat = new ClassSeat(1000, "primera class");
+        classSeatServiceImpl.saveClassSeat(classSeat);
         
         
-//        PlaceServiceImpl placeServiceImpl = context.getBean(PlaceServiceImpl.class);
-//        Place place = new Place("Bogota");
-//        placeServiceImpl.savePlace(place);
+        CrewMemberServiceImpl crewMemberServiceImpl = context.getBean(CrewMemberServiceImpl.class);
+        CrewMember crewMember = new CrewMember("1097782030", "sassant");
+        crewMemberServiceImpl.saveCrewMember(crewMember);
+        
+        FlightServiceImpl flightServiceImpl = context.getBean(FlightServiceImpl.class);
+        LocalDateTime departure = LocalDateTime.of(2025, 1, 22, 10, 30); // Fecha de salida
+        LocalDateTime arrival = LocalDateTime.of(2025, 1, 22, 14, 45);   // Fecha de llegada
+        Flight flight = new Flight(departure, arrival);
+        flightServiceImpl.saveFlight(flight);
+        
+        MaintenanceServicesImpl maintenanceServicesImpl = context.getBean(MaintenanceServicesImpl.class);
+        LocalDate maintenanceDate = LocalDate.of(2025, 1, 22);
+        Maintenance maintenance = new Maintenance(maintenanceDate, 100.50);
+        maintenanceServicesImpl.saveMaintenance(maintenance);
 
-//        PlaneServiceImpl planeServiceImpl = context.getBean(PlaneServiceImpl.class);
-//        Plane plane = new Plane("B243543K", 80);
-//        planeServiceImpl.savePlane(plane);
+
+        PassengerServiceImpl passengerServiceImpl= context.getBean(PassengerServiceImpl.class);
+        Passenger passenger = new Passenger("12345", "fredi khalo");
+        passengerServiceImpl.saveRole(passenger);
+        
+        
+        PlaceServiceImpl placeServiceImpl = context.getBean(PlaceServiceImpl.class);
+        Place place = new Place("Bogota");
+        placeServiceImpl.savePlace(place);
+
+        PlaneServiceImpl planeServiceImpl = context.getBean(PlaneServiceImpl.class);
+        Plane plane = new Plane("B243543K", 80);
+        planeServiceImpl.savePlane(plane);
 
 //          TicketServiceImpl ticketServiceImpl = context.getBean(TicketServiceImpl.class);
 //          Ticket ticket = new Ticket(LocalDate.MAX, LocalDate.EPOCH, "12");
