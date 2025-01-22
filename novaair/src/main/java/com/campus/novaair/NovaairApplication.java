@@ -23,11 +23,11 @@ import com.campus.novaair.plane.domain.Plane;
 import com.campus.novaair.role.application.RoleServiceImpl;
 import com.campus.novaair.ticket.application.TicketServiceImpl;
 import com.campus.novaair.ticket.domain.Ticket;
+import com.campus.novaair.role.domain.Role;
 import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import javax.management.relation.Role;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -39,13 +39,14 @@ public class NovaairApplication {
 
         ConfigurableApplicationContext context = SpringApplication.run(NovaairApplication.class, args);
 
-//        RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
-//        Role role = new Role("pasajero");
+        RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
+        Role role = new Role("pasajero");
+        roleServiceImpl.saveRole(role);
 
         PayMethodServiceImpl payMtehodServiceImpl = context.getBean(PayMethodServiceImpl.class);
         PayMethod payMethod = new PayMethod("efectivo");
         payMtehodServiceImpl.savePayMethod(payMethod);
-//
+        
         AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
         Airport airport = new Airport("eyeye");
         airportServiceImpl.save(airport);
@@ -60,6 +61,8 @@ public class NovaairApplication {
         endPointServiceImpl.saveEndPoint(endPoint2);
         EndPoint endPoint3 = new EndPoint("/flight", "flight");
         endPointServiceImpl.saveEndPoint(endPoint3);
+        EndPoint endPoint4 = new EndPoint("/role", "role");
+        endPointServiceImpl.saveEndPoint(endPoint4);
 
         ClassSeatServiceImpl classSeatServiceImpl = context.getBean(ClassSeatServiceImpl.class);
         ClassSeat classSeat = new ClassSeat(1000, "primera class");
@@ -91,7 +94,9 @@ public class NovaairApplication {
         PlaneServiceImpl planeServiceImpl = context.getBean(PlaneServiceImpl.class);
         Plane plane = new Plane("B243543K", 80);
         planeServiceImpl.savePlane(plane);
-
+        
+//        LocalDateTime currentDate = new LocalDateTime();
+//
 //          TicketServiceImpl ticketServiceImpl = context.getBean(TicketServiceImpl.class);
 //          Ticket ticket = new Ticket(LocalDate.MAX, LocalDate.EPOCH, "12");
 //          ticketServiceImpl.saveTicket(ticket);

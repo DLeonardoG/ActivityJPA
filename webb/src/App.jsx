@@ -11,7 +11,7 @@ function App() {
       try {
         const response = await fetch('http://localhost:3001/api/endpoint'); // url de tu api
         const data = await response.json();
-        setEndpoints(data); // guardar el array completo
+        setEndpoints(data); // guardar el array com pleto
       } catch (error) {
         console.error('Error fetching API endpoints:', error);
       }
@@ -137,27 +137,27 @@ function EndpointPage({ endpoint }) {
       console.error(error);
     }
   };
-  const handleAddNew = async () => {
-    try {
-      const response = await fetch(`http://localhost:3001/api/${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newItem),
-      });
-  
-      if (response.ok) {
-        const addedItem = await response.json();
-        setData([...data, addedItem]);
-        setFilteredData([...filteredData, addedItem]);
-        setIsAdding(false); // Cierra el modal
-        setNewItem({}); // Limpia el formulario
-      } else {
-        console.error('Failed to add the new item.');
-      }
-    } catch (error) {
-      console.error('Error adding the new item:', error);
+ const handleAddNew = async () => {
+  try {
+    const response = await fetch(`http://localhost:3001/api/${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newItem), // No incluye el id
+    });
+
+    if (response.ok) {
+      const addedItem = await response.json();
+      setData([...data, addedItem]);
+      setFilteredData([...filteredData, addedItem]);
+      setIsAdding(false); // Cierra el modal
+      setNewItem({}); // Limpia el formulario
+    } else {
+      console.error('Failed to add the new item.');
     }
-  };
+  } catch (error) {
+    console.error('Error adding the new item:', error);
+  }
+};
   return (
     <div>
       <h2 className="text-xl font-semibold mb-4">{endpoint}</h2>
@@ -198,7 +198,7 @@ function EndpointPage({ endpoint }) {
                   onChange={(e) =>
                     setEditItem({ ...editItem, [key]: e.target.value })
                   }
-                  disabled={key === 'id'} // Desactiva el campo si es el ID
+                  disabled={key === 'id'}
                 />
               </div>
             ))}
@@ -220,41 +220,43 @@ function EndpointPage({ endpoint }) {
         </div>
       )}
       {isAdding && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-lg w-96">
-            <h3 className="text-lg font-semibold mb-4">Add New Item</h3>
-            {Object.keys(data[0] || {}).map((key) => (
-              <div key={key} className="mb-4">
-                <label className="block font-bold capitalize">{key}</label>
-                <input
-                  type="text"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  value={newItem[key] || ''}
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, [key]: e.target.value })
-                  }
-                />
-              </div>
-            ))}
-            <div className="flex justify-end space-x-4">
-              <button
-                className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
-                onClick={() => setIsAdding(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
-                onClick={handleAddNew}
-              >
-                Add
-              </button>
-            </div>
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="bg-white p-6 rounded shadow-lg w-96">
+      <h3 className="text-lg font-semibold mb-4">Add New Item</h3>
+      {Object.keys(data[0] || {})
+        .filter((key) => key !== 'id') 
+        .map((key) => (
+          <div key={key} className="mb-4">
+            <label className="block font-bold capitalize">{key}</label>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded"
+              value={newItem[key] || ''}
+              onChange={(e) =>
+                setNewItem({ ...newItem, [key]: e.target.value })
+              }
+            />
           </div>
-        </div>
-      )}
+        ))}
+      <div className="flex justify-end space-x-4">
+        <button
+          className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
+          onClick={() => setIsAdding(false)}
+        >
+          Cancel
+        </button>
+        <button
+          className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
+          onClick={handleAddNew}
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+)}
       <div className="flex justify-between mb-6">
-        <h2 className="text-xl font-semibold">Endpoint: {endpoint}</h2>
+        <h2 className="text-xl font-semibold">{endpoint}</h2>
         <button
           className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
           onClick={() => setIsAdding(true)}
@@ -262,7 +264,6 @@ function EndpointPage({ endpoint }) {
           Add New
         </button>
       </div>
-      {/* Data grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {filteredData.map((item) => (
           <div

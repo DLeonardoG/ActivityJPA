@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -22,8 +22,8 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dateBuy;
-    private LocalDate dateFlight;
+    private LocalDateTime dateBuy;
+    private LocalDateTime dateFlight;
     private String seat;
 
 //   @ManyToOne
@@ -62,7 +62,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(LocalDate dateBuy, LocalDate dateFlight, String seat) {
+    public Ticket(LocalDateTime dateBuy, LocalDateTime dateFlight, String seat) {
         this.dateBuy = dateBuy;
         this.dateFlight = dateFlight;
         this.seat = seat;
@@ -78,19 +78,19 @@ public class Ticket {
         this.id = id;
     }
 
-    public LocalDate getDateBuy() {
+    public LocalDateTime getDateBuy() {
         return dateBuy;
     }
 
-    public void setDateBuy(LocalDate dateBuy) {
+    public void setDateBuy(LocalDateTime dateBuy) {
         this.dateBuy = dateBuy;
     }
 
-    public LocalDate getDateFlight() {
+    public LocalDateTime getDateFlight() {
         return dateFlight;
     }
 
-    public void setDateFlight(LocalDate dateFlight) {
+    public void setDateFlight(LocalDateTime dateFlight) {
         this.dateFlight = dateFlight;
     }
 
