@@ -1,4 +1,4 @@
-package com.campus.novaair.flight.application;
+package com.campus.novaair.flight.domain;
 
 import com.campus.novaair.airport.domain.Airport;
 import com.campus.novaair.crewmember.domain.CrewMember;

@@ -1,7 +1,7 @@
-package com.campus.novaair.fligh.domain;
+package com.campus.novaair.flight.application;
 
-import com.campus.novaair.flight.application.Flight;
-import com.campus.novaair.flight.application.FlightRepository;
+import com.campus.novaair.flight.domain.Flight;
+import com.campus.novaair.flight.domain.FlightRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

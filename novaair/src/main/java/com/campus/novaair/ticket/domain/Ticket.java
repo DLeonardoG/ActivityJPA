@@ -5,7 +5,7 @@
 package com.campus.novaair.ticket.domain;
 
 import com.campus.novaair.classseat.domain.ClassSeat;
-import com.campus.novaair.flight.application.Flight;
+import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.passangers.domain.Passenger;
 import com.campus.novaair.paymethod.domain.PayMethod;
 import jakarta.persistence.Entity;

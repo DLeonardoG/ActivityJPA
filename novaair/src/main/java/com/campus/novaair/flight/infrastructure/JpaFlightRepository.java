@@ -4,8 +4,8 @@
  */
 package com.campus.novaair.flight.infrastructure;
 
-import com.campus.novaair.flight.application.Flight;
-import com.campus.novaair.flight.application.FlightRepository;
+import com.campus.novaair.flight.domain.Flight;
+import com.campus.novaair.flight.domain.FlightRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository

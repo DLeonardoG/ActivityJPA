@@ -1,7 +1,7 @@
 
 package com.campus.novaair.crewmember.domain;
 
-import com.campus.novaair.flight.application.Flight;
+import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.role.domain.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

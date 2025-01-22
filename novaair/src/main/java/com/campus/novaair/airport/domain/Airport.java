@@ -1,7 +1,7 @@
 
 package com.campus.novaair.airport.domain;
 
-import com.campus.novaair.flight.application.Flight;
+import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.place.domain.Place;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

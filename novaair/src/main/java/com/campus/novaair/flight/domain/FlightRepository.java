@@ -1,4 +1,4 @@
-package com.campus.novaair.flight.application;
+package com.campus.novaair.flight.domain;
 
 import java.util.List;
 
