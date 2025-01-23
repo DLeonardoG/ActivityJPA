@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.novaair.paymethod.infrastructure;
 
 
@@ -24,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/paymethod")
+@RequestMapping("/api/paymethods")
 public class PayMethodController {
     private final PayMethodServiceImpl payMethodServiceImpl;
     

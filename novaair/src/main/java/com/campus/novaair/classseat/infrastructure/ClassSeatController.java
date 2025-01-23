@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/classseat")
+@RequestMapping("/api/classseats")
 public class ClassSeatController {
     private final ClassSeatServiceImpl classSeatServiceImpl;
     

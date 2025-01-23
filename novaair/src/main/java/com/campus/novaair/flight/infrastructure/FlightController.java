@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/flight")
+@RequestMapping("/api/flights")
 public class FlightController {
     
     private final FlightServiceImpl flightServiceImpl;

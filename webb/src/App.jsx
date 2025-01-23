@@ -184,41 +184,48 @@ function EndpointPage({ endpoint }) {
       />
     </div>
       {/* Modal */}
-      {editItem && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-lg w-96">
-            <h3 className="text-lg font-semibold mb-4">Edit Item</h3>
-            {Object.entries(editItem).map(([key, value]) => (
-              <div key={key} className="mb-4">
-                <label className="block font-bold capitalize">{key}</label>
-                <input
-                  type="text"
-                  value={value}
-                  className="w-full p-2 border border-gray-300 rounded"
-                  onChange={(e) =>
-                    setEditItem({ ...editItem, [key]: e.target.value })
-                  }
-                  disabled={key === 'id'}
-                />
-              </div>
-            ))}
-            <div className="flex justify-end space-x-4">
-              <button
-                className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
-                onClick={() => setEditItem(null)}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
-                onClick={handleSaveEdit}
-              >
-                Save
-              </button>
-            </div>
-          </div>
+      {/* Modal */}
+{editItem && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="bg-white p-6 rounded shadow-lg w-96">
+      <h3 className="text-lg font-semibold mb-4">Edit Item</h3>
+      {Object.entries(editItem).map(([key, value]) => (
+        <div key={key} className="mb-4">
+          <label className="block font-bold capitalize">{key}</label>
+          {key === 'id' ? (
+            // Mostrar el id como texto
+            <p className="bg-gray-100 p-2 rounded">{value}</p>
+          ) : (
+            // Mostrar los demás atributos como inputs
+            <input
+              type="text"
+              value={value}
+              className="w-full p-2 border border-gray-300 rounded"
+              onChange={(e) =>
+                setEditItem({ ...editItem, [key]: e.target.value })
+              }
+            />
+          )}
         </div>
-      )}
+      ))}
+      <div className="flex justify-end space-x-4">
+        <button
+          className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
+          onClick={() => setEditItem(null)}
+        >
+          Cancel
+        </button>
+        <button
+          className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
+          onClick={handleSaveEdit}
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
       {isAdding && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div className="bg-white p-6 rounded shadow-lg w-96">
