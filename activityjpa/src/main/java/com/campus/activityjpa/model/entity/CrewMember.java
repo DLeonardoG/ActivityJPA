@@ -20,7 +20,7 @@ public class CrewMember {
 
     private String name;
     private String IDMember;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId", nullable = false)
     private Role role;
 

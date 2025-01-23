@@ -25,19 +25,19 @@ public class Flight {
     private LocalDateTime date;
     private LocalDateTime dateArrived;
 
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Ticket> tickets = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idOrigin")
     private Airport origin;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDestination")
     private Airport destination;
 
-    @ManyToOne
-    @JoinColumn(name = "idPlane")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPlane", nullable = false)
     private Plane plane;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

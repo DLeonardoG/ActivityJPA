@@ -30,19 +30,19 @@ public class Ticket {
     private LocalDateTime dateFlight;
     private String seat;
 
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idFlight", nullable = false)
     private Flight flight;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idClassSeat", nullable = false)
     private ClassSeat classSeat;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPassenger", nullable = false)
     private Passenger passenger;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPayMethod", nullable = false)
     private PayMethod payMethod;    
     
