@@ -184,7 +184,6 @@ function EndpointPage({ endpoint }) {
       />
     </div>
       {/* Modal */}
-      {/* Modal */}
 {editItem && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div className="bg-white p-6 rounded shadow-lg w-96">
@@ -192,20 +191,29 @@ function EndpointPage({ endpoint }) {
       {Object.entries(editItem).map(([key, value]) => (
         <div key={key} className="mb-4">
           <label className="block font-bold capitalize">{key}</label>
-          {key === 'id' ? (
-            // Mostrar el id como texto
-            <p className="bg-gray-100 p-2 rounded">{value}</p>
-          ) : (
-            // Mostrar los demás atributos como inputs
-            <input
-              type="text"
-              value={value}
-              className="w-full p-2 border border-gray-300 rounded"
-              onChange={(e) =>
-                setEditItem({ ...editItem, [key]: e.target.value })
-              }
-            />
-          )}
+         {key === 'id' ? (
+  <p className="bg-gray-100 p-2 rounded">{value}</p>
+) : key.toLowerCase().includes('date') ? (
+  <input
+    type="datetime-local"
+    value={value}
+    className="w-full p-2 border border-gray-300 rounded"
+    onChange={(e) =>
+      setEditItem({ ...editItem, [key]: e.target.value })
+    }
+  />
+) : (
+  <input
+    type="text"
+    value={value}
+    className="w-full p-2 border border-gray-300 rounded"
+    onChange={(e) =>
+      setEditItem({ ...editItem, [key]: e.target.value })
+    }
+  />
+)}
+
+
         </div>
       ))}
       <div className="flex justify-end space-x-4">
