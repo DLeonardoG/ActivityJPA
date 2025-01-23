@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.novaair.ticket.domain;
 
 import com.campus.novaair.classseat.domain.ClassSeat;
@@ -9,6 +6,7 @@ import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.passangers.domain.Passenger;
 import com.campus.novaair.paymethod.domain.PayMethod;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,10 +14,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author kevin
- */
 @Entity
 public class Ticket {
     @Id

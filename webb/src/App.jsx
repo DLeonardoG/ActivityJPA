@@ -297,7 +297,7 @@ function EndpointPage({ endpoint }) {
               </button>
             </div>
           </div>
-        ))}
+        ))} 
       </div>
     </div>
   );

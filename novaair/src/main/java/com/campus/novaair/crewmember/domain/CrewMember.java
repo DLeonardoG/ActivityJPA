@@ -4,6 +4,7 @@ package com.campus.novaair.crewmember.domain;
 import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.role.domain.Role;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
