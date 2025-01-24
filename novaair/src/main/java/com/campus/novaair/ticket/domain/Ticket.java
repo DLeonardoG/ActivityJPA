@@ -38,10 +38,7 @@ public class Ticket {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPayMethod", nullable = false)
-    private PayMethod payMethod;    
-    
-    
-    
+    private PayMethod payMethod;
     
     
     public Ticket() {

@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+    // Simulate login logic
+    if (username && password) {
+      console.log('Username:', username);
+      console.log('Password:', password);
+      onLoginSuccess(); // Call the callback to hide the login
+    } else {
+      alert('Please enter both username and password.');
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
       <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
         <form onSubmit={handleLogin}>

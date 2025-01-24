@@ -21,6 +21,7 @@ function App() {
   }, []);
 
   return (
+    
     <Router>
       <div className="flex h-screen">
         {/* Sidebar */}
@@ -39,7 +40,7 @@ function App() {
             ))}
           </ul>
         </div>
-
+            
         {/* Content */}
         <div className="flex-1 bg-gray-100 p-6">
           <Routes>
