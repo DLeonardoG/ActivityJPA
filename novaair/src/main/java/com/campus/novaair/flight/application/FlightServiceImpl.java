@@ -1,7 +1,9 @@
 package com.campus.novaair.flight.application;
 
+import com.campus.novaair.crewmember.domain.CrewMember;
 import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.flight.domain.FlightRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,21 @@ public class FlightServiceImpl implements FlightRepository {
     @Override
     public void deleteById(Long id) {
         flightRepository.deleteById(id);
+    }
+    
+        public Flight addCrewMemberwithFlight(Flight flight, List<CrewMember> crewMembers) {
+        for (CrewMember crewMember : crewMembers) {
+            flight.addCrewMember(crewMember);
+        }
+        return flightRepository.save(flight);
+    }
+
+    @Transactional
+    public Flight addCrewMember(Flight flight, List<CrewMember> crewMembers) {
+        for (CrewMember crewMember : crewMembers) {
+            flight.addCrewMember(crewMember);
+        }
+        return flightRepository.save(flight);
     }
     
     

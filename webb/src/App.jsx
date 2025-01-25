@@ -21,7 +21,6 @@ function App() {
   }, []);
 
   return (
-    
     <Router>
       <div className="flex h-screen">
         {/* Sidebar */}
@@ -40,7 +39,7 @@ function App() {
             ))}
           </ul>
         </div>
-            
+
         {/* Content */}
         <div className="flex-1 bg-gray-100 p-6">
           <Routes>
@@ -74,6 +73,17 @@ function EndpointPage({ endpoint }) {
   const [searchBy, setSearchBy] = useState(''); 
   const [newItem, setNewItem] = useState({});
   const [isAdding, setIsAdding] = useState(false);
+  const [places, setPlaces] = useState([]); // Estado para almacenar los lugares del API
+
+  useEffect(() => {
+    if (editItem) {
+      // Hacer fetch solo si hay un item en edición
+      fetch("http://localhost:3001/api/places") // Reemplaza con tu endpoint real
+        .then((response) => response.json())
+        .then((data) => setPlaces(data))
+        .catch((error) => console.error("Error fetching places:", error));
+    }
+  }, [editItem]);
 
 
 
@@ -185,55 +195,71 @@ function EndpointPage({ endpoint }) {
       />
     </div>
       {/* Modal */}
-{editItem && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div className="bg-white p-6 rounded shadow-lg w-96">
-      <h3 className="text-lg font-semibold mb-4">Edit Item</h3>
-      {Object.entries(editItem).map(([key, value]) => (
-        <div key={key} className="mb-4">
-          <label className="block font-bold capitalize">{key}</label>
-         {key === 'id' ? (
-  <p className="bg-gray-100 p-2 rounded">{value}</p>
-) : key.toLowerCase().includes('date') ? (
-  <input
-    type="datetime-local"
-    value={value}
-    className="w-full p-2 border border-gray-300 rounded"
-    onChange={(e) =>
-      setEditItem({ ...editItem, [key]: e.target.value })
-    }
-  />
-) : (
-  <input
-    type="text"
-    value={value}
-    className="w-full p-2 border border-gray-300 rounded"
-    onChange={(e) =>
-      setEditItem({ ...editItem, [key]: e.target.value })
-    }
-  />
-)}
+      {editItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg w-96">
+            <h3 className="text-lg font-semibold mb-4">Edit Item</h3>
 
-
+            {Object.entries(editItem).map(([key, value]) => (
+              <div key={key} className="mb-4">
+                <label className="block font-bold capitalize">{key}</label>
+                {key === "id" ? (
+                  <p className="bg-gray-100 p-2 rounded">{value}</p>
+                ) : key.toLowerCase().includes("date") ? (
+                  <input
+                    type="datetime-local"
+                    value={value}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) =>
+                      setEditItem({ ...editItem, [key]: e.target.value })
+                    }
+                  />
+                ) : key === "place" ? (
+                  <select
+                    value={value}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) =>
+                      setEditItem({ ...editItem, [key]: e.target.value })
+                    }
+                  >
+                    <option value="" disabled>
+                      Select a place
+                    </option>
+                    {places.map((place) => (
+                      <option key={place.id} value={place.id}>
+                        {place.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    value={value}
+                    className="w-full p-2 border border-gray-300 rounded"
+                    onChange={(e) =>
+                      setEditItem({ ...editItem, [key]: e.target.value })
+                    }
+                  />
+                )}
+              </div>
+            ))}
+            <div className="flex justify-end space-x-4">
+              <button
+                className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
+                onClick={() => setEditItem(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
+                onClick={handleSaveEdit}
+              >
+                Save
+              </button>
+            </div>
+          </div>
         </div>
-      ))}
-      <div className="flex justify-end space-x-4">
-        <button
-          className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
-          onClick={() => setEditItem(null)}
-        >
-          Cancel
-        </button>
-        <button
-          className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
-          onClick={handleSaveEdit}
-        >
-          Save
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+      )}
 
       {isAdding && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">

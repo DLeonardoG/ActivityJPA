@@ -1,7 +1,7 @@
 package com.campus.novaair.maintenances.infrastructure;
 
 
-import com.campus.novaair.maintenances.application.MaintenanceServicesImpl;
+import com.campus.novaair.maintenances.application.MaintenanceServiceImpl;
 import com.campus.novaair.maintenances.domain.Maintenance;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/maintenances")
 public class MaintenanceController {
     
-    private final MaintenanceServicesImpl maintenanceServicesImpl;
+    private final MaintenanceServiceImpl maintenanceServicesImpl;
     
     @Autowired
-    public MaintenanceController(MaintenanceServicesImpl maintenanceServicesImpl){
+    public MaintenanceController(MaintenanceServiceImpl maintenanceServicesImpl){
         this.maintenanceServicesImpl = maintenanceServicesImpl;
     }
     

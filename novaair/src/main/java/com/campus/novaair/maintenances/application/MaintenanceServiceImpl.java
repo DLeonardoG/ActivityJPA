@@ -3,6 +3,8 @@ package com.campus.novaair.maintenances.application;
 
 import com.campus.novaair.maintenances.domain.Maintenance;
 import com.campus.novaair.maintenances.domain.MaintenanceRepository;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,12 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class MaintenanceServicesImpl implements MaintenanceRepository{
+public class MaintenanceServiceImpl implements MaintenanceRepository{
     
     private final MaintenanceRepository maintenanceRepository;
     
     @Autowired
-    public MaintenanceServicesImpl(MaintenanceRepository maintenanceRepository) {
+    public MaintenanceServiceImpl(MaintenanceRepository maintenanceRepository) {
         this.maintenanceRepository = maintenanceRepository;
     }
     
@@ -41,6 +43,13 @@ public class MaintenanceServicesImpl implements MaintenanceRepository{
         maintenanceRepository.deleteById(id);
     }
     
+    @Transactional
+    public Maintenance addTypeMaintenance(Maintenance maintenance, List<TypeMaintenance> typesMaintenancess){
+        for (TypeMaintenance typeMaintenance : typesMaintenancess) {
+            maintenance.addTypeMaintenance(typeMaintenance);
+        }
+        return maintenanceRepository.save(maintenance);
+    }
     
     
     
