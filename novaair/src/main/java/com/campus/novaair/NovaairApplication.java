@@ -166,6 +166,36 @@ public class NovaairApplication {
         ticket1.setPassenger(passenger1);
 
         ticketServiceImpl.save(ticket1);
+        
+        
+        EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
+        EndPoint endPoint1 = new EndPoint("/airports", "airports");
+        endPointServiceImpl.saveEndPoint(endPoint1);
+
+        EndPoint endPoint2 = new EndPoint("/classseats", "classseats");
+        endPointServiceImpl.saveEndPoint(endPoint2);
+        EndPoint endPoint3 = new EndPoint("/flights", "flights");
+        endPointServiceImpl.saveEndPoint(endPoint3);
+        EndPoint endPoint4 = new EndPoint("/tickets", "tickets");
+        endPointServiceImpl.saveEndPoint(endPoint4);
+        EndPoint endPoint5 = new EndPoint("/crewmembers", "crewmembers");
+        endPointServiceImpl.saveEndPoint(endPoint5);
+
+        EndPoint endPoint6 = new EndPoint("/maintenances", "maintenances");
+        endPointServiceImpl.saveEndPoint(endPoint6);
+        EndPoint endPoint7 = new EndPoint("/passengers", "passengers");
+        endPointServiceImpl.saveEndPoint(endPoint7);
+        EndPoint endPoint8 = new EndPoint("/paymethods", "paymethods");
+        endPointServiceImpl.saveEndPoint(endPoint8);
+        EndPoint endPoint9 = new EndPoint("/places", "places");
+        endPointServiceImpl.saveEndPoint(endPoint9);
+
+        EndPoint endPoint10 = new EndPoint("/planes", "planes");
+        endPointServiceImpl.saveEndPoint(endPoint10);
+        EndPoint endPoint11 = new EndPoint("/roles", "roles");
+        endPointServiceImpl.saveEndPoint(endPoint11);
+        EndPoint endPoint12 = new EndPoint("/typesmaintenances", "typesmaintenances");
+        endPointServiceImpl.saveEndPoint(endPoint12);
 
     }
 
