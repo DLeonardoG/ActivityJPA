@@ -45,7 +45,6 @@ private RoleRepository roleRepository;
         crewMemberRepository.deleteById(id);
     }
 
-    // Métodos de conversión entre entidad y DTO
     private CrewMemberDTO convertToDTO(CrewMember crewMember) {
         return new CrewMemberDTO(
                 crewMember.getId(),
