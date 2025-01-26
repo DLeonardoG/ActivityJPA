@@ -3,6 +3,7 @@ package com.campus.novaair.airport.infrastructure;
 
 import com.campus.novaair.airport.application.AirportServiceImpl;
 import com.campus.novaair.airport.domain.Airport;
+import com.campus.novaair.airport.domain.AirportDTO;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class AirportController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Airport> getAllAirport(){
+    public List<AirportDTO> getAllAirport(){
         return airportServiceImpl.findAll();
     }
     
@@ -40,8 +41,8 @@ public class AirportController {
     }
     
     @PostMapping
-    public Airport createAirport(@RequestBody Airport airport){
-        return airportServiceImpl.save(airport);
+    public AirportDTO createAirport(@RequestBody AirportDTO airportDTO){
+        return airportServiceImpl.save(airportDTO);
     }
     
     @DeleteMapping("/{id}")
@@ -50,9 +51,9 @@ public class AirportController {
     }
     
     @PutMapping("/{id}")
-    public Airport updateAirport(@PathVariable Long id, @RequestBody Airport airport){
-        airport.setId(id);
-        return airportServiceImpl.save(airport);
+    public AirportDTO updateAirport(@PathVariable Long id, @RequestBody AirportDTO airportDTO){
+        airportDTO.setId(id);
+        return airportServiceImpl.save(airportDTO);
     }
     
 }

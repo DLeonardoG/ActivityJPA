@@ -5,6 +5,7 @@ import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.place.domain.Place;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,15 +24,13 @@ public class Airport {
 
     private String name;
 
-    @OneToMany(mappedBy = "origin")
+    @OneToMany(mappedBy = "origin", fetch = FetchType.LAZY)
     private List<Flight> originFlights = new ArrayList<>();
 
-    @OneToMany(mappedBy = "destination")
+    @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY)
     private List<Flight> destinationFlights = new ArrayList<>();
     
-
-    @OneToOne(mappedBy = "airport", cascade = CascadeType.ALL)
-    private Place place;
+    private String place;
 
     public Airport() {
     }
@@ -39,7 +38,12 @@ public class Airport {
     public Airport(String name) {
         this.name = name;
     }
-    
+
+    public Airport(Long id, String name, String place) {
+        this.id = id;
+        this.name = name;
+        this.place = place;
+    }
     
     
     public Long getId() {
@@ -58,11 +62,11 @@ public class Airport {
         this.name = name;
     }
 
-    public Place getPlace() {
+    public String getPlace() {
         return place;
     }
 
-    public void setPlace(Place place) {
+    public void setPlace(String place) {
         this.place = place;
     }
     

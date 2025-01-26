@@ -1,7 +1,7 @@
 package com.campus.novaair;
 
 import com.campus.novaair.airport.application.AirportServiceImpl;
-import com.campus.novaair.airport.domain.Airport;
+import com.campus.novaair.airport.domain.AirportDTO;
 import com.campus.novaair.classseat.application.ClassSeatServiceImpl;
 import com.campus.novaair.classseat.domain.ClassSeat;
 import com.campus.novaair.crewmember.application.CrewMemberServiceImpl;
@@ -99,13 +99,15 @@ public class NovaairApplication {
 ////        Maintenance maintenance1 = new Maintenance(currentDate, 100.0);
 ////        Maintenance maintenance2 = new Maintenance(currentDate, 200.0);
 ////  
-////        Airport airport1 = new Airport("vivaMexico");
-////        Airport airport2 = new Airport("AlaMadrid");
+        AirportDTO airport1 = new AirportDTO("ave maria", "Cucuta");
+        AirportDTO airport2 = new AirportDTO("ave mario", "barranca");
+        airportServiceImpl.save(airport1);
+        airportServiceImpl.save(airport2);
+
 ////
 ////        Place place1 = new Place("tijuacana", airport1);
 ////        Place place2 = new Place("madrid", airport2);
 ////
-////        Plane plane1 = new Plane("2023", 50);
 ////
 ////        Maintenance maintenance3 = new Maintenance(currentDate, 700.0, plane1);
 ////
@@ -127,8 +129,7 @@ public class NovaairApplication {
 ////        airport1.setPlace(place1);
 ////        airport2.setPlace(place2);
 ////
-////        airportServiceImpl.save(airport1);
-////        airportServiceImpl.save(airport2);
+
 //
 ////        flight3.setOrigin(airport2);
 ////        flight3.setDestination(airport1);
