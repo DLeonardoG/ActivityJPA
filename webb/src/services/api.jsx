@@ -85,3 +85,19 @@ export const updateAirport = (id, airport) => {
 export const deleteAirport = (id) => {
   return axios.delete(`${API_URL}/airports/${id}`);
 };
+
+export const getClassSeats = () => {
+  return axios.get(`${API_URL}/classseats`);
+};
+
+export const createClassSeat = (classSeat) => {
+  return axios.post(`${API_URL}/classseats`, classSeat);
+};
+
+export const updateClassSeat = (id, classSeat) => {
+  return axios.put(`${API_URL}/classseats/${id}`, classSeat);
+};
+
+export const deleteClassSeat = (id) => {
+  return axios.delete(`${API_URL}/classseats/${id}`);
+};
