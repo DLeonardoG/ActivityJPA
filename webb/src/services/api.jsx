@@ -18,15 +18,10 @@ export const deleteFlight = (id) => {
   return axios.delete(`${API_URL}/flights/${id}`);
 };
 
-export const getAirports = () => {
-  return axios.get(`${API_URL}/airports`);
-};
-
 export const getPlanes = () => {
   return axios.get(`${API_URL}/planes`);
 };
 
-// Nuevas funciones para Pay Methods
 export const getPayMethods = () => {
   return axios.get(`${API_URL}/paymethods`);
 };
@@ -42,8 +37,6 @@ export const updatePayMethod = (id, payMethod) => {
 export const deletePayMethod = (id) => {
   return axios.delete(`${API_URL}/paymethods/${id}`);
 };
-
-;
 
 export const getRoles = () => {
   return axios.get(`${API_URL}/roles`);
@@ -75,4 +68,20 @@ export const updateCrewMember = (id, crewMember) => {
 
 export const deleteCrewMember = (id) => {
   return axios.delete(`${API_URL}/crewmembers/${id}`);
+};
+
+export const getAirports = () => {
+  return axios.get(`${API_URL}/airports`);
+};
+
+export const createAirport = (airport) => {
+  return axios.post(`${API_URL}/airports`, airport);
+};
+
+export const updateAirport = (id, airport) => {
+  return axios.put(`${API_URL}/airports/${id}`, airport);
+};
+
+export const deleteAirport = (id) => {
+  return axios.delete(`${API_URL}/airports/${id}`);
 };
