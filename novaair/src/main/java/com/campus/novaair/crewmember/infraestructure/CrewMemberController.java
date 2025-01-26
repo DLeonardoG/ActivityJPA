@@ -3,6 +3,7 @@ package com.campus.novaair.crewmember.infraestructure;
 
 import com.campus.novaair.crewmember.application.CrewMemberServiceImpl;
 import com.campus.novaair.crewmember.domain.CrewMember;
+import com.campus.novaair.crewmember.domain.CrewMemberDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,35 +20,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/crewmembers")
 public class CrewMemberController {
-    
+
     private final CrewMemberServiceImpl crewMemberServiceImpl;
-    
+
     @Autowired
-    public CrewMemberController(CrewMemberServiceImpl crewMemberServiceImpl){
+    public CrewMemberController(CrewMemberServiceImpl crewMemberServiceImpl) {
         this.crewMemberServiceImpl = crewMemberServiceImpl;
     }
-    
+
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<CrewMember> getAllCrewMember(){
+    @ResponseStatus(HttpStatus.OK)
+    public List<CrewMemberDTO> getAllCrewMembers() {
         return crewMemberServiceImpl.findAll();
     }
-    
+
     @PostMapping
-    public CrewMember createCrewMember(@RequestBody CrewMember airport){
-        return crewMemberServiceImpl.save(airport);
+    public CrewMemberDTO createCrewMember(@RequestBody CrewMemberDTO crewMemberDTO) {
+        return crewMemberServiceImpl.save(crewMemberDTO);
     }
-    
+
     @DeleteMapping("/{id}")
-    public void deleteCrewMember(@PathVariable Long id){
+    public void deleteCrewMember(@PathVariable Long id) {
         crewMemberServiceImpl.deleteById(id);
     }
-    
+
     @PutMapping("/{id}")
-    public CrewMember updateCrewMember(@PathVariable Long id, @RequestBody CrewMember airport){
-        airport.setId(id);
-        return crewMemberServiceImpl.save(airport);
+    public CrewMemberDTO updateCrewMember(@PathVariable Long id, @RequestBody CrewMemberDTO crewMemberDTO) {
+        crewMemberDTO.setId(id);
+        return crewMemberServiceImpl.save(crewMemberDTO);
     }
-    
-    
 }

@@ -8,6 +8,6 @@ import Page from './page.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Page/>
+    <App></App>
   </StrictMode>,
 )

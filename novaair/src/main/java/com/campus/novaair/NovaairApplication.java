@@ -6,6 +6,7 @@ import com.campus.novaair.classseat.application.ClassSeatServiceImpl;
 import com.campus.novaair.classseat.domain.ClassSeat;
 import com.campus.novaair.crewmember.application.CrewMemberServiceImpl;
 import com.campus.novaair.crewmember.domain.CrewMember;
+import com.campus.novaair.crewmember.domain.CrewMemberDTO;
 import com.campus.novaair.endpoint.application.EndPointServiceImpl;
 import com.campus.novaair.endpoint.domain.EndPoint;
 import com.campus.novaair.flight.application.FlightServiceImpl;
@@ -24,6 +25,7 @@ import com.campus.novaair.role.application.RoleServiceImpl;
 import com.campus.novaair.ticket.application.TicketServiceImpl;
 import com.campus.novaair.ticket.domain.Ticket;
 import com.campus.novaair.role.domain.Role;
+import com.campus.novaair.role.domain.RoleDTO;
 import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import java.time.LocalDate;
@@ -60,132 +62,133 @@ public class NovaairApplication {
 //        roleServiceImpl.save("hostess");
 
 //          --- creation of a new crew member from role ---
-        Map<String, String> members = new HashMap<>();
-        members.put("1", "camilo");
-        members.put("2", "clros");
-        members.put("1", "mafer");
+//        Map<String, String> members = new HashMap<>();
+//        members.put("1", "camilo");
+//        members.put("2", "clros");
+//        members.put("1", "mafer");
 
 //        roleServiceImpl.saveWithCrewMembers("pilot", members);
 
-        Role role2 = new Role("Someone");
+        RoleDTO role2 = new RoleDTO("Someone");
         roleServiceImpl.save(role2);
 
-        CrewMember crewMember1 = new CrewMember("233", "Bertha");
-        CrewMember crewMember2 = new CrewMember("2334", "Bertho");
-        crewMember1.setRole(role2);
-        crewMember2.setRole(role2);
+        CrewMemberDTO crewMember1 = new CrewMemberDTO("233", "Bertha","Someone");
+        CrewMemberDTO crewMember2 = new CrewMemberDTO("2334", "Bertho", "Someone");
+        crewMember1.setRoleName(role2.getRole());
+        crewMember2.setRoleName(role2.getRole());
         crewMemberServiceImpl.save(crewMember1);
         crewMemberServiceImpl.save(crewMember2);
-
-        LocalDateTime dateDeparture = LocalDateTime.of(2025, 3, 15, 14, 30);
-        LocalDateTime dateArrived = LocalDateTime.of(2025, 3, 19, 14, 30);
-        Flight flight3 = new Flight(dateDeparture, dateArrived);
-
-        List<CrewMember> crewList = new ArrayList<>();
-        crewList.add(crewMember2);
-
-        flightServiceImpl.addCrewMember(flight3, crewList);
-        flightServiceImpl.save(flight3);
-
-        LocalDate currentDate = LocalDate.now();
-
-        TypeMaintenance typeMaintenance1 = new TypeMaintenance("Alas", 100.0);
-        TypeMaintenance typeMaintenance2 = new TypeMaintenance("llantas", 200.0);
-        typeMaintenanceServiceImpl.save(typeMaintenance1);
-        typeMaintenanceServiceImpl.save(typeMaintenance2);
-
-        Maintenance maintenance1 = new Maintenance(currentDate, 100.0);
-        Maintenance maintenance2 = new Maintenance(currentDate, 200.0);
-  
-        Airport airport1 = new Airport("vivaMexico");
-        Airport airport2 = new Airport("AlaMadrid");
-
-        Place place1 = new Place("tijuacana", airport1);
-        Place place2 = new Place("madrid", airport2);
-
-        Plane plane1 = new Plane("2023", 50);
-
-        Maintenance maintenance3 = new Maintenance(currentDate, 700.0, plane1);
-
-        ClassSeat classSeat1 = new ClassSeat(500, "VIP");
-        ClassSeat classSeat2 = new ClassSeat(100, "1");
-
-        Flight flight1 = new Flight(dateDeparture, dateArrived);
-
+//
+////        LocalDateTime dateDeparture = LocalDateTime.of(2025, 3, 15, 14, 30);
+////        LocalDateTime dateArrived = LocalDateTime.of(2025, 3, 19, 14, 30);
+////        Flight flight3 = new Flight(dateDeparture, dateArrived);
+//
+//        List<CrewMemberDTO> crewList = new ArrayList<>();
+//        crewList.add(crewMember2);
+//
+////        flightServiceImpl.addCrewMemberDTO(flight3, crewList);
+////        flightServiceImpl.save(flight3);
+////
+////        LocalDate currentDate = LocalDate.now();
+////
+////        TypeMaintenance typeMaintenance1 = new TypeMaintenance("Alas", 100.0);
+////        TypeMaintenance typeMaintenance2 = new TypeMaintenance("llantas", 200.0);
+////        typeMaintenanceServiceImpl.save(typeMaintenance1);
+////        typeMaintenanceServiceImpl.save(typeMaintenance2);
+////
+////        Maintenance maintenance1 = new Maintenance(currentDate, 100.0);
+////        Maintenance maintenance2 = new Maintenance(currentDate, 200.0);
+////  
+////        Airport airport1 = new Airport("vivaMexico");
+////        Airport airport2 = new Airport("AlaMadrid");
+////
+////        Place place1 = new Place("tijuacana", airport1);
+////        Place place2 = new Place("madrid", airport2);
+////
+////        Plane plane1 = new Plane("2023", 50);
+////
+////        Maintenance maintenance3 = new Maintenance(currentDate, 700.0, plane1);
+////
+////        ClassSeat classSeat1 = new ClassSeat(500, "VIP");
+////        ClassSeat classSeat2 = new ClassSeat(100, "1");
+//
+////        Flight flight1 = new Flight(dateDeparture, dateArrived);
+//
         PayMethod payMethod1 = new PayMethod("Nqui");
-
-        Passenger passenger1 = new Passenger("123", "Marcus");
-        
-        LocalDateTime currentDateTime = LocalDateTime.now();
-
-
-        Ticket ticket1 = new Ticket(currentDateTime, currentDateTime, "A2");
-        Ticket ticket2 = new Ticket(currentDateTime, currentDateTime, "A3");
-
-        airport1.setPlace(place1);
-        airport2.setPlace(place2);
-
-        airportServiceImpl.save(airport1);
-        airportServiceImpl.save(airport2);
-
-        flight3.setOrigin(airport2);
-        flight3.setDestination(airport1);
-        flightServiceImpl.save(flight3);
-
-        List<TypeMaintenance> typesMaintenenceMaintenence1 = new ArrayList<>();
-        typesMaintenenceMaintenence1.add(typeMaintenance1);
-        typesMaintenenceMaintenence1.add(typeMaintenance2);
-
-        List<TypeMaintenance> typesMaintenenceMaintenence2 = new ArrayList<>();
-        typesMaintenenceMaintenence2.add(typeMaintenance1);
-
-        maintenanceServiceImpl.addTypeMaintenance(maintenance1, typesMaintenenceMaintenence1);
-        maintenanceServiceImpl.addTypeMaintenance(maintenance2, typesMaintenenceMaintenence2);
-
-//        --- OneToOne Manintenance with plane ---
-        plane1.setMaintenance(maintenance3);
-        planeServiceImpl.save(plane1);
-
-        flight3.setPlane(plane1);
-
-        flightServiceImpl.save(flight3);
-
-        List<TypeMaintenance> typesMaintenenceMaintenence3 = new ArrayList<>();
-        typesMaintenenceMaintenence3.add(typeMaintenance1);
-        maintenanceServiceImpl.addTypeMaintenance(maintenance3, typesMaintenenceMaintenence3);
-
-//        --- OneToMany passenger with ticket ---
-        classSeatServiceImpl.save(classSeat1);
-        flightServiceImpl.save(flight1);
+//
+////        Passenger passenger1 = new Passenger("123", "Marcus");
+////        
+////        LocalDateTime currentDateTime = LocalDateTime.now();
+////
+////
+////        Ticket ticket1 = new Ticket(currentDateTime, currentDateTime, "A2");
+////        Ticket ticket2 = new Ticket(currentDateTime, currentDateTime, "A3");
+////
+////        airport1.setPlace(place1);
+////        airport2.setPlace(place2);
+////
+////        airportServiceImpl.save(airport1);
+////        airportServiceImpl.save(airport2);
+//
+////        flight3.setOrigin(airport2);
+////        flight3.setDestination(airport1);
+////        flightServiceImpl.save(flight3);
+//
+////        List<TypeMaintenance> typesMaintenenceMaintenence1 = new ArrayList<>();
+////        typesMaintenenceMaintenence1.add(typeMaintenance1);
+////        typesMaintenenceMaintenence1.add(typeMaintenance2);
+//
+////        List<TypeMaintenance> typesMaintenenceMaintenence2 = new ArrayList<>();
+////        typesMaintenenceMaintenence2.add(typeMaintenance1);
+////
+////        maintenanceServiceImpl.addTypeMaintenance(maintenance1, typesMaintenenceMaintenence1);
+////        maintenanceServiceImpl.addTypeMaintenance(maintenance2, typesMaintenenceMaintenence2);
+////
+//////        --- OneToOne Manintenance with plane ---
+////        plane1.setMaintenance(maintenance3);
+////        planeServiceImpl.save(plane1);
+//
+////        flight3.setPlane(plane1);
+////                        flightServiceImpl.save(flight3);
+//
+//
+//
+////        List<TypeMaintenance> typesMaintenenceMaintenence3 = new ArrayList<>();
+////        typesMaintenenceMaintenence3.add(typeMaintenance1);
+////        maintenanceServiceImpl.addTypeMaintenance(maintenance3, typesMaintenenceMaintenence3);
+//
+////        --- OneToMany passenger with ticket ---
+////        classSeatServiceImpl.save(classSeat1);
+////        flightServiceImpl.save(flight1);
         payMethodServiceImpl.save(payMethod1);
-        passengerServiceImpl.save(passenger1);
-
-        ticket1.setClassSeat(classSeat1);
-        ticket1.setFlight(flight1);
-        ticket1.setPayMethod(payMethod1);
-        ticket1.setPassenger(passenger1);
-
-        ticketServiceImpl.save(ticket1);
-        
+////        passengerServiceImpl.save(passenger1);
+////
+////        ticket1.setClassSeat(classSeat1);
+//////        ticket1.setFlight(flight1);
+////        ticket1.setPayMethod(payMethod1);
+////        ticket1.setPassenger(passenger1);
+//
+////        ticketServiceImpl.save(ticket1);
+//        
         
         EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
         EndPoint endPoint1 = new EndPoint("/airports", "airports");
         endPointServiceImpl.saveEndPoint(endPoint1);
 
-        EndPoint endPoint2 = new EndPoint("/classseats", "classseats");
+        EndPoint endPoint2 = new EndPoint("/classseats", "classes seats");
         endPointServiceImpl.saveEndPoint(endPoint2);
         EndPoint endPoint3 = new EndPoint("/flights", "flights");
         endPointServiceImpl.saveEndPoint(endPoint3);
         EndPoint endPoint4 = new EndPoint("/tickets", "tickets");
         endPointServiceImpl.saveEndPoint(endPoint4);
-        EndPoint endPoint5 = new EndPoint("/crewmembers", "crewmembers");
+        EndPoint endPoint5 = new EndPoint("/crewmembers", "crew members");
         endPointServiceImpl.saveEndPoint(endPoint5);
 
         EndPoint endPoint6 = new EndPoint("/maintenances", "maintenances");
         endPointServiceImpl.saveEndPoint(endPoint6);
         EndPoint endPoint7 = new EndPoint("/passengers", "passengers");
         endPointServiceImpl.saveEndPoint(endPoint7);
-        EndPoint endPoint8 = new EndPoint("/paymethods", "paymethods");
+        EndPoint endPoint8 = new EndPoint("/paymethods", "pay methods");
         endPointServiceImpl.saveEndPoint(endPoint8);
         EndPoint endPoint9 = new EndPoint("/places", "places");
         endPointServiceImpl.saveEndPoint(endPoint9);
@@ -194,8 +197,10 @@ public class NovaairApplication {
         endPointServiceImpl.saveEndPoint(endPoint10);
         EndPoint endPoint11 = new EndPoint("/roles", "roles");
         endPointServiceImpl.saveEndPoint(endPoint11);
-        EndPoint endPoint12 = new EndPoint("/typesmaintenances", "typesmaintenances");
+        EndPoint endPoint12 = new EndPoint("/typesmaintenances", "types maintenances");
         endPointServiceImpl.saveEndPoint(endPoint12);
+        
+
 
     }
 

@@ -43,7 +43,7 @@ public class Flight {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPlane")
     private Plane plane;
-
+    
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "flightsCrewMembers", 

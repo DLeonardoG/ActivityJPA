@@ -5,6 +5,8 @@ import com.campus.novaair.classseat.domain.ClassSeat;
 import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.passangers.domain.Passenger;
 import com.campus.novaair.paymethod.domain.PayMethod;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
