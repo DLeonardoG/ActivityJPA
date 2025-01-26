@@ -48,7 +48,7 @@ public class RoleController {
 
     @PutMapping("/{id}")
     public RoleDTO updateRole(@PathVariable Long id, @RequestBody @Valid RoleDTO roleDTO) {
-        roleDTO.setId(id); // Aseguramos que el ID se actualice
+        roleDTO.setId(id);
         return roleServiceImpl.save(roleDTO);
     }
 }
