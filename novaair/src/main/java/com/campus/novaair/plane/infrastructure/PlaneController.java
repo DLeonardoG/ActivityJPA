@@ -4,9 +4,12 @@ package com.campus.novaair.plane.infrastructure;
 import com.campus.novaair.plane.domain.Plane;
 import com.campus.novaair.plane.application.PlaneServiceImpl;
 import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.plane.domain.PlaneDTO;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,23 +36,30 @@ public class PlaneController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Plane> getAllPlanes() {
+    public List<PlaneDTO> getAllPlanes() {
         return planeServiceImpl.findAll();
     }
+    
+    @GetMapping("/{id}")
+    public Optional findById(@PathVariable Long id){
+        return planeServiceImpl.findById(id);
+    }
+    
     @PostMapping
-    public Plane createPlane(@RequestBody Plane plane){
-        return planeServiceImpl.save(plane);
+    public PlaneDTO createPlane(@RequestBody PlaneDTO planeDTO){
+        return planeServiceImpl.save(planeDTO);
     }
     
     @DeleteMapping("/{id}")
-    public void deletePlane(@PathVariable Long id){
+    public ResponseEntity<Void> deletePlane(@PathVariable Long id){
         planeServiceImpl.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
     
     @PutMapping("/{id}")
-    public Plane updatePlane(@PathVariable Long id, @RequestBody Plane plane){
-        plane.setId(id);
-        return planeServiceImpl.save(plane);
+    public PlaneDTO updatePlane(@PathVariable Long id, @RequestBody PlaneDTO planeDTO){
+        planeDTO.setId(id);
+        return planeServiceImpl.save(planeDTO);
     }
 
 }

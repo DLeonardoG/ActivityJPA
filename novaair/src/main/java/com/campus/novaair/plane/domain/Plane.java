@@ -36,7 +36,12 @@ public class Plane {
         this.model = model;
         this.numSeat = numSeat;
     }
-    
+
+    public Plane(Long id, String model, Integer numSeat) {
+        this.id = id;
+        this.model = model;
+        this.numSeat = numSeat;
+    }    
     
     
     public Long getId() {

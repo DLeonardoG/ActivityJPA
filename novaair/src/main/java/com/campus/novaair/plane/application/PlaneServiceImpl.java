@@ -1,49 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.novaair.plane.application;
 
 import com.campus.novaair.plane.domain.Plane;
-import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.plane.domain.PlaneDTO;
 import com.campus.novaair.plane.domain.PlaneRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author kevin
- */
 @Service
-public class PlaneServiceImpl implements PlaneRepository{
-
-     private final PlaneRepository planeRepository;
+public class PlaneServiceImpl {
+    private final PlaneRepository planeRepository;
      
     public PlaneServiceImpl(PlaneRepository planeRepository) {
         this.planeRepository = planeRepository;
     }
     
-    @Override
-    public List<Plane> findAll() {
-        return planeRepository.findAll();
+    public List<PlaneDTO> findAll() {
+        return planeRepository.findAll().stream()
+          .map(this::convertToDTO)
+              .collect(Collectors.toList());
     }
-
-    @Override
-    public Plane save(Plane plane) {
-        return planeRepository.save(plane);
+    
+    public PlaneDTO save(PlaneDTO planeDTO) {
+        Plane plane = convertToEntity(planeDTO);
+        Plane savaedPlane = planeRepository.save(plane);
+        return convertToDTO((savaedPlane));
 
     }
-
-    @Override
-    public Optional findById(Long id) {
-        return planeRepository.findById(id);
+    
+    public Optional<PlaneDTO> findById(Long id) {
+        return planeRepository.findById(id)
+                 .map(this::convertToDTO);
     }
-
-    @Override
+    
     public void deleteById(Long id) {
         planeRepository.deleteById(id);
     }
     
+        private PlaneDTO convertToDTO(Plane plane) {
+        return new PlaneDTO(
+                plane.getId(),
+                plane.getModel(), 
+                plane.getNumSeat());
+    }
+
+    private Plane convertToEntity(PlaneDTO planeDTO) {
+        Plane plane = new Plane(
+                planeDTO.getId(),
+                planeDTO.getModel(),
+                planeDTO.getNumSeat());
+        return plane;
+    }
     
 }
