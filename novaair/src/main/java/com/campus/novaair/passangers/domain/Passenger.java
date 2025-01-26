@@ -30,6 +30,13 @@ public class Passenger {
         this.name = name;
         this.IDPassenger = IDPassenger;
     }
+
+    public Passenger(Long id, String name, String IDPassenger) {
+        this.id = id;
+        this.name = name;
+        this.IDPassenger = IDPassenger;
+    }
+    
     
     public Long getId() {
         return id;
