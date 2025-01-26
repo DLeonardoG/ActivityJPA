@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.campus.novaair.typemaintenance.domain;
 
 import com.campus.novaair.maintenances.domain.Maintenance;
@@ -13,10 +10,6 @@ import jakarta.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author kevin
- */
 @Entity
 public class TypeMaintenance {
     @Id
@@ -36,6 +29,13 @@ public class TypeMaintenance {
         this.name = name;
         this.cost = cost;
     }
+
+    public TypeMaintenance(Long id, String name, Double cost) {
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+    }
+    
     
     
     public Long getId() {

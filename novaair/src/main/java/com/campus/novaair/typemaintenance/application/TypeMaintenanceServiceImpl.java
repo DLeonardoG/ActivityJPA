@@ -1,47 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+    
 package com.campus.novaair.typemaintenance.application;
 
 
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenanceDTO;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenanceRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author kevin
- */
 @Service
-public class TypeMaintenanceServiceImpl implements TypeMaintenanceRepository{
+public class TypeMaintenanceServiceImpl {
     private final TypeMaintenanceRepository typeMaintenanceRepository;
     
     public TypeMaintenanceServiceImpl (TypeMaintenanceRepository typeMaintenanceRepository){
         this.typeMaintenanceRepository = typeMaintenanceRepository;
     }
     
-    @Override
-    public List<TypeMaintenance> findAll() {
-        return typeMaintenanceRepository.findAll();
+    public List<TypeMaintenanceDTO> findAll() {
+        return typeMaintenanceRepository.findAll().stream()
+              .map(this::convertToDTO)
+              .collect(Collectors.toList());
     }
-
-    @Override
-    public TypeMaintenance save(TypeMaintenance typeMaintenance) {
-        return typeMaintenanceRepository.save(typeMaintenance);
+    
+    public TypeMaintenanceDTO save(TypeMaintenanceDTO typeMaintenanceDTO) {
+        TypeMaintenance typeMaintenance1 = convertToEntity(typeMaintenanceDTO);
+        TypeMaintenance savedtypeMaintenance = typeMaintenanceRepository.save(typeMaintenance1);
+        return convertToDTO(savedtypeMaintenance);
 
     }
-
-    @Override
-    public Optional findById(Long id) {
-        return typeMaintenanceRepository.findById(id);
+    
+    public Optional<TypeMaintenanceDTO> findById(Long id) {
+        return typeMaintenanceRepository.findById(id)
+                .map(this::convertToDTO);
     }
-
-    @Override
+    
     public void deleteById(Long id) {
         typeMaintenanceRepository.deleteById(id);
+    }
+    
+     private TypeMaintenanceDTO convertToDTO(TypeMaintenance typeMaintenance) {
+        return new TypeMaintenanceDTO(
+                typeMaintenance.getId(),
+                typeMaintenance.getName(), 
+                typeMaintenance.getCost());
+    }
+
+    private TypeMaintenance convertToEntity(TypeMaintenanceDTO typeMaintenanceDTO) {
+        TypeMaintenance typeMaintenance = new TypeMaintenance(
+                typeMaintenanceDTO.getId(),
+                typeMaintenanceDTO.getName(),
+                typeMaintenanceDTO.getCost());
+        return typeMaintenance;
     }
     
 }
