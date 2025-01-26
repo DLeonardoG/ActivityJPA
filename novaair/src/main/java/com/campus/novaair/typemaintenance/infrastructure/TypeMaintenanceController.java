@@ -3,9 +3,12 @@ package com.campus.novaair.typemaintenance.infrastructure;
 
 import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenanceDTO;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,23 +31,29 @@ public class TypeMaintenanceController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<TypeMaintenance> getAlltypeMaintenanceServiceImpl(){
+    public List<TypeMaintenanceDTO> getAlltypeMaintenanceServiceImpl(){
         return typeMaintenanceServiceImpl.findAll();
     }
     
+    @GetMapping("/{id}")
+    public Optional findById(@PathVariable Long id){
+        return typeMaintenanceServiceImpl.findById(id);
+    }
+    
     @PostMapping
-    public TypeMaintenance createTypeMaintenance(@RequestBody TypeMaintenance typeMaintenance){
-        return typeMaintenanceServiceImpl.save(typeMaintenance);
+    public TypeMaintenanceDTO createTypeMaintenance(@RequestBody TypeMaintenanceDTO typeMaintenanceDTO){
+        return typeMaintenanceServiceImpl.save(typeMaintenanceDTO);
     }
     
     @DeleteMapping("/{id}")
-    public void deleteTypeMaintenance(@PathVariable Long id){
+    public ResponseEntity<Void> deleteTypeMaintenance(@PathVariable Long id){
         typeMaintenanceServiceImpl.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
     
     @PutMapping("/{id}")
-    public TypeMaintenance updateTypeMaintenance(@PathVariable Long id, @RequestBody TypeMaintenance typeMaintenance){
-        typeMaintenance.setId(id);
-        return typeMaintenanceServiceImpl.save(typeMaintenance);
+    public TypeMaintenanceDTO updateTypeMaintenance(@PathVariable Long id, @RequestBody TypeMaintenanceDTO typeMaintenanceDTO){
+        typeMaintenanceDTO.setId(id);
+        return typeMaintenanceServiceImpl.save(typeMaintenanceDTO);
     }
 }
