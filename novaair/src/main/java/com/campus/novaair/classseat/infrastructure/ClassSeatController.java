@@ -3,10 +3,12 @@ package com.campus.novaair.classseat.infrastructure;
 import com.campus.novaair.airport.domain.Airport;
 import com.campus.novaair.classseat.application.ClassSeatServiceImpl;
 import com.campus.novaair.classseat.domain.ClassSeat;
+import com.campus.novaair.classseat.domain.ClassSeatDTO;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +32,7 @@ public class ClassSeatController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<ClassSeat> getAllClassSeat(){
+    public List<ClassSeatDTO> getAllClassSeat(){
         return classSeatServiceImpl.findAll();
     } 
     
@@ -40,18 +42,19 @@ public class ClassSeatController {
     }
     
     @PostMapping
-    public ClassSeat createClassSeat(@RequestBody ClassSeat classSeat){
-        return classSeatServiceImpl.save(classSeat);
+    public ClassSeatDTO createClassSeat(@RequestBody ClassSeatDTO classSeatDTO){
+        return classSeatServiceImpl.save(classSeatDTO);
     }
     @DeleteMapping("/{id}")
-    public void deleteClassSeat(@PathVariable Long id){
+    public  ResponseEntity<Void> deleteClassSeat(@PathVariable Long id){
         classSeatServiceImpl.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
     
     @PutMapping("/{id}")
-    public ClassSeat updateClassSeat(@PathVariable Long id, @RequestBody ClassSeat classSeat){
-        classSeat.setId(id);
-        return classSeatServiceImpl.save(classSeat);
+    public ClassSeatDTO updateClassSeat(@PathVariable Long id, @RequestBody ClassSeatDTO classSeatDTO){
+        classSeatDTO.setId(id);
+        return classSeatServiceImpl.save(classSeatDTO);
     }
     
     

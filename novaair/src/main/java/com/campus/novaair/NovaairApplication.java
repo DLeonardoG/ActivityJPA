@@ -4,6 +4,7 @@ import com.campus.novaair.airport.application.AirportServiceImpl;
 import com.campus.novaair.airport.domain.AirportDTO;
 import com.campus.novaair.classseat.application.ClassSeatServiceImpl;
 import com.campus.novaair.classseat.domain.ClassSeat;
+import com.campus.novaair.classseat.domain.ClassSeatDTO;
 import com.campus.novaair.crewmember.application.CrewMemberServiceImpl;
 import com.campus.novaair.crewmember.domain.CrewMember;
 import com.campus.novaair.crewmember.domain.CrewMemberDTO;
@@ -103,7 +104,9 @@ public class NovaairApplication {
         AirportDTO airport2 = new AirportDTO("ave mario", "barranca");
         airportServiceImpl.save(airport1);
         airportServiceImpl.save(airport2);
-
+        
+        ClassSeatDTO classSeatDTO1 = new ClassSeatDTO(100, "VIP");
+        classSeatServiceImpl.save(classSeatDTO1);
 ////
 ////        Place place1 = new Place("tijuacana", airport1);
 ////        Place place2 = new Place("madrid", airport2);

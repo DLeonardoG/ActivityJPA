@@ -31,6 +31,14 @@ public class ClassSeat {
         this.seatClass = seatClass;
     }
 
+    public ClassSeat(Long id, Integer price, String seatClass) {
+        this.id = id;
+        this.price = price;
+        this.seatClass = seatClass;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }
