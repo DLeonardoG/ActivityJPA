@@ -21,6 +21,7 @@ public class Plane {
     private Long id;
 
     private String model;
+    private String name;
     private Integer numSeat;
     
     @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -32,17 +33,27 @@ public class Plane {
     public Plane() {
     }
 
-    public Plane(String model, Integer numSeat) {
+    public Plane(String model, Integer numSeat, String name) {
         this.model = model;
         this.numSeat = numSeat;
+        this.name = name;
+
     }
 
-    public Plane(Long id, String model, Integer numSeat) {
+    public Plane(Long id, String model, Integer numSeat, String name) {
         this.id = id;
         this.model = model;
         this.numSeat = numSeat;
+        this.name = name;
     }    
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
     public Long getId() {
         return id;

@@ -43,14 +43,18 @@ public class PlaneServiceImpl {
         return new PlaneDTO(
                 plane.getId(),
                 plane.getModel(), 
-                plane.getNumSeat());
+                plane.getNumSeat(),
+                plane.getName()
+        );
     }
 
     private Plane convertToEntity(PlaneDTO planeDTO) {
         Plane plane = new Plane(
                 planeDTO.getId(),
                 planeDTO.getModel(),
-                planeDTO.getNumSeat());
+                planeDTO.getNumSeat(),
+                planeDTO.getName()
+        );
         return plane;
     }
     

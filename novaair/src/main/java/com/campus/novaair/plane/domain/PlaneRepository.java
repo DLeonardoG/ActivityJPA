@@ -16,5 +16,6 @@ public interface PlaneRepository {
     List<Plane> findAll();
     Plane save(Plane plane);
      Optional<Plane> findById(Long id);
+     Optional<Plane> findByName(String Name);
     void deleteById(Long id);
 }
