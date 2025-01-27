@@ -4,7 +4,7 @@ import { AiFillHome, AiOutlineUnorderedList } from 'react-icons/ai';
 
 const Menu = () => {
   return (
-    <div className="w-64 h-min-screen bg-gray-800 text-white">
+    <div className="w-64 h-screen bg-gray-800 text-white">
       <div className="p-4">
         <h1 className="text-3xl font-bold">NovaAir</h1>
       </div>

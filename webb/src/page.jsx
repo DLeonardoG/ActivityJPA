@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Login from './Login';
+import Login from './login';
 import App from './App';
 
 const Page = () => {
@@ -7,7 +7,7 @@ const Page = () => {
 
   return (
     <>
-      {!isLoggedIn && <Login onLoginSuccess={() => setIsLoggedIn(true)} />}
+      {/*{!isLoggedIn && <Login onLoginSuccess={() => setIsLoggedIn(true)} />}*/}
       {isLoggedIn && <App />}
     </>
   );
