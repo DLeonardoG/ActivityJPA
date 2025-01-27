@@ -2,6 +2,7 @@
 package com.campus.novaair.maintenances.domain;
 
 import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.plane.domain.PlaneDTO;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -55,6 +56,20 @@ public class Maintenance {
         this.costFinal = costFinal;
         this.plane = plane;
     }
+
+    public Maintenance(Long id, LocalDate date, Double costFinal, Plane plane) {
+        this.id = id;
+        this.date = date;
+        this.costFinal = costFinal;
+        this.plane = plane;
+    }
+    public Maintenance(Long id, LocalDate date, Double costFinal) {
+        this.id = id;
+        this.date = date;
+        this.costFinal = costFinal;
+    }
+    
+    
 
     public Long getId() {
         return id;

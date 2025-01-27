@@ -3,7 +3,9 @@ package com.campus.novaair.maintenances.infrastructure;
 
 import com.campus.novaair.maintenances.application.MaintenanceServiceImpl;
 import com.campus.novaair.maintenances.domain.Maintenance;
+import com.campus.novaair.maintenances.domain.MaintenanceDTO;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,13 +32,18 @@ public class MaintenanceController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Maintenance> getAllMaintenance(){
+    public List<MaintenanceDTO> getAllMaintenance(){
         return maintenanceServicesImpl.findAll();
     }
     
+    @GetMapping("/{id}")
+    public  Optional findById(@PathVariable Long id){
+        return maintenanceServicesImpl.findById(id);
+    }
+    
     @PostMapping
-    public Maintenance createMaintenance(@RequestBody Maintenance maintenance){
-        return maintenanceServicesImpl.save(maintenance);
+    public MaintenanceDTO createMaintenance(@RequestBody MaintenanceDTO maintenanceDTO){
+        return maintenanceServicesImpl.save(maintenanceDTO);
     }
     
     @DeleteMapping("/{id}")
@@ -45,9 +52,9 @@ public class MaintenanceController {
     }
     
     @PutMapping("/{id}")
-    public Maintenance updateMaintenance(@PathVariable Long id, @RequestBody Maintenance maintenance){
-        maintenance.setId(id);
-        return maintenanceServicesImpl.save(maintenance);
+    public MaintenanceDTO updateMaintenance(@PathVariable Long id, @RequestBody MaintenanceDTO maintenanceDTO){
+        maintenanceDTO.setId(id);
+        return maintenanceServicesImpl.save(maintenanceDTO);
     }
     
 }
