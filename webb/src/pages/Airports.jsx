@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getAirports, createAirport, updateAirport, deleteAirport } from '../services/api';
+import { createAirport, deleteAirport, getAirports, updateAirport } from '../services/api';
 
 const Airports = () => {
   const [airports, setAirports] = useState([]);
@@ -99,7 +99,7 @@ const Airports = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="name">Name</option>
           <option value="place">Place</option>
@@ -109,7 +109,7 @@ const Airports = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -122,7 +122,7 @@ const Airports = () => {
             placeholder="Name"
             value={newAirport.name}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Place</label>
           <input
@@ -131,7 +131,7 @@ const Airports = () => {
             placeholder="Place"
             value={newAirport.place}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
         </div>
@@ -154,7 +154,7 @@ const Airports = () => {
                   value={editingAirport.name}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Place</label>
                 <input
@@ -163,7 +163,7 @@ const Airports = () => {
                   value={editingAirport.place}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
                 <button onClick={stopEditing} className="p-2 bg-gray-500 text-white w-full mt-2">Cancel</button>

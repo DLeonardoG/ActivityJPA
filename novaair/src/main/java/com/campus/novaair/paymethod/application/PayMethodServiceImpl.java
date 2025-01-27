@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class PayMethodServiceImpl implements PayMethodRepository{
+public class PayMethodServiceImpl {
 
     private final PayMethodRepository payMethodRepository;
 
@@ -21,23 +21,19 @@ public class PayMethodServiceImpl implements PayMethodRepository{
         this.payMethodRepository = payMethodRepository;
     }
     
-    @Override
     public List<PayMethod> findAll() {
         return payMethodRepository.findAll();
     }
-
-    @Override
+    
     public PayMethod save(PayMethod airport) {
         return payMethodRepository.save(airport);
 
     }
-
-    @Override
+    
     public Optional findById(Long id) {
         return payMethodRepository.findById(id);
     }
-
-    @Override
+    
     public void deleteById(Long id) {
         payMethodRepository.deleteById(id);
     }

@@ -19,7 +19,7 @@ const App = () => {
     <Router>
       <div className="flex">
         <Menu />
-        <div className="flex-1 p-4 dark:bg-gray-900 dark:text-white">
+        <div className="flex-1 p-4 bg-gray-900 text-white">
           <Routes>
             <Route path="/airports" element={<Airports />} />
             <Route path="/classseats" element={<ClassSeats />} />

@@ -12,21 +12,25 @@ import com.campus.novaair.endpoint.application.EndPointServiceImpl;
 import com.campus.novaair.endpoint.domain.EndPoint;
 import com.campus.novaair.flight.application.FlightServiceImpl;
 import com.campus.novaair.flight.domain.Flight;
+import com.campus.novaair.flight.domain.FlightDTO;
 import com.campus.novaair.maintenances.application.MaintenanceServiceImpl;
 import com.campus.novaair.maintenances.domain.Maintenance;
 import com.campus.novaair.passangers.application.PassengerServiceImpl;
 import com.campus.novaair.passangers.domain.Passenger;
+import com.campus.novaair.passangers.domain.PassengerDTO;
 import com.campus.novaair.paymethod.application.PayMethodServiceImpl;
 import com.campus.novaair.paymethod.domain.PayMethod;
 import com.campus.novaair.place.application.PlaceServiceImpl;
 import com.campus.novaair.place.domain.Place;
 import com.campus.novaair.plane.application.PlaneServiceImpl;
 import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.plane.domain.PlaneDTO;
 import com.campus.novaair.role.application.RoleServiceImpl;
 import com.campus.novaair.ticket.application.TicketServiceImpl;
 import com.campus.novaair.ticket.domain.Ticket;
 import com.campus.novaair.role.domain.Role;
 import com.campus.novaair.role.domain.RoleDTO;
+import com.campus.novaair.ticket.domain.TicketDTO;
 import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import java.time.LocalDate;
@@ -80,18 +84,16 @@ public class NovaairApplication {
         crewMemberServiceImpl.save(crewMember1);
         crewMemberServiceImpl.save(crewMember2);
 //
-////        LocalDateTime dateDeparture = LocalDateTime.of(2025, 3, 15, 14, 30);
-////        LocalDateTime dateArrived = LocalDateTime.of(2025, 3, 19, 14, 30);
-////        Flight flight3 = new Flight(dateDeparture, dateArrived);
-//
+        LocalDateTime dateDeparture = LocalDateTime.of(2025, 3, 15, 14, 30);
+        LocalDateTime dateArrived = LocalDateTime.of(2025, 3, 19, 14, 30);
 //        List<CrewMemberDTO> crewList = new ArrayList<>();
 //        crewList.add(crewMember2);
 //
 ////        flightServiceImpl.addCrewMemberDTO(flight3, crewList);
-////        flightServiceImpl.save(flight3);
+//        flightServiceImpl.save(flight3);
 ////
-////        LocalDate currentDate = LocalDate.now();
-////
+        LocalDateTime currentDate = LocalDateTime.now();
+
 ////        TypeMaintenance typeMaintenance1 = new TypeMaintenance("Alas", 100.0);
 ////        TypeMaintenance typeMaintenance2 = new TypeMaintenance("llantas", 200.0);
 ////        typeMaintenanceServiceImpl.save(typeMaintenance1);
@@ -100,13 +102,34 @@ public class NovaairApplication {
 ////        Maintenance maintenance1 = new Maintenance(currentDate, 100.0);
 ////        Maintenance maintenance2 = new Maintenance(currentDate, 200.0);
 ////  
+
+PlaneDTO plane1 = new PlaneDTO("2023", 100, "acemario");
+planeServiceImpl.save(plane1);
+PlaneDTO plane2 = new PlaneDTO("2023", 100, "mario");
+planeServiceImpl.save(plane2);
         AirportDTO airport1 = new AirportDTO("ave maria", "Cucuta");
         AirportDTO airport2 = new AirportDTO("ave mario", "barranca");
         airportServiceImpl.save(airport1);
         airportServiceImpl.save(airport2);
         
-        ClassSeatDTO classSeatDTO1 = new ClassSeatDTO(100, "VIP");
-        classSeatServiceImpl.save(classSeatDTO1);
+                FlightDTO flight3 = new FlightDTO(
+                        dateDeparture,
+                        dateArrived,
+                        airport1.getName(),
+                        airport1.getName(),
+                        plane1.getName()
+                        );
+                
+                
+                System.out.println(flight3.getDestination());
+                flightServiceImpl.save(flight3);
+
+        
+        ClassSeatDTO classSeat1 = new ClassSeatDTO(100, "VIP");
+        classSeatServiceImpl.save(classSeat1);
+        
+        PassengerDTO passenger1 = new PassengerDTO("juan", "12345678");
+        passengerServiceImpl.save(passenger1);
 ////
 ////        Place place1 = new Place("tijuacana", airport1);
 ////        Place place2 = new Place("madrid", airport2);
@@ -117,27 +140,22 @@ public class NovaairApplication {
 ////        ClassSeat classSeat1 = new ClassSeat(500, "VIP");
 ////        ClassSeat classSeat2 = new ClassSeat(100, "1");
 //
-////        Flight flight1 = new Flight(dateDeparture, dateArrived);
+//        Flight flight1 = new Flight(dateDeparture, dateArrived);
 //
-        PayMethod payMethod1 = new PayMethod("Nqui");
 //
 ////        Passenger passenger1 = new Passenger("123", "Marcus");
 ////        
 ////        LocalDateTime currentDateTime = LocalDateTime.now();
 ////
 ////
-////        Ticket ticket1 = new Ticket(currentDateTime, currentDateTime, "A2");
+
 ////        Ticket ticket2 = new Ticket(currentDateTime, currentDateTime, "A3");
 ////
 ////        airport1.setPlace(place1);
 ////        airport2.setPlace(place2);
 ////
 
-//
-////        flight3.setOrigin(airport2);
-////        flight3.setDestination(airport1);
-////        flightServiceImpl.save(flight3);
-//
+
 ////        List<TypeMaintenance> typesMaintenenceMaintenence1 = new ArrayList<>();
 ////        typesMaintenenceMaintenence1.add(typeMaintenance1);
 ////        typesMaintenenceMaintenence1.add(typeMaintenance2);
@@ -164,16 +182,24 @@ public class NovaairApplication {
 ////        --- OneToMany passenger with ticket ---
 ////        classSeatServiceImpl.save(classSeat1);
 ////        flightServiceImpl.save(flight1);
+        PayMethod payMethod1 = new PayMethod("Nqui");
         payMethodServiceImpl.save(payMethod1);
 ////        passengerServiceImpl.save(passenger1);
+
+flight3.setId(Long.MIN_VALUE);
 ////
-////        ticket1.setClassSeat(classSeat1);
-//////        ticket1.setFlight(flight1);
-////        ticket1.setPayMethod(payMethod1);
-////        ticket1.setPassenger(passenger1);
-//
-////        ticketServiceImpl.save(ticket1);
+        TicketDTO ticket1 = new TicketDTO(
+                dateDeparture,
+                dateArrived, 
+                "A1", 
+                Long.valueOf(1),
+                classSeat1.getSeatClass(),
+                passenger1.getIDPassenger(),
+                payMethod1.getPayMethod());
+        
+        System.out.println(ticket1);
 //        
+//        ticketServiceImpl.save(ticket1);
         
         EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
         EndPoint endPoint1 = new EndPoint("/airports", "airports");

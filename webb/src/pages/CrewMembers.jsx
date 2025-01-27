@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getCrewMembers, createCrewMember, updateCrewMember, deleteCrewMember, getRoles } from '../services/api';
+import { createCrewMember, deleteCrewMember, getCrewMembers, getRoles, updateCrewMember } from '../services/api';
 
 const CrewMembers = () => {
   const [crewMembers, setCrewMembers] = useState([]);
@@ -110,7 +110,7 @@ const CrewMembers = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="name">Name</option>
           <option value="roleName">Role</option>
@@ -121,7 +121,7 @@ const CrewMembers = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -134,14 +134,14 @@ const CrewMembers = () => {
             placeholder="Name"
             value={newCrewMember.name}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Role</label>
           <select
             name="roleName"
             value={newCrewMember.roleName}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Role</option>
             {roles.map((role) => (
@@ -155,7 +155,7 @@ const CrewMembers = () => {
             placeholder="ID Member"
             value={newCrewMember.idmember}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
         </div>
@@ -179,14 +179,14 @@ const CrewMembers = () => {
                   value={editingCrewMember.name}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Role</label>
                 <select
                   name="roleName"
                   value={editingCrewMember.roleName}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Role</option>
                   {roles.map((role) => (
@@ -200,7 +200,7 @@ const CrewMembers = () => {
                   value={editingCrewMember.idmember}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
                 <button onClick={stopEditing} className="p-2 bg-gray-500 text-white w-full mt-2">Cancel</button>

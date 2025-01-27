@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getPayMethods, createPayMethod, updatePayMethod, deletePayMethod } from '../services/api';
+import { createPayMethod, deletePayMethod, getPayMethods, updatePayMethod } from '../services/api';
 
 const PayMethods = () => {
   const [payMethods, setPayMethods] = useState([]);
@@ -99,7 +99,7 @@ const PayMethods = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="payMethod">Method</option>
           <option value="id">ID</option>
@@ -109,7 +109,7 @@ const PayMethods = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -122,7 +122,7 @@ const PayMethods = () => {
             placeholder="Pay Method"
             value={newPayMethod.payMethod}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
         </div>
@@ -144,7 +144,7 @@ const PayMethods = () => {
                   value={editingPayMethod.payMethod}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
                 <button onClick={stopEditing} className="p-2 bg-gray-500 text-white w-full mt-2">Cancel</button>

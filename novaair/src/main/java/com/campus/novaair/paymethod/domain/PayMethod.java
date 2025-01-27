@@ -22,7 +22,7 @@ public class PayMethod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String payMethod;
+    private String name;
 
     @OneToMany(mappedBy = "payMethod", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
@@ -31,7 +31,7 @@ public class PayMethod {
     }
 
     public PayMethod(String payMethod) {
-        this.payMethod = payMethod;
+        this.name = payMethod;
     }
 
     public Long getId() {
@@ -43,11 +43,11 @@ public class PayMethod {
     }
 
     public String getPayMethod() {
-        return payMethod;
+        return name;
     }
 
-    public void setPayMethod(String payMethod) {
-        this.payMethod = payMethod;
+    public void setName(String payMethod) {
+        this.name = payMethod;
     }
 
     public void addTicket(Ticket ticket) {
@@ -58,10 +58,5 @@ public class PayMethod {
     public void removeTicket(Ticket ticket) {
         this.tickets.remove(ticket);
         ticket.setPayMethod(null);
-    }
-
-    @Override
-    public String toString() {
-        return "PayMethod{" + "id=" + id + ", payMethod=" + payMethod + '}';
     }
 }

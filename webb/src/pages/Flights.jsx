@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getFlights, createFlight, updateFlight, deleteFlight, getAirports, getPlanes } from '../services/api';
+import React, { useEffect, useState } from 'react';
+import { createFlight, deleteFlight, getAirports, getFlights, getPlanes, updateFlight } from '../services/api';
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
@@ -106,7 +106,7 @@ const Flights = () => {
           placeholder="Date"
           value={newFlight.date}
           onChange={handleChange}
-          className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+          className="p-2 mb-2 bg-gray-800 text-white"
         />
         <input
           type="datetime-local"
@@ -114,13 +114,13 @@ const Flights = () => {
           placeholder="Date Arrived"
           value={newFlight.dateArrived}
           onChange={handleChange}
-          className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+          className="p-2 mb-2 bg-gray-800 text-white"
         />
         <select
           name="idDestination"
           value={newFlight.idDestination}
           onChange={handleChange}
-          className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+          className="p-2 mb-2 bg-gray-800 text-white"
         >
           <option value="" disabled>Select Destination</option>
           {airports.map((airport) => (
@@ -131,7 +131,7 @@ const Flights = () => {
           name="idOrigin"
           value={newFlight.idOrigin}
           onChange={handleChange}
-          className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+          className="p-2 mb-2 bg-gray-800 text-white"
         >
           <option value="" disabled>Select Origin</option>
           {airports.map((airport) => (
@@ -142,7 +142,7 @@ const Flights = () => {
           name="idPlane"
           value={newFlight.idPlane}
           onChange={handleChange}
-          className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+          className="p-2 mb-2 bg-gray-800 text-white"
         >
           <option value="" disabled>Select Plane</option>
           {planes.map((plane) => (
@@ -164,20 +164,20 @@ const Flights = () => {
                   name="date"
                   value={editingFlight.date}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+                  className="p-2 mb-2 bg-gray-800 text-white"
                 />
                 <input
                   type="datetime-local"
                   name="dateArrived"
                   value={editingFlight.dateArrived}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+                  className="p-2 mb-2 bg-gray-800 text-white"
                 />
                 <select
                   name="idDestination"
                   value={editingFlight.idDestination}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+                  className="p-2 mb-2 bg-gray-800 text-white"
                 >
                   <option value="" disabled>Select Destination</option>
                   {airports.map((airport) => (
@@ -188,7 +188,7 @@ const Flights = () => {
                   name="idOrigin"
                   value={editingFlight.idOrigin}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+                  className="p-2 mb-2 bg-gray-800 text-white"
                 >
                   <option value="" disabled>Select Origin</option>
                   {airports.map((airport) => (
@@ -199,7 +199,7 @@ const Flights = () => {
                   name="idPlane"
                   value={editingFlight.idPlane}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-800 dark:text-white"
+                  className="p-2 mb-2 bg-gray-800 text-white"
                 >
                   <option value="" disabled>Select Plane</option>
                   {planes.map((plane) => (

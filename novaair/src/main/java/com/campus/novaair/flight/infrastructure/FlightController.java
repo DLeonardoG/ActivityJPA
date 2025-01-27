@@ -3,6 +3,7 @@ package com.campus.novaair.flight.infrastructure;
 
 import com.campus.novaair.flight.application.FlightServiceImpl;
 import com.campus.novaair.flight.domain.Flight;
+import com.campus.novaair.flight.domain.FlightDTO;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/api/flights")
 public class FlightController {
@@ -32,7 +31,7 @@ public class FlightController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Flight> getAllFlight(){
+    public List<FlightDTO> getAllFlight(){
         return flightServiceImpl.findAll();
     }
     
@@ -42,8 +41,8 @@ public class FlightController {
     }
     
     @PostMapping
-    public Flight createFlight(@RequestBody Flight flight){
-        return flightServiceImpl.save(flight);
+    public FlightDTO createFlight(@RequestBody FlightDTO flightDTO){
+        return flightServiceImpl.save(flightDTO);
     }
     
     @DeleteMapping("/{id}")
@@ -52,12 +51,8 @@ public class FlightController {
     }
     
     @PutMapping("/{id}")
-    public Flight updateFlight(@PathVariable Long id, @RequestBody Flight flight){
-        flight.setId(id);
-        return flightServiceImpl.save(flight);
+    public FlightDTO updateFlight(@PathVariable Long id, @RequestBody FlightDTO flightDTO){
+        flightDTO.setId(id);
+        return flightServiceImpl.save(flightDTO);
     }
-    
-    
-    
-    
 }

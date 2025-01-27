@@ -13,12 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClassSeatServiceImpl{
 
-    private final ClassSeatRepository classSeatRepository;
-    
     @Autowired
-    public ClassSeatServiceImpl(ClassSeatRepository classSeatRepository) {
-        this.classSeatRepository = classSeatRepository;
-    }
+    private ClassSeatRepository classSeatRepository;
     
     public List<ClassSeatDTO> findAll() {
       return classSeatRepository.findAll().stream()
