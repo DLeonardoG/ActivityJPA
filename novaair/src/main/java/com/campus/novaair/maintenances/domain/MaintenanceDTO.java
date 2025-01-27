@@ -1,7 +1,7 @@
 
 package com.campus.novaair.maintenances.domain;
 
-import com.campus.novaair.plane.domain.PlaneDTO;
+
 import com.campus.novaair.typemaintenance.domain.TypeMaintenanceDTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,23 +11,23 @@ public class MaintenanceDTO {
     private Long id;
     private LocalDate date;
     private Double costFinal;
-    private PlaneDTO planeDTO;
+    private String plane;
     private List<TypeMaintenanceDTO> typesMaintenancesDTO = new ArrayList<>();
 
     public MaintenanceDTO() {
     }
 
-    public MaintenanceDTO(Long id, LocalDate date, Double costFinal, PlaneDTO planeDTO) {
+    public MaintenanceDTO(Long id, LocalDate date, Double costFinal, String plane) {
         this.id = id;
         this.date = date;
         this.costFinal = costFinal;
-        this.planeDTO = planeDTO;
+        this.plane = plane;
     }
 
-    public MaintenanceDTO(LocalDate date, Double costFinal, PlaneDTO planeDTO) {
+    public MaintenanceDTO(LocalDate date, Double costFinal, String plane) {
         this.date = date;
         this.costFinal = costFinal;
-        this.planeDTO = planeDTO;
+        this.plane = plane;
     }
 
     public Long getId() {
@@ -54,12 +54,12 @@ public class MaintenanceDTO {
         this.costFinal = costFinal;
     }
 
-    public PlaneDTO getPlaneDTO() {
-        return planeDTO;
+    public String getPlane() {
+        return plane;
     }
 
-    public void setPlaneDTO(PlaneDTO planeDTO) {
-        this.planeDTO = planeDTO;
+    public void setPlane(String plane) {
+        this.plane = plane;
     }
 
     public List<TypeMaintenanceDTO> getTypesMaintenancesDTO() {
