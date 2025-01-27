@@ -69,6 +69,4 @@ public class MaintenanceDTO {
     public void setTypesMaintenancesDTO(List<TypeMaintenanceDTO> typesMaintenancesDTO) {
         this.typesMaintenancesDTO = typesMaintenancesDTO;
     }
-    
-    
 }

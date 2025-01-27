@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class MaintenanceServiceImpl implements MaintenanceRepository{
+public class MaintenanceServiceImpl {
     
     private final MaintenanceRepository maintenanceRepository;
     
@@ -22,23 +22,19 @@ public class MaintenanceServiceImpl implements MaintenanceRepository{
         this.maintenanceRepository = maintenanceRepository;
     }
     
-    @Override
     public List<Maintenance> findAll() {
         return maintenanceRepository.findAll();
     }
-
-    @Override
+    
     public Maintenance save(Maintenance maintenance) {
         return maintenanceRepository.save(maintenance);
 
     }
-
-    @Override
+    
     public Optional findById(Long id) {
         return maintenanceRepository.findById(id);
     }
-
-    @Override
+    
     public void deleteById(Long id) {
         maintenanceRepository.deleteById(id);
     }
