@@ -31,8 +31,8 @@ const Flights = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Flights</h1>
+    <div className='min-h-screen'>
+      <h1 className="text-2xl font-bold mb-4  text-center">Flights</h1>
       <div>
         <input
           type="text"

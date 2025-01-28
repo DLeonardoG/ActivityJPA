@@ -146,9 +146,9 @@ const Tickets = () => {
   });
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4">Tickets</h1>
+      <h1 className="text-2xl font-bold mb-4  text-center">Tickets</h1>
       <div className="flex mb-4">
         <select
           value={searchKey}

@@ -92,7 +92,7 @@ const Airports = () => {
   });
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <ToastContainer />
       <h1 className="text-2xl font-bold text-center mb-4">Airports</h1>
       <div className="flex mb-4">

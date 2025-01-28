@@ -103,9 +103,9 @@ const CrewMembers = () => {
   });
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4">Crew Members</h1>
+      <h1 className="text-2xl font-bold mb-4  text-center">Crew Members</h1>
       <div className="flex mb-4">
         <select
           value={searchKey}

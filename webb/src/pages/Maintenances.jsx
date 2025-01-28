@@ -129,9 +129,9 @@ const Maintenances = () => {
   });
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4">Maintenances</h1>
+      <h1 className="text-2xl font-bold mb-4  text-center">Maintenances</h1>
       <div className="flex mb-4">
         <select
           value={searchKey}
