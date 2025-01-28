@@ -132,7 +132,7 @@ const PayMethods = () => {
           <div key={payMethod.id} className="bg-gray-800 text-white p-4 rounded-md shadow-md">
             <h2 className="text-xl font-bold">Pay Method</h2>
             <p><strong>ID:</strong> {payMethod.id}</p>
-            <p><strong>Method:</strong> {payMethod.payMethod}</p>
+            <p><strong>Method:</strong> {payMethod.name}</p>
             <button onClick={() => startEditing(payMethod)} className="mt-2 p-2 bg-yellow-500 text-white">Edit</button>
             <button onClick={() => handleDelete(payMethod.id)} className="mt-2 ml-2 p-2 bg-red-500 text-white">Delete</button>
             {editingPayMethod && editingPayMethod.id === payMethod.id && (

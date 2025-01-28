@@ -65,6 +65,7 @@ const Tickets = () => {
     try {
       const response = await getPayMethods();
       setPayMethods(response.data);
+      console.log(payMethods)
     } catch (error) {
       console.error('Error loading pay methods:', error);
     }
@@ -262,7 +263,7 @@ const Tickets = () => {
           >
             <option value="" disabled>Select Pay Method</option>
             {payMethods.map((payMethod) => (
-              <option key={payMethod.id} value={payMethod.payMethod}>{payMethod.payMethod}</option>
+              <option key={payMethod.name} value={payMethod.name}>{payMethod.name}</option>
             ))}
           </select>
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
@@ -370,7 +371,7 @@ const Tickets = () => {
                 >
                   <option value="" disabled>Select Pay Method</option>
                   {payMethods.map((payMethod) => (
-                    <option key={payMethod.id} value={payMethod.payMethod}>{payMethod.payMethod}</option>
+                    <option key={payMethod.name} value={payMethod.name}>{payMethod.name}</option>
                   ))}
                 </select>
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
