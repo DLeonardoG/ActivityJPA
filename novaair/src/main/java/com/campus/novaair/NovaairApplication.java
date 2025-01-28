@@ -15,6 +15,7 @@ import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.flight.domain.FlightDTO;
 import com.campus.novaair.maintenances.application.MaintenanceServiceImpl;
 import com.campus.novaair.maintenances.domain.Maintenance;
+import com.campus.novaair.maintenances.domain.MaintenanceDTO;
 import com.campus.novaair.passangers.application.PassengerServiceImpl;
 import com.campus.novaair.passangers.domain.Passenger;
 import com.campus.novaair.passangers.domain.PassengerDTO;
@@ -33,6 +34,7 @@ import com.campus.novaair.role.domain.RoleDTO;
 import com.campus.novaair.ticket.domain.TicketDTO;
 import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenanceDTO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -58,7 +60,6 @@ public class NovaairApplication {
         TypeMaintenanceServiceImpl typeMaintenanceServiceImpl = context.getBean(TypeMaintenanceServiceImpl.class);
         MaintenanceServiceImpl maintenanceServiceImpl = context.getBean(MaintenanceServiceImpl.class);
         PlaneServiceImpl planeServiceImpl = context.getBean(PlaneServiceImpl.class);
-        PlaceServiceImpl placeServiceImpl = context.getBean(PlaceServiceImpl.class);
         AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
         RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
         CrewMemberServiceImpl crewMemberServiceImpl = context.getBean(CrewMemberServiceImpl.class);
@@ -112,12 +113,18 @@ planeServiceImpl.save(plane2);
         airportServiceImpl.save(airport1);
         airportServiceImpl.save(airport2);
         
+        List<String> crew = new ArrayList<>();
+        
+        crew.add(crewMember1.getIDMember());
+        crew.add(crewMember2.getIDMember());
+        
                 FlightDTO flight3 = new FlightDTO(
                         dateDeparture,
                         dateArrived,
                         airport1.getName(),
                         airport1.getName(),
-                        plane1.getName()
+                        plane1.getName(),
+                        crew
                         );
                 
                 
@@ -178,12 +185,14 @@ planeServiceImpl.save(plane2);
 ////        List<TypeMaintenance> typesMaintenenceMaintenence3 = new ArrayList<>();
 ////        typesMaintenenceMaintenence3.add(typeMaintenance1);
 ////        maintenanceServiceImpl.addTypeMaintenance(maintenance3, typesMaintenenceMaintenence3);
-//
+//  
 ////        --- OneToMany passenger with ticket ---
 ////        classSeatServiceImpl.save(classSeat1);
 ////        flightServiceImpl.save(flight1);
         PayMethod payMethod1 = new PayMethod("Nqui");
         payMethodServiceImpl.save(payMethod1);
+        PayMethod payMethod2 = new PayMethod("Nqui1");
+        payMethodServiceImpl.save(payMethod2);
 ////        passengerServiceImpl.save(passenger1);
 
 flight3.setId(Long.MIN_VALUE);
@@ -195,11 +204,29 @@ flight3.setId(Long.MIN_VALUE);
                 Long.valueOf(1),
                 classSeat1.getSeatClass(),
                 passenger1.getIDPassenger(),
-                payMethod1.getPayMethod());
+                payMethod1.getName());
         
         System.out.println(ticket1);
 //        
-//        ticketServiceImpl.save(ticket1);
+        ticketServiceImpl.save(ticket1);
+        
+        TypeMaintenanceDTO typeMaintenanceDTO = new TypeMaintenanceDTO("Alas", 12.1);
+        typeMaintenanceServiceImpl.save(typeMaintenanceDTO);
+        
+        LocalDate local = LocalDate.now();
+        
+        List<String> Types = new ArrayList<>();
+        
+        Types.add(typeMaintenanceDTO.getName());
+        
+        MaintenanceDTO maintenanceDTO = new MaintenanceDTO(
+                local, 
+                Double.NaN,
+                plane1.getName(),
+                Types
+        );
+        
+        maintenanceServiceImpl.save(maintenanceDTO);
         
         EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
         EndPoint endPoint1 = new EndPoint("/airports", "airports");

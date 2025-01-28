@@ -24,14 +24,14 @@ public class PayMethod {
 
     private String name;
 
-    @OneToMany(mappedBy = "payMethod", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "payMethod")
     private List<Ticket> tickets = new ArrayList<>();
 
     public PayMethod() {
     }
 
-    public PayMethod(String payMethod) {
-        this.name = payMethod;
+    public PayMethod(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -42,12 +42,12 @@ public class PayMethod {
         this.id = id;
     }
 
-    public String getPayMethod() {
+    public String getName() {
         return name;
     }
 
-    public void setName(String payMethod) {
-        this.name = payMethod;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addTicket(Ticket ticket) {

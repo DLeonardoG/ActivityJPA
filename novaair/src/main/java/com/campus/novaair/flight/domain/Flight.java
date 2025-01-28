@@ -133,6 +133,10 @@ public class Flight {
     }
     }
 
+    public void setCrewMembers(List<CrewMember> crewMembers) {
+        this.crewMembers = crewMembers;
+    }
+
     public void removeCrewMember(CrewMember crewMember) {
         this.crewMembers.remove(crewMember);
         crewMember.getFlights().remove(this);

@@ -94,7 +94,7 @@ const Airports = () => {
   return (
     <div>
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4">Airports</h1>
+      <h1 className="text-2xl font-bold text-center mb-4">Airports</h1>
       <div className="flex mb-4">
         <select
           value={searchKey}

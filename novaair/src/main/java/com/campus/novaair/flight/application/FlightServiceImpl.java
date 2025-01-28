@@ -3,6 +3,7 @@ package com.campus.novaair.flight.application;
 import com.campus.novaair.airport.domain.Airport;
 import com.campus.novaair.airport.domain.AirportRepository;
 import com.campus.novaair.crewmember.domain.CrewMember;
+import com.campus.novaair.crewmember.domain.CrewMemberRepository;
 import com.campus.novaair.flight.domain.Flight;
 import com.campus.novaair.flight.domain.FlightDTO;
 import com.campus.novaair.flight.domain.FlightRepository;
@@ -26,6 +27,8 @@ public class FlightServiceImpl {
     private AirportRepository airportRepository;
     @Autowired
     private PlaneRepository planeRepository;
+    @Autowired
+    private CrewMemberRepository crewMemberRepository;
 
     @Autowired
     public FlightServiceImpl(FlightRepository flightRepository) {
@@ -41,7 +44,7 @@ public class FlightServiceImpl {
     public FlightDTO save(FlightDTO flightDTO) {
         Flight flight = convertToEntity(flightDTO);
         Flight savedFlight = flightRepository.save(flight);
-        return convertToDTO(flight);
+        return convertToDTO(savedFlight);
     }
 
     public Optional<FlightDTO> findById(Long id) {
@@ -75,8 +78,20 @@ public class FlightServiceImpl {
                 flight.getDateArrived(),
                 flight.getOrigin().getName(),
                 flight.getDestination().getName(),
-                flight.getPlane().getName()
+                flight.getPlane().getName(),
+                flight.getCrewMembers().stream()
+                .map(this::getStringCrew)
+                .collect(Collectors.toList())
         );
+    }
+    
+    private String getStringCrew (CrewMember crewMember){
+        return crewMember.getIDMember();
+    }
+    private CrewMember getMemberCrew (String crewMemberString){
+        CrewMember cremMember = crewMemberRepository.findByIDMember(crewMemberString)
+                .orElseThrow(() -> new IllegalArgumentException("plane not found: " + crewMemberString));
+        return cremMember;
     }
 
     private Flight convertToEntity(FlightDTO flightDTO) {
@@ -95,6 +110,12 @@ public class FlightServiceImpl {
         Plane plane = planeRepository.findByName(flightDTO.getPlane())
                 .orElseThrow(() -> new IllegalArgumentException("plane not found: " + flightDTO.getPlane()));
         flight.setPlane(plane);
+        
+        List<CrewMember> crewList = flightDTO.getCrewMembers().stream()
+                .map(this::getMemberCrew)
+                .collect(Collectors.toList());
+        
+        flight.setCrewMembers(crewList);
         return flight;
     }
 

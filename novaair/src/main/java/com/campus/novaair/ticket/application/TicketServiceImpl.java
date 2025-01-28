@@ -28,13 +28,13 @@ public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
     @Autowired
     private FlightRepository flightRepository;
-    
+
     @Autowired
     private ClassSeatRepository classSeatRepository;
-    
+
     @Autowired
     private PassengerRepository passengerRepository;
-    
+
     @Autowired
     private PayMethodRepository payMethodRepository;
 
@@ -53,9 +53,8 @@ public class TicketServiceImpl {
         Ticket ticket1 = convertToEntity(ticketDTO);
         Ticket savedTicket = ticketRepository.save(ticket1);
         return convertToDTO(savedTicket);
-
     }
-
+ 
     public Optional<TicketDTO> findById(Long id) {
         return ticketRepository.findById(id)
                 .map(this::convertToDTO);
@@ -74,7 +73,7 @@ public class TicketServiceImpl {
                 ticket.getFlight().getId(),
                 ticket.getClassSeat().getSeatClass(),
                 ticket.getPassenger().getIDPassenger(),
-                ticket.getPayMethod().getPayMethod()
+                ticket.getPayMethod().getName()
         );
     }
 
@@ -91,7 +90,7 @@ public class TicketServiceImpl {
         ClassSeat classSeat = classSeatRepository.findBySeatClass(ticketDTO.getClassSeat())
                 .orElseThrow(() -> new IllegalArgumentException("ticket not found: " + ticketDTO.getClassSeat()));
         ticket.setClassSeat(classSeat);
-        Passenger passenger = passengerRepository.findByName(ticketDTO.getPassenger())
+        Passenger passenger = passengerRepository.findByIDPassenger(ticketDTO.getPassenger())
                 .orElseThrow(() -> new IllegalArgumentException("ticket not found: " + ticketDTO.getPassenger()));
         ticket.setPassenger(passenger);
         PayMethod payMethod = payMethodRepository.findByName(ticketDTO.getPayMethod())

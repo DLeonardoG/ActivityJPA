@@ -156,5 +156,4 @@ const PayMethods = () => {
     </div>
   );
 };
-
 export default PayMethods;

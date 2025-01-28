@@ -8,6 +8,7 @@ public interface CrewMemberRepository {
     List<CrewMember> findAll();
     CrewMember save(CrewMember crewMember);
      Optional<CrewMember> findById(Long id);
+     Optional<CrewMember> findByIDMember(String id);
     void deleteById(Long id);
     
 }

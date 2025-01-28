@@ -1,8 +1,8 @@
-
 package com.campus.novaair.passangers.domain;
 
 public class PassengerDTO {
-     private Long id;
+
+    private Long id;
     private String name;
     private String IDPassenger;
 
@@ -43,6 +43,5 @@ public class PassengerDTO {
     public void setIDPassenger(String IDPassenger) {
         this.IDPassenger = IDPassenger;
     }
-    
-    
+
 }

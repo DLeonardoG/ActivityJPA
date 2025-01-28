@@ -12,23 +12,25 @@ public class MaintenanceDTO {
     private LocalDate date;
     private Double costFinal;
     private String plane;
-    private List<TypeMaintenanceDTO> typesMaintenancesDTO = new ArrayList<>();
+    private List<String> typesMaintenances = new ArrayList<>();
 
     public MaintenanceDTO() {
     }
 
-    public MaintenanceDTO(Long id, LocalDate date, Double costFinal, String plane) {
+    public MaintenanceDTO(Long id, LocalDate date, Double costFinal, String plane, List<String> typeMaintenances) {
         this.id = id;
         this.date = date;
         this.costFinal = costFinal;
         this.plane = plane;
+        this.typesMaintenances = typeMaintenances;
     }
-
-    public MaintenanceDTO(LocalDate date, Double costFinal, String plane) {
+    public MaintenanceDTO( LocalDate date, Double costFinal, String plane, List<String> typeMaintenances) {
         this.date = date;
         this.costFinal = costFinal;
         this.plane = plane;
+        this.typesMaintenances = typeMaintenances;
     }
+
 
     public Long getId() {
         return id;
@@ -62,11 +64,11 @@ public class MaintenanceDTO {
         this.plane = plane;
     }
 
-    public List<TypeMaintenanceDTO> getTypesMaintenancesDTO() {
-        return typesMaintenancesDTO;
+    public List<String> getTypesMaintenances() {
+        return typesMaintenances;
     }
 
-    public void setTypesMaintenancesDTO(List<TypeMaintenanceDTO> typesMaintenancesDTO) {
-        this.typesMaintenancesDTO = typesMaintenancesDTO;
+    public void setTypesMaintenances(List<String> typesMaintenances) {
+        this.typesMaintenances = typesMaintenances;
     }
 }
