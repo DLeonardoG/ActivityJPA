@@ -1,3 +1,6 @@
 Link al video de youtube
 https://www.youtube.com/watch?v=em9imcSVGCI
+Link Swagger
 http://localhost:3001/doc/swagger-ui/index.html
+Link Canva
+https://www.canva.com/design/DAGdZ2aSFrY/p2ltgn-BYEAP_zvDdwwuAQ/edit?utm_content=DAGdZ2aSFrY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
