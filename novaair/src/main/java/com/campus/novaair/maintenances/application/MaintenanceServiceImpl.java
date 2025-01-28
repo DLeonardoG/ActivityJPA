@@ -8,6 +8,7 @@ import com.campus.novaair.plane.domain.Plane;
 import com.campus.novaair.plane.domain.Plane;
 import com.campus.novaair.plane.domain.PlaneRepository;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
+import com.campus.novaair.typemaintenance.domain.TypeMaintenanceRepository;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,8 @@ public class MaintenanceServiceImpl {
 
     @Autowired
     private PlaneRepository planeRepository;
+    @Autowired
+    private TypeMaintenanceRepository typeMaintenanceRepository;
 
     @Autowired
     public MaintenanceServiceImpl(MaintenanceRepository maintenanceRepository) {
@@ -38,7 +41,7 @@ public class MaintenanceServiceImpl {
     public MaintenanceDTO save(MaintenanceDTO maintenanceDTO) {
         Maintenance maintenance = convertToEntity(maintenanceDTO);
         Maintenance savedMaintenance = maintenanceRepository.save(maintenance);
-        return convertToDTO(maintenance);
+        return convertToDTO(savedMaintenance);
 
     }
 
@@ -64,9 +67,22 @@ public class MaintenanceServiceImpl {
                 maintenance.getId(),
                 maintenance.getDate(),
                 maintenance.getCostFinal(),
-                maintenance.getPlane().getName()
+                maintenance.getPlane().getName(),
+                maintenance.getTypesMaintenances().stream()
+                .map(this::getStringTypeMaintenance)
+                .collect(Collectors.toList())
         );
     }
+    
+    private String getStringTypeMaintenance (TypeMaintenance typeMaintenance){
+        return typeMaintenance.getName();
+    }
+    private TypeMaintenance getTypeMaintenanceObj (String type){
+        TypeMaintenance typeMaintenance = typeMaintenanceRepository.findByName(type)
+        .orElseThrow(() -> new IllegalArgumentException("type not found: " + type));
+        return typeMaintenance;
+    }
+    
     private Maintenance convertToEntity(MaintenanceDTO maintenanceDTO) {
         Maintenance maintenance = new Maintenance(
                 maintenanceDTO.getId(),
@@ -76,7 +92,12 @@ public class MaintenanceServiceImpl {
         Plane plane = planeRepository.findByName(maintenanceDTO.getPlane())
                 .orElseThrow(() -> new IllegalArgumentException("Plane not found: " + maintenanceDTO.getPlane()));
         maintenance.setPlane(plane);
+        
+        List<TypeMaintenance> types = maintenanceDTO.getTypesMaintenances().stream()
+                .map(this::getTypeMaintenanceObj)
+                .collect(Collectors.toList());
 
+        maintenance.setTypesMaintenances(types);
         return maintenance;
     }
 

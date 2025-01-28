@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getClassSeats, createClassSeat, updateClassSeat, deleteClassSeat } from '../services/api';
+import { createClassSeat, deleteClassSeat, getClassSeats, updateClassSeat } from '../services/api';
 
 const ClassSeats = () => {
   const [classSeats, setClassSeats] = useState([]);
@@ -92,14 +92,14 @@ const ClassSeats = () => {
   });
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <ToastContainer />
-      <h1 className="text-2xl font-bold mb-4">Class Seats</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Class Seats</h1>
       <div className="flex mb-4">
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="seatClass">Name</option>
           <option value="price">Price</option>
@@ -109,7 +109,7 @@ const ClassSeats = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -122,7 +122,7 @@ const ClassSeats = () => {
             placeholder="Price"
             value={newClassSeat.price}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Seat Class</label>
           <input
@@ -131,7 +131,7 @@ const ClassSeats = () => {
             placeholder="Seat Class"
             value={newClassSeat.seatClass}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
         </div>
@@ -154,7 +154,7 @@ const ClassSeats = () => {
                   value={editingClassSeat.price}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Seat Class</label>
                 <input
@@ -163,7 +163,7 @@ const ClassSeats = () => {
                   value={editingClassSeat.seatClass}
                   onChange={handleEditChange}
                   placeholder={`Editing ${searchKey}`}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
                 <button onClick={stopEditing} className="p-2 bg-gray-500 text-white w-full mt-2">Cancel</button>

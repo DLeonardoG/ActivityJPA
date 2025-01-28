@@ -25,11 +25,10 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private LocalDate date;
     private Double costFinal;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
         name = "maintenceTypeMaintenance", 
         joinColumns = @JoinColumn(name = "idMaintenance"),
@@ -125,9 +124,19 @@ public class Maintenance {
         typesMaintenances.getMaintenance().remove(this);
         }
 }
+    
+    
 //
 //    @Override
 //    public String toString() {
 //        return "Maintenance{" + "id=" + id + ", date=" + date + ", costFinal=" + costFinal + ", typesMaintenances=" + typesMaintenances + ", plane=" + plane + '}';
 //    }
+
+    public List<TypeMaintenance> getTypesMaintenances() {
+        return typesMaintenances;
+    }
+
+    public void setTypesMaintenances(List<TypeMaintenance> typesMaintenances) {
+        this.typesMaintenances = typesMaintenances;
+    }
 }

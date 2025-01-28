@@ -9,5 +9,6 @@ public interface ClassSeatRepository {
     List<ClassSeat> findAll();
     ClassSeat save(ClassSeat classSeat);
     Optional<ClassSeat> findById(Long id);
+    Optional<ClassSeat> findBySeatClass(String classSeat);
     void deleteById(Long id);
 }

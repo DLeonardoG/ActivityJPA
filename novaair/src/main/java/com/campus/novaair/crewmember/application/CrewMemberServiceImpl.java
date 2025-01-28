@@ -59,8 +59,7 @@ private CrewMember convertToEntity(CrewMemberDTO crewMemberDTO) {
     crewMember.setId(crewMemberDTO.getId()); // Si el ID es nulo, la base de datos lo genera.
     crewMember.setName(crewMemberDTO.getName());
     crewMember.setIDMember(crewMemberDTO.getIDMember());
-
-    // Buscar el Role por nombre en la base de datos
+    
     Role role = roleRepository.findByRole(crewMemberDTO.getRoleName())
             .orElseThrow(() -> new IllegalArgumentException("Role not found: " + crewMemberDTO.getRoleName()));
     crewMember.setRole(role);

@@ -1,6 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthContext, AuthProvider } from './context/AuthContext';
 import Menu from './components/Menu';
+import Login from './pages/Login';
 import Airports from './pages/Airports';
 import ClassSeats from './pages/ClassSeats';
 import Flights from './pages/Flights';
@@ -14,29 +16,37 @@ import Planes from './pages/Planes';
 import Roles from './pages/Roles';
 import TypesMaintenances from './pages/TypesMaintenances';
 
+const PrivateRoute = ({ element: Element, ...rest }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  return isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
+};
+
 const App = () => {
   return (
-    <Router>
-      <div className="flex">
-        <Menu />
-        <div className="flex-1 p-4 dark:bg-gray-900 dark:text-white">
-          <Routes>
-            <Route path="/airports" element={<Airports />} />
-            <Route path="/classseats" element={<ClassSeats />} />
-            <Route path="/flights" element={<Flights />} />
-            <Route path="/tickets" element={<Tickets />} />
-            <Route path="/crewmembers" element={<CrewMembers />} />
-            <Route path="/maintenances" element={<Maintenances />} />
-            <Route path="/passengers" element={<Passengers />} />
-            <Route path="/paymethods" element={<PayMethods />} />
-            <Route path="/places" element={<Places />} />
-            <Route path="/planes" element={<Planes />} />
-            <Route path="/roles" element={<Roles />} />
-            <Route path="/typesmaintenances" element={<TypesMaintenances />} />
-          </Routes>
+    <AuthProvider>
+      <Router>
+        <div className="flex">
+          <Menu />
+          <div className="flex-1 p-4 bg-gray-900 text-white">
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/airports" element={<PrivateRoute element={Airports} />} />
+              <Route path="/classseats" element={<PrivateRoute element={ClassSeats} />} />
+              <Route path="/flights" element={<PrivateRoute element={Flights} />} />
+              <Route path="/tickets" element={<PrivateRoute element={Tickets} />} />
+              <Route path="/crewmembers" element={<PrivateRoute element={CrewMembers} />} />
+              <Route path="/maintenances" element={<PrivateRoute element={Maintenances} />} />
+              <Route path="/passengers" element={<PrivateRoute element={Passengers} />} />
+              <Route path="/paymethods" element={<PrivateRoute element={PayMethods} />} />
+              <Route path="/places" element={<PrivateRoute element={Places} />} />
+              <Route path="/planes" element={<PrivateRoute element={Planes} />} />
+              <Route path="/roles" element={<PrivateRoute element={Roles} />} />
+              <Route path="/typesmaintenances" element={<PrivateRoute element={TypesMaintenances} />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 };
 

@@ -3,7 +3,9 @@ package com.campus.novaair.ticket.infrastructure;
 
 import com.campus.novaair.ticket.application.TicketServiceImpl;
 import com.campus.novaair.ticket.domain.Ticket;
+import com.campus.novaair.ticket.domain.TicketDTO;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,13 +31,18 @@ public class TicketController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Ticket> getAlltypeMaintenanceServiceImpl(){
+    public List<TicketDTO> getAllTickets(){
         return ticketServiceImpl.findAll();
     }
     
+     @GetMapping("/{id}")
+    public Optional findById(@PathVariable Long id){
+        return ticketServiceImpl.findById(id);
+    }
+    
     @PostMapping
-    public Ticket createTicket(@RequestBody Ticket ticket){
-        return ticketServiceImpl.save(ticket);
+    public TicketDTO createTicket(@RequestBody TicketDTO ticketDTO){
+        return ticketServiceImpl.save(ticketDTO);
     }
     
     @DeleteMapping("/{id}")
@@ -44,8 +51,8 @@ public class TicketController {
     }
     
     @PutMapping("/{id}")
-    public Ticket updateTicket(@PathVariable Long id, @RequestBody Ticket ticket){
-        ticket.setId(id);
-        return ticketServiceImpl.save(ticket);
+    public TicketDTO updateTicket(@PathVariable Long id, @RequestBody TicketDTO ticketDTO){
+        ticketDTO.setId(id);
+        return ticketServiceImpl.save(ticketDTO);
     }
 }

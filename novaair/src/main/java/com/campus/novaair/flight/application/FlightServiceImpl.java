@@ -1,47 +1,62 @@
 package com.campus.novaair.flight.application;
 
+import com.campus.novaair.airport.domain.Airport;
+import com.campus.novaair.airport.domain.AirportRepository;
 import com.campus.novaair.crewmember.domain.CrewMember;
+import com.campus.novaair.crewmember.domain.CrewMemberRepository;
 import com.campus.novaair.flight.domain.Flight;
+import com.campus.novaair.flight.domain.FlightDTO;
 import com.campus.novaair.flight.domain.FlightRepository;
+import com.campus.novaair.plane.domain.Plane;
+import com.campus.novaair.plane.domain.PlaneRepository;
+import com.campus.novaair.role.domain.Role;
 import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
-public class FlightServiceImpl implements FlightRepository {
-    
+public class FlightServiceImpl {
+
     private final FlightRepository flightRepository;
-    
+
+    @Autowired
+    private AirportRepository airportRepository;
+    @Autowired
+    private PlaneRepository planeRepository;
+    @Autowired
+    private CrewMemberRepository crewMemberRepository;
+
     @Autowired
     public FlightServiceImpl(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }
-    
-    @Override
-    public List<Flight> findAll() {
-        return flightRepository.findAll();
+
+    public List<FlightDTO> findAll() {
+        return flightRepository.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public Flight save(Flight airport) {
-        return flightRepository.save(airport);
-
+    public FlightDTO save(FlightDTO flightDTO) {
+        Flight flight = convertToEntity(flightDTO);
+        Flight savedFlight = flightRepository.save(flight);
+        return convertToDTO(savedFlight);
     }
 
-    @Override
-    public Optional findById(Long id) {
-        return flightRepository.findById(id);
+    public Optional<FlightDTO> findById(Long id) {
+        return flightRepository.findById(id)
+                .map(this::convertToDTO);
     }
 
-    @Override
     public void deleteById(Long id) {
         flightRepository.deleteById(id);
     }
-    
-        public Flight addCrewMemberwithFlight(Flight flight, List<CrewMember> crewMembers) {
+
+    public Flight addCrewMemberwithFlight(Flight flight, List<CrewMember> crewMembers) {
         for (CrewMember crewMember : crewMembers) {
             flight.addCrewMember(crewMember);
         }
@@ -55,7 +70,53 @@ public class FlightServiceImpl implements FlightRepository {
         }
         return flightRepository.save(flight);
     }
+
+    private FlightDTO convertToDTO(Flight flight) {
+        return new FlightDTO(
+                flight.getId(),
+                flight.getDate(),
+                flight.getDateArrived(),
+                flight.getOrigin().getName(),
+                flight.getDestination().getName(),
+                flight.getPlane().getName(),
+                flight.getCrewMembers().stream()
+                .map(this::getStringCrew)
+                .collect(Collectors.toList())
+        );
+    }
     
-    
-    
+    private String getStringCrew (CrewMember crewMember){
+        return crewMember.getIDMember();
+    }
+    private CrewMember getMemberCrew (String crewMemberString){
+        CrewMember cremMember = crewMemberRepository.findByIDMember(crewMemberString)
+                .orElseThrow(() -> new IllegalArgumentException("plane not found: " + crewMemberString));
+        return cremMember;
+    }
+
+    private Flight convertToEntity(FlightDTO flightDTO) {
+        Flight flight = new Flight();
+        flight.setId(flightDTO.getId());
+        flight.setDate(flightDTO.getDate());
+        flight.setDateArrived(flightDTO.getDateArrived());
+
+        Airport origin = airportRepository.findByName(flightDTO.getOrigin())
+                .orElseThrow(() -> new IllegalArgumentException("flight not found: " + flightDTO.getOrigin()));
+        flight.setOrigin(origin);
+        Airport destination = airportRepository.findByName(flightDTO.getDestination())
+                .orElseThrow(() -> new IllegalArgumentException("flight not found: " + flightDTO.getDestination()));
+        flight.setDestination(destination);
+
+        Plane plane = planeRepository.findByName(flightDTO.getPlane())
+                .orElseThrow(() -> new IllegalArgumentException("plane not found: " + flightDTO.getPlane()));
+        flight.setPlane(plane);
+        
+        List<CrewMember> crewList = flightDTO.getCrewMembers().stream()
+                .map(this::getMemberCrew)
+                .collect(Collectors.toList());
+        
+        flight.setCrewMembers(crewList);
+        return flight;
+    }
+
 }
