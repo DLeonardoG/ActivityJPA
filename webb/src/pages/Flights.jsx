@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  getFlights, createFlight, updateFlight, deleteFlight,
-  getAirports, getPlanes, getCrewMembers
+    createFlight,
+    deleteFlight,
+    getAirports,
+    getCrewMembers,
+    getFlights,
+    getPlanes,
+    updateFlight
 } from '../services/api';
 
 const Flights = () => {
@@ -152,7 +157,7 @@ const Flights = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="date">Date</option>
           <option value="dateArrived">Date Arrived</option>
@@ -165,7 +170,7 @@ const Flights = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -178,7 +183,7 @@ const Flights = () => {
             placeholder="Date"
             value={newFlight.date}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Date Arrived</label>
           <input
@@ -187,14 +192,14 @@ const Flights = () => {
             placeholder="Date Arrived"
             value={newFlight.dateArrived}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Origin</label>
           <select
             name="origin"
             value={newFlight.origin}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Origin</option>
             {airports.map((airport) => (
@@ -206,7 +211,7 @@ const Flights = () => {
             name="destination"
             value={newFlight.destination}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Destination</option>
             {airports.map((airport) => (
@@ -218,7 +223,7 @@ const Flights = () => {
             name="plane"
             value={newFlight.plane}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
             >
             <option value="" disabled>Select Plane</option>
             {planes.map((plane) => (
@@ -230,7 +235,7 @@ const Flights = () => {
             name="crewMembers"
             value=""
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Add Crew Member</option>
             {crewMembers.map((crewMember) => (
@@ -240,7 +245,7 @@ const Flights = () => {
           <div className="mb-4">
             {newFlight.crewMembers.map((member, index) => (
               <div key={index} className="flex items-center mb-2">
-                <span className="p-2 dark:bg-gray-700 dark:text-white w-full mr-2">{member}</span>
+                <span className="p-2 bg-gray-700 text-white w-full mr-2">{member}</span>
                 <button onClick={() => handleRemoveCrewMember(member)} className="p-2 bg-red-500 text-white">Remove</button>
               </div>
             ))}
@@ -269,7 +274,7 @@ const Flights = () => {
                   name="date"
                   value={editingFlight.date}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Date Arrived</label>
                 <input
@@ -277,14 +282,14 @@ const Flights = () => {
                   name="dateArrived"
                   value={editingFlight.dateArrived}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Origin</label>
                 <select
                   name="origin"
                   value={editingFlight.origin}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Origin</option>
                   {airports.map((airport) => (
@@ -296,7 +301,7 @@ const Flights = () => {
                   name="destination"
                   value={editingFlight.destination}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Destination</option>
                   {airports.map((airport) => (
@@ -308,7 +313,7 @@ const Flights = () => {
                   name="plane"
                   value={editingFlight.plane}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Plane</option>
                   {planes.map((plane) => (
@@ -320,7 +325,7 @@ const Flights = () => {
                   name="crewMembers"
                   value=""
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Add Crew Member</option>
                   {crewMembers.map((crewMember) => (
@@ -330,7 +335,7 @@ const Flights = () => {
                 <div className="mb-4">
                   {editingFlight.crewMembers.map((member, index) => (
                     <div key={index} className="flex items-center mb-2">
-                      <span className="p-2 dark:bg-gray-700 dark:text-white w-full mr-2">{member}</span>
+                      <span className="p-2 bg-gray-700 text-white w-full mr-2">{member}</span>
                       <button onClick={() => setEditingFlight({ ...editingFlight, crewMembers: editingFlight.crewMembers.filter(m => m !== member) })} className="p-2 bg-red-500 text-white">Remove</button>
                     </div>
                   ))}

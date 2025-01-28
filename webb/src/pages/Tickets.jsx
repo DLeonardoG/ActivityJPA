@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  getTickets, createTicket, updateTicket, deleteTicket,
-  getFlights, getClassSeats, getPassengers, getPayMethods
+    createTicket,
+    deleteTicket,
+    getClassSeats,
+    getFlights,
+    getPassengers, getPayMethods,
+    getTickets,
+    updateTicket
 } from '../services/api';
 
 const Tickets = () => {
@@ -154,7 +159,7 @@ const Tickets = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="dateBuy">Date Buy</option>
           <option value="dateFlight">Date Flight</option>
@@ -169,7 +174,7 @@ const Tickets = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -182,7 +187,7 @@ const Tickets = () => {
             placeholder="Date Buy"
             value={newTicket.dateBuy}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Date Flight</label>
           <input
@@ -191,7 +196,7 @@ const Tickets = () => {
             placeholder="Date Flight"
             value={newTicket.dateFlight}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Seat</label>
           <div className="flex mb-2">
@@ -199,7 +204,7 @@ const Tickets = () => {
               name="seatLetter"
               value={newTicket.seat.charAt(0)}
               onChange={(e) => setNewTicket({ ...newTicket, seat: `${e.target.value}${newTicket.seat.charAt(1)}` })}
-              className="p-2 dark:bg-gray-700 dark:text-white w-full mr-2"
+              className="p-2 bg-gray-700 text-white w-full mr-2"
             >
               <option value="" disabled>Select Letter</option>
               {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((letter) => (
@@ -210,7 +215,7 @@ const Tickets = () => {
               name="seatNumber"
               value={newTicket.seat.charAt(1)}
               onChange={(e) => setNewTicket({ ...newTicket, seat: `${newTicket.seat.charAt(0)}${e.target.value}` })}
-              className="p-2 dark:bg-gray-700 dark:text-white w-full"
+              className="p-2 bg-gray-700 text-white w-full"
             >
               <option value="" disabled>Select Number</option>
               {Array.from({ length: 10 }, (_, i) => i + 1).map((number) => (
@@ -223,7 +228,7 @@ const Tickets = () => {
             name="flight"
             value={newTicket.flight}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Flight</option>
             {flights.map((flight) => (
@@ -235,7 +240,7 @@ const Tickets = () => {
             name="classSeat"
             value={newTicket.classSeat}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Class Seat</option>
             {classSeats.map((classSeat) => (
@@ -247,7 +252,7 @@ const Tickets = () => {
             name="passenger"
             value={newTicket.passenger}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Passenger</option>
             {passengers.map((passenger) => (
@@ -259,7 +264,7 @@ const Tickets = () => {
             name="payMethod"
             value={newTicket.payMethod}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Pay Method</option>
             {payMethods.map((payMethod) => (
@@ -291,7 +296,7 @@ const Tickets = () => {
                   name="dateBuy"
                   value={editingTicket.dateBuy}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Date Flight</label>
                 <input
@@ -299,7 +304,7 @@ const Tickets = () => {
                   name="dateFlight"
                   value={editingTicket.dateFlight}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Seat</label>
                 <div className="flex mb-2">
@@ -307,7 +312,7 @@ const Tickets = () => {
                     name="seatLetter"
                     value={editingTicket.seat.charAt(0)}
                     onChange={(e) => setEditingTicket({ ...editingTicket, seat: `${e.target.value}${editingTicket.seat.charAt(1)}` })}
-                    className="p-2 dark:bg-gray-700 dark:text-white w-full mr-2"
+                    className="p-2 bg-gray-700 text-white w-full mr-2"
                   >
                     <option value="" disabled>Select Letter</option>
                     {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((letter) => (
@@ -318,7 +323,7 @@ const Tickets = () => {
                     name="seatNumber"
                     value={editingTicket.seat.charAt(1)}
                     onChange={(e) => setEditingTicket({ ...editingTicket, seat: `${editingTicket.seat.charAt(0)}${e.target.value}` })}
-                    className="p-2 dark:bg-gray-700 dark:text-white w-full"
+                    className="p-2 bg-gray-700 text-white w-full"
                   >
                     <option value="" disabled>Select Number</option>
                     {Array.from({ length: 10 }, (_, i) => i + 1).map((number) => (
@@ -331,7 +336,7 @@ const Tickets = () => {
                   name="flight"
                   value={editingTicket.flight}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Flight</option>
                   {flights.map((flight) => (
@@ -343,7 +348,7 @@ const Tickets = () => {
                   name="classSeat"
                   value={editingTicket.classSeat}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Class Seat</option>
                   {classSeats.map((classSeat) => (
@@ -355,7 +360,7 @@ const Tickets = () => {
                   name="passenger"
                   value={editingTicket.passenger}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Passenger</option>
                   {passengers.map((passenger) => (
@@ -367,7 +372,7 @@ const Tickets = () => {
                   name="payMethod"
                   value={editingTicket.payMethod}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Pay Method</option>
                   {payMethods.map((payMethod) => (

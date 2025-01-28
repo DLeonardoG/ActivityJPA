@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getPlanes, createPlane, updatePlane, deletePlane } from '../services/api';
+import { createPlane, deletePlane, getPlanes, updatePlane } from '../services/api';
 
 const Planes = () => {
   const [planes, setPlanes] = useState([]);
@@ -99,7 +99,7 @@ const Planes = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="model">Model</option>
           <option value="name">Name</option>
@@ -110,7 +110,7 @@ const Planes = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -123,7 +123,7 @@ const Planes = () => {
             placeholder="Model"
             value={newPlane.model}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Name</label>
           <input
@@ -132,7 +132,7 @@ const Planes = () => {
             placeholder="Name"
             value={newPlane.name}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Number of Seats</label>
           <input
@@ -141,7 +141,7 @@ const Planes = () => {
             placeholder="Number of Seats"
             value={newPlane.numSeat}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
         </div>
@@ -164,7 +164,7 @@ const Planes = () => {
                   name="model"
                   value={editingPlane.model}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Name</label>
                 <input
@@ -172,7 +172,7 @@ const Planes = () => {
                   name="name"
                   value={editingPlane.name}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Number of Seats</label>
                 <input
@@ -180,7 +180,7 @@ const Planes = () => {
                   name="numSeat"
                   value={editingPlane.numSeat}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
                 <button onClick={stopEditing} className="p-2 bg-gray-500 text-white w-full mt-2">Cancel</button>

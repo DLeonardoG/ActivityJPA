@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getTypesMaintenances, createTypeMaintenance, updateTypeMaintenance, deleteTypeMaintenance } from '../services/api';
+import { createTypeMaintenance, deleteTypeMaintenance, getTypesMaintenances, updateTypeMaintenance } from '../services/api';
 
 const TypesMaintenances = () => {
   const [typesMaintenances, setTypesMaintenances] = useState([]);
@@ -99,7 +99,7 @@ const TypesMaintenances = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="name">Name</option>
           <option value="cost">Cost</option>
@@ -109,7 +109,7 @@ const TypesMaintenances = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -122,7 +122,7 @@ const TypesMaintenances = () => {
             placeholder="Name"
             value={newTypeMaintenance.name}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Cost</label>
           <input
@@ -131,7 +131,7 @@ const TypesMaintenances = () => {
             placeholder="Cost"
             value={newTypeMaintenance.cost}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <button onClick={handleCreate} className="p-2 bg-blue-500 text-white w-full">Create</button>
         </div>
@@ -153,7 +153,7 @@ const TypesMaintenances = () => {
                   name="name"
                   value={editingTypeMaintenance.name}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Cost</label>
                 <input
@@ -161,7 +161,7 @@ const TypesMaintenances = () => {
                   name="cost"
                   value={editingTypeMaintenance.cost}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <button type="submit" className="p-2 bg-yellow-500 text-white w-full">Save</button>
                 <button onClick={stopEditing} className="p-2 bg-gray-500 text-white w-full mt-2">Cancel</button>

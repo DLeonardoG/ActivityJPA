@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  getMaintenances, createMaintenance, updateMaintenance, deleteMaintenance,
-  getPlanes, getTypesMaintenances
+    createMaintenance,
+    deleteMaintenance,
+    getMaintenances,
+    getPlanes, getTypesMaintenances,
+    updateMaintenance
 } from '../services/api';
 
 const Maintenances = () => {
@@ -136,7 +139,7 @@ const Maintenances = () => {
         <select
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white mr-2"
+          className="p-2 bg-gray-800 text-white mr-2"
         >
           <option value="date">Date</option>
           <option value="costFinal">Cost Final</option>
@@ -147,7 +150,7 @@ const Maintenances = () => {
           placeholder={`Search by ${searchKey}`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 dark:bg-gray-800 dark:text-white w-full"
+          className="p-2 bg-gray-800 text-white w-full"
         />
       </div>
       <div className="mb-4 p-4 bg-gray-800 text-white rounded-md shadow-md">
@@ -160,7 +163,7 @@ const Maintenances = () => {
             placeholder="Date"
             value={newMaintenance.date}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Cost Final</label>
           <input
@@ -169,14 +172,14 @@ const Maintenances = () => {
             placeholder="Cost Final"
             value={newMaintenance.costFinal}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           />
           <label className="block mb-2">Plane</label>
           <select
             name="plane"
             value={newMaintenance.plane}
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Select Plane</option>
             {planes.map((plane) => (
@@ -188,7 +191,7 @@ const Maintenances = () => {
             name="typesMaintenances"
             value=""
             onChange={handleChange}
-            className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+            className="p-2 mb-2 bg-gray-700 text-white w-full"
           >
             <option value="" disabled>Add Type of Maintenance</option>
             {typesMaintenances.map((type) => (
@@ -198,7 +201,7 @@ const Maintenances = () => {
           <div className="mb-4">
             {newMaintenance.typesMaintenances.map((type, index) => (
               <div key={index} className="flex items-center mb-2">
-                <span className="p-2 dark:bg-gray-700 dark:text-white w-full mr-2">{type}</span>
+                <span className="p-2 bg-gray-700 text-white w-full mr-2">{type}</span>
                 <button onClick={() => handleRemoveTypeMaintenance(type)} className="p-2 bg-red-500 text-white">Remove</button>
               </div>
             ))}
@@ -225,7 +228,7 @@ const Maintenances = () => {
                   name="date"
                   value={editingMaintenance.date}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Cost Final</label>
                 <input
@@ -233,14 +236,14 @@ const Maintenances = () => {
                   name="costFinal"
                   value={editingMaintenance.costFinal}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 />
                 <label className="block mb-2">Plane</label>
                 <select
                   name="plane"
                   value={editingMaintenance.plane}
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Select Plane</option>
                   {planes.map((plane) => (
@@ -252,7 +255,7 @@ const Maintenances = () => {
                   name="typesMaintenances"
                   value=""
                   onChange={handleEditChange}
-                  className="p-2 mb-2 dark:bg-gray-700 dark:text-white w-full"
+                  className="p-2 mb-2 bg-gray-700 text-white w-full"
                 >
                   <option value="" disabled>Add Type of Maintenance</option>
                   {typesMaintenances.map((type) => (
@@ -262,7 +265,7 @@ const Maintenances = () => {
                 <div className="mb-4">
                   {editingMaintenance.typesMaintenances.map((type, index) => (
                     <div key={index} className="flex items-center mb-2">
-                      <span className="p-2 dark:bg-gray-700 dark:text-white w-full mr-2">{type}</span>
+                      <span className="p-2 bg-gray-700 text-white w-full mr-2">{type}</span>
                       <button onClick={() => setEditingMaintenance({ ...editingMaintenance, typesMaintenances: editingMaintenance.typesMaintenances.filter(t => t !== type) })} className="p-2 bg-red-500 text-white">Remove</button>
                     </div>
                   ))}
