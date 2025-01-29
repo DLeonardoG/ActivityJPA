@@ -1,4 +1,3 @@
-
 package com.campus.novaair.role.infrastructure;
 
 import com.campus.novaair.role.application.RoleServiceImpl;
@@ -7,6 +6,7 @@ import com.campus.novaair.role.domain.RoleDTO;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/roles")
 public class RoleController {
+
     private final RoleServiceImpl roleServiceImpl;
 
     @Autowired
@@ -36,20 +37,52 @@ public class RoleController {
     }
 
     @PostMapping
-    public RoleDTO createRole(@RequestBody @Valid RoleDTO roleDTO) {
-        return roleServiceImpl.save(roleDTO);
+    public ResponseEntity<RoleDTO> createRole(@RequestBody @Valid RoleDTO roleDTO) {
+        try {
+            if (roleDTO.getRole() == null || roleDTO.getRole().isEmpty()) {
+                throw new IllegalArgumentException("El campo 'role' no puede ser nulo o vacío.");
+            }
+
+            RoleDTO savedRole = roleServiceImpl.save(roleDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedRole);
+
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Error de validación: " + ex.getMessage());
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Violación de integridad de datos: " + ex.getMessage());
+        } catch (Exception ex) {
+            throw new IllegalStateException("Error inesperado al crear el rol: " + ex.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRole(@PathVariable Long id) {
+        if (!roleServiceImpl.findById(id).isPresent()) {
+            throw new RoleNotFoundException("Role with ID " + id + " cannot be deleted");
+        }
+
         roleServiceImpl.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public RoleDTO updateRole(@PathVariable Long id, @RequestBody @Valid RoleDTO roleDTO) {
-        roleDTO.setId(id);
-        return roleServiceImpl.save(roleDTO);
-    }
-}
+    public ResponseEntity<RoleDTO> updateRole(@PathVariable Long id, @RequestBody @Valid RoleDTO roleDTO) {
+        try {
+            if (roleDTO.getRole() == null || roleDTO.getRole().isEmpty()) {
+                throw new IllegalArgumentException("El campo 'role' no puede ser nulo o vacío.");
+            }
 
+            roleDTO.setId(id);
+            RoleDTO updatedRole = roleServiceImpl.save(roleDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedRole);
+
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Error de validación: " + ex.getMessage());
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Violación de integridad de datos: " + ex.getMessage());
+        } catch (Exception ex) {
+            throw new IllegalStateException("Error inesperado al actualizar el rol: " + ex.getMessage());
+        }
+    }
+
+}
