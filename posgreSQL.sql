@@ -15,3 +15,4 @@ select * from crew_member
 select * from flight
 select * from place
 select * from role
+select * from user
