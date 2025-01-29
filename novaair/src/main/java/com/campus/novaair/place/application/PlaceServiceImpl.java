@@ -16,31 +16,23 @@ import org.springframework.stereotype.Service;
  * @author kevin
  */
 @Service
-public class PlaceServiceImpl implements PlaceRepository{
+public class PlaceServiceImpl{
     
     private final PlaceRepository placeRepository;
     
     public PlaceServiceImpl (PlaceRepository placeRepository){
         this.placeRepository = placeRepository;
     }
-    
-    @Override
     public List<Place> findAll() {
         return placeRepository.findAll();
     }
-
-    @Override
     public Place save(Place place) {
         return placeRepository.save(place);
 
     }
-
-    @Override
     public Optional findById(Long id) {
         return placeRepository.findById(id);
     }
-
-    @Override
     public void deleteById(Long id) {
         placeRepository.deleteById(id);
     }

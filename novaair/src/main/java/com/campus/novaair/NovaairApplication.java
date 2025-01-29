@@ -35,6 +35,9 @@ import com.campus.novaair.ticket.domain.TicketDTO;
 import com.campus.novaair.typemaintenance.application.TypeMaintenanceServiceImpl;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenance;
 import com.campus.novaair.typemaintenance.domain.TypeMaintenanceDTO;
+import com.campus.novaair.user.application.UserServiceImpl;
+import com.campus.novaair.user.domain.User;
+import com.campus.novaair.user.domain.UserDTO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -63,6 +66,7 @@ public class NovaairApplication {
         AirportServiceImpl airportServiceImpl = context.getBean(AirportServiceImpl.class);
         RoleServiceImpl roleServiceImpl = context.getBean(RoleServiceImpl.class);
         CrewMemberServiceImpl crewMemberServiceImpl = context.getBean(CrewMemberServiceImpl.class);
+        UserServiceImpl useServiceImpl = context.getBean(UserServiceImpl.class);
 
 //            --- creation of a new role ---
 //        roleServiceImpl.save("hostess");
@@ -227,6 +231,10 @@ flight3.setId(Long.MIN_VALUE);
         );
         
         maintenanceServiceImpl.save(maintenanceDTO);
+        
+        UserDTO userDTO = new UserDTO("fdfdff", "jose@gamuk");
+        
+        useServiceImpl.save(userDTO);
         
         EndPointServiceImpl endPointServiceImpl = context.getBean(EndPointServiceImpl.class);
         EndPoint endPoint1 = new EndPoint("/airports", "airports");
