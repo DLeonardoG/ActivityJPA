@@ -264,9 +264,6 @@ flight3.setId(Long.MIN_VALUE);
         endPointServiceImpl.saveEndPoint(endPoint11);
         EndPoint endPoint12 = new EndPoint("/typesmaintenances", "types maintenances");
         endPointServiceImpl.saveEndPoint(endPoint12);
-        
-
-
     }
 
 }
