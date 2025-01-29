@@ -21,6 +21,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
   return isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
 };
 
+
 const App = () => {
   return (
     <AuthProvider>

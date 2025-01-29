@@ -13,12 +13,34 @@ const Login = () => {
     setCredentials({ ...credentials, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login();
-    navigate('/airports');
+    
+    // Construir la URL con los parámetros de la consulta
+    const url = new URL('http://localhost:3001/login');
+    const params = {
+      username: credentials.username,
+      password: credentials.password,
+    };
+    
+    // Añadir los parámetros a la URL
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    
+    // Realizar la solicitud GET (ya que estamos usando parámetros en la URL)
+    const response = await fetch(url, {
+      method: 'POST', // Cambiar a GET porque estamos usando parámetros de consulta
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      const token = data.token; // El token es retornado aquí
+      login(token); // Guardamos el token en el contexto
+      navigate('/airports'); // Redirige a la página de aeropuertos
+    } else {
+      alert('Error de autenticación');
+    }
   };
-
+  
   return (
     <div className="flex items-center justify-center h-screen bg-gray-900">
       <div className="w-full max-w-xs">

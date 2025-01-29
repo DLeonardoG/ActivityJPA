@@ -1,6 +1,10 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3001/api';
+const API_COMMON = 'http://localhost:3001';
+
+
+
 
 export const getFlights = () => {
   return axios.get(`${API_URL}/flights`);
