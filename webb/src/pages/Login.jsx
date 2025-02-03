@@ -19,8 +19,8 @@ const Login = () => {
     // Construir la URL con los parámetros de la consulta
     const url = new URL('http://localhost:3001/login');
     const params = {
-      username: credentials.username,
-      password: credentials.password,
+      user: credentials.username,
+      encryptedPass: credentials.password,
     };
     
     // Añadir los parámetros a la URL
